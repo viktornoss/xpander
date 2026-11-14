@@ -473,6 +473,19 @@ export const ALL_USERS: UserProfile[] = [
   DEMO_CLIENT,
   DEMO_ADMIN,
   {
+    id: 'usr-pending-001',
+    name: 'Balogh Márton',
+    email: 'marton.balogh@futurelog.hu',
+    role: 'pending',
+    company: 'FutureLog Dinamika Kft.',
+    plan: 'Growth',
+    createdAt: '2026-03-14',
+    phone: '+36 30 888 1234',
+    plainPassword: 'PendingSecret2026!',
+    status: 'pending',
+    lastLogin: 'Még nem hagyva jóvá'
+  },
+  {
     id: 'usr-client-002',
     name: 'Szabó Péter',
     email: 'peter.szabo@logiglobal.hu',

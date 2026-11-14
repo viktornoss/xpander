@@ -183,14 +183,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return { success: true, role: found.role };
     }
 
-    // Default to demo client or create quick session
+    // Default to pending user if not found in registered database
     const isTolnai = trimmed.includes('tolnai') || trimmed.includes('viktor');
     const genericClient: UserProfile = {
       ...DEMO_CLIENT,
+      id: `usr-${Date.now()}`,
       email: trimmed,
       name: isTolnai ? 'Tolnai Viktor' : trimmed.split('@')[0].toUpperCase(),
-      role: isTolnai ? 'admin' : 'client'
+      role: isTolnai ? 'admin' : 'pending',
+      status: isTolnai ? 'active' : 'pending'
     };
+    setUsers(prev => [genericClient, ...prev]);
     setCurrentUser(genericClient);
     return { success: true, role: genericClient.role };
   };
@@ -203,34 +206,55 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       id: `usr-${Date.now()}`,
       name: isTolnai ? 'Tolnai Viktor' : name,
       email: email.trim().toLowerCase(),
-      role: isAdmin ? 'admin' : 'client',
+      role: isAdmin ? 'admin' : 'pending',
       company: company || (isTolnai ? 'Zentrion.ai Automation HQ' : 'Saját Vállalkozás Kft.'),
       plan: isAdmin ? 'Enterprise' : 'Growth',
       createdAt: new Date().toISOString().split('T')[0],
       apiKey: `nx_live_${Math.random().toString(36).substring(2, 15)}`,
       plainPassword: password || 'DefaultPass2026!',
       phone: phone || '+36 30 111 2233',
-      status: 'active',
+      status: isAdmin ? 'active' : 'pending',
       lastLogin: new Date().toLocaleString('hu-HU')
     };
 
     setUsers(prev => [newUser, ...prev]);
     setCurrentUser(newUser);
 
-    // Add welcoming notification
-    const welcomeNotif: AppNotification = {
-      id: `notif-${Date.now()}`,
-      userId: newUser.id,
-      title: isAdmin ? 'Üdvözlünk Főadminisztrátorként!' : 'Sikeres regisztráció!',
-      message: isAdmin
-        ? `Üdvözlünk a Zentrion.ai vezérlőpultján, ${newUser.name}! Teljes adminisztrátori jogosultsággal rendelkezel.`
-        : `Üdvözlünk a Zentrion.ai platformon, ${name}! Tekintsd meg az aktív automatizációkat vagy kérj egyedi AI rendszert.`,
-      type: 'success',
-      timestamp: 'Most',
-      read: false,
-      link: isAdmin ? '/admin' : '/dashboard'
-    };
-    setNotifications(prev => [welcomeNotif, ...prev]);
+    if (isAdmin) {
+      const welcomeAdminNotif: AppNotification = {
+        id: `notif-${Date.now()}`,
+        userId: newUser.id,
+        title: 'Üdvözlünk Főadminisztrátorként!',
+        message: `Üdvözlünk a Zentrion.ai vezérlőpultján, ${newUser.name}! Teljes adminisztrátori jogosultsággal rendelkezel.`,
+        type: 'success',
+        timestamp: 'Most',
+        read: false,
+        link: '/admin'
+      };
+      setNotifications(prev => [welcomeAdminNotif, ...prev]);
+    } else {
+      const welcomePendingNotif: AppNotification = {
+        id: `notif-${Date.now()}`,
+        userId: newUser.id,
+        title: 'Regisztráció rögzítve - Jóváhagyásra vár',
+        message: `Köszönjük a regisztrációt, ${name}! Fiókod rögzítésre került. Az adminisztrátor (Tolnai Viktor) jóváhagyása és Ügyfél rang hozzárendelése után a Dashboard automatikusan megnyílik számodra.`,
+        type: 'info',
+        timestamp: 'Most',
+        read: false,
+        link: '/dashboard'
+      };
+      const adminAlertNotif: AppNotification = {
+        id: `notif-admin-${Date.now()}`,
+        userId: 'usr-admin-001',
+        title: 'Új regisztráció jóváhagyásra vár!',
+        message: `${name} (${newUser.company || 'Cég nélkül'}, ${email}) regisztrált. A Dashboard eléréshez rendeld hozzá az Ügyfél rangot!`,
+        type: 'warning',
+        timestamp: 'Most',
+        read: false,
+        link: '/admin/users'
+      };
+      setNotifications(prev => [welcomePendingNotif, adminAlertNotif, ...prev]);
+    }
 
     return { success: true, role: newUser.role };
   };
@@ -265,8 +289,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const switchRole = (role: UserRole) => {
     if (role === 'admin') {
       setCurrentUser(DEMO_ADMIN);
-    } else {
+    } else if (role === 'client') {
       setCurrentUser(DEMO_CLIENT);
+    } else {
+      const pendingDemo: UserProfile = {
+        id: 'usr-pending-demo',
+        name: 'Várakozó Felhasználó',
+        email: 'pending@ujugyfel.hu',
+        role: 'pending',
+        company: 'Innovatív Startup Kft.',
+        plan: 'Starter',
+        createdAt: new Date().toISOString().split('T')[0],
+        status: 'pending',
+        phone: '+36 30 999 8877'
+      };
+      setCurrentUser(pendingDemo);
     }
   };
 

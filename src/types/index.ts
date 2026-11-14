@@ -1,4 +1,4 @@
-export type UserRole = 'client' | 'admin';
+export type UserRole = 'pending' | 'client' | 'admin';
 
 export interface UserProfile {
   id: string;
@@ -12,7 +12,7 @@ export interface UserProfile {
   phone?: string;
   apiKey?: string;
   plainPassword?: string;
-  status?: 'active' | 'suspended';
+  status?: 'active' | 'suspended' | 'pending';
   lastLogin?: string;
   notes?: string;
 }

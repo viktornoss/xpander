@@ -21,7 +21,9 @@ import {
   Zap,
   Activity,
   Workflow,
-  Check
+  Check,
+  Clock,
+  Lock
 } from 'lucide-react';
 import { useAuth } from '@/lib/auth-context';
 import ZentrionLogo from '@/components/brand/ZentrionLogo';
@@ -44,6 +46,105 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     { label: 'Értesítések', href: '/dashboard/notifications', icon: <Bell className="w-4 h-4" />, badge: unreadCount > 0 ? unreadCount : undefined },
     { label: 'Beállítások & API', href: '/dashboard/settings', icon: <Settings className="w-4 h-4" /> },
   ];
+
+  // Guard 1: Not logged in
+  if (!currentUser) {
+    return (
+      <div className="min-h-screen bg-black flex flex-col justify-center items-center p-6 text-center">
+        <div className="max-w-md w-full rounded-3xl glass-panel p-8 border border-white/10 space-y-4 shadow-2xl">
+          <div className="w-14 h-14 rounded-2xl bg-white/10 text-white flex items-center justify-center mx-auto">
+            <Lock className="w-7 h-7" />
+          </div>
+          <h2 className="text-2xl font-bold text-white">Bejelentkezés Szükséges</h2>
+          <p className="text-xs text-neutral-400">
+            A Vezérlőpult (Dashboard) eléréséhez kérjük, jelentkezz be a fiókodba!
+          </p>
+          <div className="pt-2 space-y-2">
+            <Link
+              href="/login"
+              className="block w-full py-3 rounded-xl font-bold text-xs uppercase tracking-wider text-black bg-white hover:bg-neutral-200 transition-colors shadow-lg"
+            >
+              Bejelentkezés
+            </Link>
+            <Link
+              href="/"
+              className="block w-full py-2.5 rounded-xl text-xs font-semibold text-neutral-400 hover:text-white bg-white/5"
+            >
+              Vissza a főoldalra
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Guard 2: Logged in, but NOT an approved client and NOT admin (e.g. role === 'pending')
+  const hasClientAccess = currentUser.role === 'client' || currentUser.role === 'admin';
+  if (!hasClientAccess) {
+    return (
+      <div className="min-h-screen bg-black flex flex-col justify-center items-center p-6 text-center relative overflow-hidden">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-500/10 blur-[130px] rounded-full pointer-events-none" />
+
+        <div className="max-w-md w-full rounded-3xl glass-panel p-8 border border-amber-500/30 space-y-5 shadow-2xl relative z-10">
+          <div className="w-16 h-16 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto border border-amber-500/30">
+            <Clock className="w-8 h-8 animate-pulse" />
+          </div>
+
+          <div className="space-y-2">
+            <span className="text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 inline-block">
+              Jóváhagyásra Váró Regisztráció
+            </span>
+            <h2 className="text-2xl font-extrabold text-white">
+              Nincs Ügyfél Jogosultságod
+            </h2>
+            <p className="text-xs text-neutral-300 leading-relaxed">
+              Kedves <strong className="text-white">{currentUser.name}</strong>! Fiókodat sikeresen rögzítettük a rendszerben. A Dashboardhoz és a belső AI munkafolyamatokhoz kizárólag az adminisztrátor (<strong>Tolnai Viktor</strong>) által jóváhagyott, <strong>Ügyfél ranggal</strong> rendelkező partnerek férhetnek hozzá.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-white/5 border border-white/10 text-left space-y-2 text-xs">
+            <div className="flex justify-between items-center text-neutral-400">
+              <span>Fiók e-mail:</span>
+              <span className="text-white font-mono">{currentUser.email}</span>
+            </div>
+            <div className="flex justify-between items-center text-neutral-400">
+              <span>Cégnév:</span>
+              <span className="text-white">{currentUser.company || 'Egyéni regisztráció'}</span>
+            </div>
+            <div className="flex justify-between items-center text-neutral-400">
+              <span>Jelenlegi rang:</span>
+              <span className="text-amber-400 font-bold flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
+                Várakozó (Pending)
+              </span>
+            </div>
+          </div>
+
+          <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-[11px] text-amber-300 text-left space-y-1">
+            <p className="font-semibold">Mi a teendő?</p>
+            <p className="text-neutral-400">
+              Tolnai Viktor adminisztrátor értesült a regisztrációdról. Amint megadja a fiókodnak az <strong>Ügyfél</strong> rangot, az összes automatizáció azonnal elérhetővé válik.
+            </p>
+          </div>
+
+          <div className="pt-2 space-y-2">
+            <button
+              onClick={() => logout()}
+              className="w-full py-2.5 rounded-xl text-xs font-semibold text-rose-400 hover:text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 transition-colors"
+            >
+              Kijelentkezés
+            </button>
+            <Link
+              href="/"
+              className="block w-full py-2 rounded-xl text-xs text-neutral-400 hover:text-white"
+            >
+              Vissza a főoldalra
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-nexus-950 flex flex-col lg:flex-row text-foreground">

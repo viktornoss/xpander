@@ -101,6 +101,12 @@ export default function Navbar() {
                         {currentUser.role === 'admin' && (
                           <span className="text-[9px] uppercase tracking-wider font-bold bg-white text-black px-1.5 py-0.5 rounded">ADMIN</span>
                         )}
+                        {currentUser.role === 'pending' && (
+                          <span className="text-[9px] uppercase tracking-wider font-bold bg-amber-500 text-black px-1.5 py-0.5 rounded">VÁRAKOZÓ</span>
+                        )}
+                        {currentUser.role === 'client' && (
+                          <span className="text-[9px] uppercase tracking-wider font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-1.5 py-0.5 rounded">ÜGYFÉL</span>
+                        )}
                       </div>
                       <p className="text-[10px] text-neutral-400 truncate">{currentUser.email}</p>
                     </div>
@@ -122,7 +128,7 @@ export default function Navbar() {
                       className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs text-neutral-200 hover:text-white hover:bg-white/10 transition-colors"
                     >
                       <LayoutDashboard className="w-3.5 h-3.5" />
-                      <span>Ügyfél Portál</span>
+                      <span>{currentUser.role === 'pending' ? 'Jóváhagyási Státusz' : 'Ügyfél Portál'}</span>
                     </Link>
 
                     <button

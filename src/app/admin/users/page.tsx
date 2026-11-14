@@ -26,7 +26,9 @@ import {
   Edit3,
   Trash2,
   Shield,
-  Activity
+  Activity,
+  Clock,
+  ArrowRight
 } from 'lucide-react';
 import { useAuth } from '@/lib/auth-context';
 import { UserProfile } from '@/types';
@@ -35,7 +37,7 @@ export default function AdminUsersPage() {
   const { users, updateUserPassword, updateUserProfile, deleteUser, addUser, switchRole } = useAuth();
   
   const [searchTerm, setSearchTerm] = useState('');
-  const [roleFilter, setRoleFilter] = useState<'all' | 'client' | 'admin'>('all');
+  const [roleFilter, setRoleFilter] = useState<'all' | 'pending' | 'client' | 'admin'>('all');
   const [planFilter, setPlanFilter] = useState<'all' | 'Starter' | 'Growth' | 'Enterprise'>('all');
   const [revealedPasswords, setRevealedPasswords] = useState<Record<string, boolean>>({});
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -53,7 +55,7 @@ export default function AdminUsersPage() {
     company: '',
     phone: '',
     password: '',
-    role: 'client' as 'client' | 'admin',
+    role: 'client' as 'pending' | 'client' | 'admin',
     plan: 'Growth' as 'Starter' | 'Growth' | 'Enterprise'
   });
 
@@ -158,6 +160,7 @@ export default function AdminUsersPage() {
     return matchSearch && matchRole && matchPlan;
   });
 
+  const pendingUsers = users.filter(u => u.role === 'pending');
   const totalClients = users.filter(u => u.role === 'client').length;
   const totalAdmins = users.filter(u => u.role === 'admin').length;
 
@@ -175,7 +178,7 @@ export default function AdminUsersPage() {
             Regisztrált Fiókok & Ügyfél Adatbázis
           </h1>
           <p className="text-xs sm:text-sm text-gray-400 mt-1 max-w-2xl leading-relaxed">
-            Itt látható minden regisztrált ügyfél és adminisztrátor teljes adata. Ha egy felhasználó elfelejti a jelszavát vagy adatait, itt azonnal megtekintheted, kimásolhatod vagy egyetlen kattintással új jelszót állíthatsz be neki.
+            Itt látható minden regisztrált partner és adminisztrátor adata. Az új regisztrálók alapértelmezetten <strong>Jóváhagyásra várnak</strong> (nincs dashboard hozzáférésük). Csak akkor léphetnek be a rendszerbe, ha az adminisztrátor (Tolnai Viktor) megadja nekik az <strong>Ügyfél</strong> rangot.
           </p>
         </div>
 
@@ -206,7 +209,37 @@ export default function AdminUsersPage() {
             <CheckCircle2 className="w-4 h-4 shrink-0" />
             <span className="font-semibold">{feedbackMessage}</span>
           </div>
-          <span className="text-[10px] text-emerald-400/80">zentrion.ai Rendszernapló Frissítve</span>
+          <span className="text-[10px] text-emerald-400/80">Zentrion.ai Rendszernapló Frissítve</span>
+        </div>
+      )}
+
+      {/* Pending Registrations Attention Banner */}
+      {pendingUsers.length > 0 && (
+        <div className="p-4 sm:p-5 rounded-3xl bg-amber-500/10 border border-amber-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-in fade-in shadow-lg shadow-amber-500/5">
+          <div className="flex items-center gap-3.5">
+            <div className="w-11 h-11 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 border border-amber-500/30">
+              <Clock className="w-6 h-6 animate-pulse" />
+            </div>
+            <div>
+              <div className="text-sm font-bold text-white flex items-center gap-2 flex-wrap">
+                <span>{pendingUsers.length} új regisztráció jóváhagyásra vár!</span>
+                <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 font-bold border border-amber-500/30">
+                  Dashboard zárolva számukra
+                </span>
+              </div>
+              <p className="text-xs text-gray-400 mt-0.5">
+                Ezek a regisztrálók mindaddig nem férnek hozzá a Dashboardhoz, amíg nem kattintasz az „Ügyfél rang megadása” gombra.
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={() => setRoleFilter(roleFilter === 'pending' ? 'all' : 'pending')}
+            className="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs shrink-0 shadow-md shadow-amber-500/20 transition-all flex items-center justify-center gap-2"
+          >
+            <span>{roleFilter === 'pending' ? 'Összes fiók mutatása' : 'Csak a jóváhagyásra várók'}</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
         </div>
       )}
 
@@ -221,9 +254,18 @@ export default function AdminUsersPage() {
           <div className="text-[10px] text-gray-500">Minden rögzített fiók</div>
         </div>
 
+        <div className={`rounded-2xl glass-panel p-4 border space-y-1 ${pendingUsers.length > 0 ? 'border-amber-500/40 bg-amber-500/5' : 'border-white/10'}`}>
+          <div className="flex items-center justify-between text-gray-400 text-xs">
+            <span className={pendingUsers.length > 0 ? 'text-amber-400 font-semibold' : ''}>Jóváhagyásra Vár</span>
+            <Clock className={`w-4 h-4 ${pendingUsers.length > 0 ? 'text-amber-400 animate-pulse' : 'text-gray-500'}`} />
+          </div>
+          <div className={`text-2xl font-black font-mono ${pendingUsers.length > 0 ? 'text-amber-400' : 'text-white'}`}>{pendingUsers.length}</div>
+          <div className="text-[10px] text-gray-500">Dashboard zárolva</div>
+        </div>
+
         <div className="rounded-2xl glass-panel p-4 border border-white/10 space-y-1">
           <div className="flex items-center justify-between text-gray-400 text-xs">
-            <span>Aktív B2B Ügyfelek</span>
+            <span>Jóváhagyott Ügyfelek</span>
             <UserCheck className="w-4 h-4 text-emerald-400" />
           </div>
           <div className="text-2xl font-black text-emerald-400 font-mono">{totalClients}</div>
@@ -232,22 +274,11 @@ export default function AdminUsersPage() {
 
         <div className="rounded-2xl glass-panel p-4 border border-white/10 space-y-1">
           <div className="flex items-center justify-between text-gray-400 text-xs">
-            <span>Adminisztrátorok</span>
+            <span>Főadminisztrátor</span>
             <Shield className="w-4 h-4 text-neon-purple" />
           </div>
-          <div className="text-2xl font-black text-neon-purple font-mono">{totalAdmins}</div>
-          <div className="text-[10px] text-gray-500">Főadminisztrációs jogkör</div>
-        </div>
-
-        <div className="rounded-2xl glass-panel p-4 border border-white/10 space-y-1">
-          <div className="flex items-center justify-between text-gray-400 text-xs">
-            <span>Legújabb Fiók</span>
-            <Activity className="w-4 h-4 text-neon-cyan" />
-          </div>
-          <div className="text-xs font-bold text-white truncate font-mono">
-            {users[0]?.name || 'N/A'}
-          </div>
-          <div className="text-[10px] text-neon-cyan truncate">{users[0]?.company || 'Nincs cég'}</div>
+          <div className="text-sm font-extrabold text-neon-purple truncate">Tolnai Viktor</div>
+          <div className="text-[10px] text-gray-500">Minden joggal felruházva</div>
         </div>
       </div>
 
@@ -269,15 +300,25 @@ export default function AdminUsersPage() {
         <div className="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
           <div className="flex items-center bg-nexus-900 border border-white/10 rounded-xl p-1 text-xs shrink-0">
             <span className="text-gray-400 text-[10px] px-2 font-medium">Szerepkör:</span>
-            {(['all', 'client', 'admin'] as const).map(role => (
+            {(['all', 'pending', 'client', 'admin'] as const).map(role => (
               <button
                 key={role}
                 onClick={() => setRoleFilter(role)}
                 className={`px-2.5 py-1 rounded-lg font-semibold text-[11px] transition-colors ${
-                  roleFilter === role ? 'bg-neon-purple text-white shadow' : 'text-gray-400 hover:text-white'
+                  roleFilter === role 
+                    ? role === 'pending'
+                      ? 'bg-amber-500 text-black font-bold shadow'
+                      : 'bg-neon-purple text-white shadow'
+                    : 'text-gray-400 hover:text-white'
                 }`}
               >
-                {role === 'all' ? 'Mind' : role === 'client' ? 'Ügyfél' : 'Admin'}
+                {role === 'all' 
+                  ? 'Mind' 
+                  : role === 'pending' 
+                  ? `Jóváhagyásra vár (${pendingUsers.length})` 
+                  : role === 'client' 
+                  ? `Ügyfél (${totalClients})` 
+                  : `Admin (${totalAdmins})`}
               </button>
             ))}
           </div>
@@ -328,23 +369,40 @@ export default function AdminUsersPage() {
                   const isCopied = copiedId === user.id;
 
                   return (
-                    <tr key={user.id} className="hover:bg-white/5 transition-colors group">
+                    <tr key={user.id} className={`hover:bg-white/5 transition-colors group ${user.role === 'pending' ? 'bg-amber-500/[0.04]' : ''}`}>
                       
                       {/* 1. Felhasználó & Státusz */}
                       <td className="py-4 px-5">
                         <div className="flex items-center gap-3">
                           <div className="relative">
-                            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-neon-blue to-neon-purple flex items-center justify-center text-nexus-950 font-extrabold text-xs shadow-md">
+                            <div className={`w-9 h-9 rounded-xl flex items-center justify-center font-extrabold text-xs shadow-md ${
+                              user.role === 'pending'
+                                ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
+                                : 'bg-gradient-to-tr from-neon-blue to-neon-purple text-nexus-950'
+                            }`}>
                               {user.name.charAt(0)}
                             </div>
-                            <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-nexus-950" />
+                            <span className={`absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full border border-nexus-950 ${
+                              user.role === 'pending' ? 'bg-amber-400' : 'bg-emerald-400'
+                            }`} />
                           </div>
                           <div>
-                            <div className="font-bold text-white text-sm flex items-center gap-1.5">
+                            <div className="font-bold text-white text-sm flex items-center gap-1.5 flex-wrap">
                               <span>{user.name}</span>
                               {user.role === 'admin' && (
-                                <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-neon-purple/20 text-neon-purple border border-neon-purple/30">
+                                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-neon-purple/20 text-neon-purple border border-neon-purple/30">
                                   ADMIN
+                                </span>
+                              )}
+                              {user.role === 'pending' && (
+                                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1">
+                                  <Clock className="w-2.5 h-2.5" />
+                                  JÓVÁHAGYÁSRA VÁR
+                                </span>
+                              )}
+                              {user.role === 'client' && (
+                                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                                  ÜGYFÉL
                                 </span>
                               )}
                             </div>
@@ -424,15 +482,51 @@ export default function AdminUsersPage() {
 
                       {/* 4. Szerepkör & Csomag */}
                       <td className="py-4 px-4 space-y-2">
+                        {/* If pending, prominent 1-click approve button! */}
+                        {user.role === 'pending' && (
+                          <button
+                            onClick={() => {
+                              updateUserProfile(user.id, { role: 'client', status: 'active' });
+                              setFeedbackMessage(`Sikeres jóváhagyás! ${user.name} (${user.email}) megkapta az Ügyfél rangot és mostantól beléphet a Dashboardba.`);
+                              setTimeout(() => setFeedbackMessage(null), 4500);
+                            }}
+                            className="w-full px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:opacity-95 text-black font-extrabold text-[11px] flex items-center justify-center gap-1.5 shadow-md shadow-emerald-500/20 transition-all"
+                          >
+                            <CheckCircle2 className="w-3.5 h-3.5 text-black" />
+                            <span>Ügyfél rang megadása</span>
+                          </button>
+                        )}
+
                         {/* Role selector */}
                         <div>
                           <select
                             value={user.role}
-                            onChange={(e) => updateUserProfile(user.id, { role: e.target.value as 'client' | 'admin' })}
-                            className="px-2.5 py-1 rounded-lg bg-nexus-900 border border-white/10 text-white text-xs font-semibold focus:outline-none focus:border-neon-purple"
+                            onChange={(e) => {
+                              const newRole = e.target.value as any;
+                              updateUserProfile(user.id, { 
+                                role: newRole, 
+                                status: newRole === 'pending' ? 'pending' : 'active' 
+                              });
+                              if (newRole === 'client') {
+                                setFeedbackMessage(`Ügyfél rang hozzárendelve: ${user.name} mostantól beléphet a Dashboardba.`);
+                              } else if (newRole === 'pending') {
+                                setFeedbackMessage(`Rang visszavonva (Jóváhagyásra vár): ${user.name} dashboard elérése zárolva.`);
+                              } else {
+                                setFeedbackMessage(`Adminisztrátori jog megadva: ${user.name}`);
+                              }
+                              setTimeout(() => setFeedbackMessage(null), 4000);
+                            }}
+                            className={`w-full px-2.5 py-1 rounded-lg border text-xs font-semibold focus:outline-none ${
+                              user.role === 'pending'
+                                ? 'bg-amber-950/40 border-amber-500/40 text-amber-300'
+                                : user.role === 'admin'
+                                ? 'bg-purple-950/40 border-purple-500/40 text-purple-300'
+                                : 'bg-nexus-900 border-white/10 text-white'
+                            }`}
                           >
-                            <option value="client">Ügyfél (Client)</option>
-                            <option value="admin">Főadmin (Admin)</option>
+                            <option value="pending">⏳ Jóváhagyásra vár (Zárolt Dashboard)</option>
+                            <option value="client">✅ Ügyfél (Beléphet a Dashboardba)</option>
+                            <option value="admin">👑 Főadmin (Admin Vezérlőpult)</option>
                           </select>
                         </div>
 
@@ -441,7 +535,7 @@ export default function AdminUsersPage() {
                           <select
                             value={user.plan}
                             onChange={(e) => updateUserProfile(user.id, { plan: e.target.value as any })}
-                            className="px-2.5 py-0.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 text-[11px] focus:outline-none focus:border-neon-blue"
+                            className="w-full px-2.5 py-0.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 text-[11px] focus:outline-none focus:border-neon-blue"
                           >
                             <option value="Starter">Starter (240k)</option>
                             <option value="Growth">Growth (380k)</option>
