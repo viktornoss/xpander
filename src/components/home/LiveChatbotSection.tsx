@@ -281,22 +281,28 @@ Válaszolj mint egy Senior AI Solutions Architect: barátságosan, professzioná
   };
 
   return (
-    <section id="ai-chat" className="py-24 relative bg-black text-white border-y border-white/10 scroll-mt-20">
+    <section id="ai-chat" className="py-28 relative bg-black text-white scroll-mt-20 overflow-hidden">
+      {/* Top section divider */}
+      <div className="section-divider mb-20" />
+
+      {/* Ambient background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-white/[0.02] rounded-full blur-3xl pointer-events-none" />
+
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-8">
         
         {/* Section Header */}
-        <div className="text-center space-y-3 max-w-2xl mx-auto scroll-reveal">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-neutral-300">
-            <Sparkles className="w-3.5 h-3.5 text-white" />
+        <div className="text-center space-y-4 max-w-2xl mx-auto scroll-reveal">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-neutral-300 backdrop-blur-md">
+            <Sparkles className="w-3.5 h-3.5 text-white animate-pulse" />
             <span>Valós Idejű AI Interakció</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase">
-            Próbáld ki az Zentrion.ai Chatbotot!
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase">
+            <span className="text-shimmer">Próbáld ki</span> az Zentrion.ai Chatbotot!
           </h2>
 
-          <p className="text-sm sm:text-base text-neutral-400 font-normal">
-            Tegyél fel egy kérdést folyamatokról, árakról, vagy kérj tőle azonnali munkafolyamat-tervezetet vagy email sablont. Úgy válaszol, mint egy tapasztalt AI tanácsadó.
+          <p className="text-sm sm:text-base text-neutral-400 font-normal leading-relaxed">
+            Tegyél fel egy kérdést folyamatokról, árakról, vagy kérj azonnali munkafolyamat-tervezetet vagy sablont. Úgy válaszol, mint egy tapasztalt AI vezető mérnök.
           </p>
         </div>
 

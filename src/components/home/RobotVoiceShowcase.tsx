@@ -209,21 +209,24 @@ export default function RobotVoiceShowcase() {
   };
 
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden bg-black text-white">
+    <section className="py-24 md:py-32 relative overflow-hidden bg-black text-white">
+      {/* Top section divider */}
+      <div className="section-divider mb-20" />
+
       {/* Dynamic Ambient Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-radial-gradient from-white/[0.06] via-white/[0.01] to-transparent blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-white/[0.03] rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
         
         {/* Section Header with Scroll Reveal */}
         <div className="text-center max-w-3xl mx-auto space-y-4 scroll-reveal">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono font-bold tracking-wider text-neutral-300">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono font-bold tracking-wider text-neutral-300 backdrop-blur-md">
             <Radio className="w-3.5 h-3.5 text-white animate-pulse" />
             <span>ZENTRION-VOICE-3D ENGINE</span>
           </div>
 
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase leading-tight">
-            Valós idejű 3D Robot Voice Agent
+            <span className="text-shimmer">Valós idejű 3D</span> Robot Voice Agent
           </h2>
 
           <p className="text-neutral-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">

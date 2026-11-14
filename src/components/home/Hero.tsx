@@ -144,11 +144,18 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative pt-12 pb-20 md:pt-18 md:pb-28 overflow-hidden bg-black text-white">
-      {/* Subtle modern monochromatic ambient spotlight */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-radial-gradient from-white/[0.05] via-white/[0.01] to-transparent blur-[120px] pointer-events-none" />
+    <section className="relative pt-14 pb-24 md:pt-20 md:pb-32 overflow-hidden bg-black text-white">
+      {/* Premium ambient background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Radial spotlight */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-radial-gradient from-white/[0.06] via-white/[0.015] to-transparent blur-[120px]" />
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-40" />
+        {/* Vignette overlay */}
+        <div className="absolute inset-0 bg-radial-vignette" />
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-18">
         
         {/* Top Hero Section */}
         <div className="text-center max-w-4xl mx-auto space-y-6">
@@ -162,10 +169,10 @@ export default function Hero() {
           </div>
 
           {/* Main Headline: AUTOMATE. INNOVATE. SCALE. */}
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[0.98] uppercase">
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[0.95] uppercase">
             AUTOMATE.<br />
             INNOVATE.<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-500">
+            <span className="text-shimmer">
               SCALE.
             </span>
           </h1>
@@ -179,7 +186,7 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
             <Link
               href="/audit"
-              className="w-full sm:w-auto px-7 py-3.5 rounded-full font-bold text-black bg-white hover:bg-neutral-200 transition-all text-sm sm:text-base flex items-center justify-center gap-2 shadow-xl hover:scale-105 active:scale-95"
+              className="btn-premium w-full sm:w-auto px-7 py-3.5 rounded-full font-bold text-black bg-white hover:bg-neutral-100 transition-all text-sm sm:text-base flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(255,255,255,0.15)]"
             >
               <span>Ingyenes AI Folyamat-Audit</span>
               <ArrowRight className="w-4 h-4 text-black" />
@@ -229,7 +236,7 @@ export default function Hero() {
         {/* ========================================================================= */}
         {/* FEATURED SHOWCASE BENTO CARD (Matching the reference REDSUN design) */}
         {/* ========================================================================= */}
-        <div className="rounded-3xl glass-spotlight border border-white/15 p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden scroll-reveal-scale bg-[#08080a]">
+        <div className="rotating-border rounded-3xl glass-spotlight p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden scroll-reveal-scale bg-[#08080a]">
           <div className="glass-rim-top" />
           
           {/* Subtle dark eclipse lens glow in background matching reference */}
@@ -544,44 +551,31 @@ export default function Hero() {
 
         </div>
 
-        {/* Stats Row in Stark Minimalist Monochrome */}
-        <div className="pt-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center border-t border-white/10">
-          <div className="space-y-1">
-            <div className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-              99.98%
+        {/* Stats Row */}
+        <div className="pt-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {[
+            { value: '99.98%', label: 'Garantált Rendszer Uptime', delay: '0' },
+            { value: '1,240,000+', label: 'Havi Automatizált Művelet', delay: '100' },
+            { value: '3.8x', label: 'Átlagos Ügyfél Megtérülés (ROI)', delay: '200' },
+            { value: '< 2 mp', label: 'Átlagos AI Válaszidő', delay: '300' },
+          ].map((stat, idx) => (
+            <div 
+              key={idx}
+              style={{ transitionDelay: `${idx * 100}ms` }}
+              className="space-y-2 scroll-reveal group"
+            >
+              <div className="text-3xl sm:text-4xl font-black text-white tracking-tight counter-value group-hover:text-shimmer transition-all">
+                {stat.value}
+              </div>
+              <div className="text-xs sm:text-sm text-neutral-500 font-medium group-hover:text-neutral-400 transition-colors">
+                {stat.label}
+              </div>
             </div>
-            <div className="text-xs sm:text-sm text-neutral-400 font-medium">
-              Garantált Rendszer Uptime
-            </div>
-          </div>
-
-          <div className="space-y-1">
-            <div className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-              1,240,000+
-            </div>
-            <div className="text-xs sm:text-sm text-neutral-400 font-medium">
-              Havi Automatizált Művelet
-            </div>
-          </div>
-
-          <div className="space-y-1">
-            <div className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-              3.8x
-            </div>
-            <div className="text-xs sm:text-sm text-neutral-400 font-medium">
-              Átlagos Ügyfél Megtérülés (ROI)
-            </div>
-          </div>
-
-          <div className="space-y-1">
-            <div className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-              &lt; 2 mp
-            </div>
-            <div className="text-xs sm:text-sm text-neutral-400 font-medium">
-              Átlagos AI Válaszidő
-            </div>
-          </div>
+          ))}
         </div>
+        
+        {/* Decorative section divider */}
+        <div className="section-divider mt-4" />
 
         {/* Interactive Guided Tour Presentation Modal */}
         <WebsiteTourPresentation
