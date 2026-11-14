@@ -548,6 +548,15 @@ export default function CartDrawer() {
                     <ExternalLink className="w-4 h-4 text-white" />
                   </a>
 
+                  {/* Direct mailto link backup */}
+                  <a
+                    href={`mailto:2viktornosss@gmail.com,xpander-automation.ai@outlook.hu?subject=${encodeURIComponent(`✅ Sikeres Rendelés [${completedOrder.orderId}] - PayPal: 2viktornosss@gmail.com`)}&body=${encodeURIComponent(`Kedves Tolnai Viktor!\n\nA megrendelés rögzítésre került a Zentrion.ai weboldalon.\n\nRendelés száma: ${completedOrder.orderId}\nMegrendelő: ${completedOrder.customerName}\nEmail: ${completedOrder.customerEmail}\nTelefon: ${completedOrder.customerPhone}\nÖsszeg: ${completedOrder.totalPrice}\nFizetés: PayPal (2viktornosss@gmail.com)\n\nÜdvözlettel,\nZentrion.ai`)}`}
+                    className="w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs flex items-center justify-center gap-2 border border-white/15 transition-all cursor-pointer"
+                  >
+                    <Mail className="w-4 h-4 text-white" />
+                    <span>Visszaigazoló Email Megnyitása (Levelező)</span>
+                  </a>
+
                   <div className="text-center text-[10px] text-neutral-400 pt-1">
                     Ügyfélszolgálat & visszaigazolás: <strong className="text-neutral-200">xpander-automation.ai@outlook.hu</strong>
                   </div>
