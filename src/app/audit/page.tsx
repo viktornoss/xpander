@@ -317,8 +317,10 @@ export default function AuditPage() {
                         >
                           <span className="text-2xl">{ind.icon}</span>
                           <div>
-                            <div className="text-xs font-bold leading-tight">{ind.name}</div>
-                            <div className={`text-[10px] mt-0.5 line-clamp-1 ${industry === ind.name ? 'text-neutral-700' : 'text-neutral-500'}`}>
+                            <div className={`text-xs font-bold leading-tight ${industry === ind.name ? 'text-black font-extrabold' : 'text-neutral-200'}`}>
+                              {ind.name}
+                            </div>
+                            <div className={`text-[10px] mt-0.5 line-clamp-1 ${industry === ind.name ? 'text-neutral-800 font-medium' : 'text-neutral-500'}`}>
                               {ind.desc}
                             </div>
                           </div>

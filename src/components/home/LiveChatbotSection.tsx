@@ -398,7 +398,7 @@ Válaszolj mint egy Senior AI Solutions Architect: barátságosan, professzioná
                     }`}
                   >
                     {isUser ? (
-                      <div className="text-[13px] whitespace-pre-wrap leading-relaxed">
+                      <div className="text-[13px] whitespace-pre-wrap leading-relaxed text-black font-semibold">
                         {msg.content}
                       </div>
                     ) : (

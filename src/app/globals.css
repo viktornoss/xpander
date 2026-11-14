@@ -5,6 +5,11 @@
 :root {
   --background: #000000;
   --foreground: #ffffff;
+  color-scheme: dark;
+}
+
+html {
+  color-scheme: dark;
 }
 
 body {
@@ -13,6 +18,99 @@ body {
   font-feature-settings: "rlig" 1, "calt" 1;
   overflow-x: hidden;
   background-color: #000000;
+}
+
+/* ========================================================================= */
+/* UNIVERSAL CONTRAST RULE: IN ALL WHITE BOXES, THE TEXT MUST BE BLACK      */
+/* ========================================================================= */
+
+/* Any element with a solid white background */
+.bg-white,
+[class*="bg-white"]:not([class*="bg-white/"]),
+[class*="bg-[#fff]"],
+[class*="bg-[#ffffff]"] {
+  color: #000000 !important;
+}
+
+/* All text elements inside any solid white container */
+.bg-white h1, .bg-white h2, .bg-white h3, .bg-white h4, .bg-white h5, .bg-white h6,
+.bg-white p, .bg-white span, .bg-white div:not([class*="bg-black"]):not([class*="bg-neutral-"]):not([class*="bg-nexus-"]),
+.bg-white a, .bg-white strong, .bg-white b, .bg-white label,
+[class*="bg-white"]:not([class*="bg-white/"]) h1,
+[class*="bg-white"]:not([class*="bg-white/"]) h2,
+[class*="bg-white"]:not([class*="bg-white/"]) h3,
+[class*="bg-white"]:not([class*="bg-white/"]) h4,
+[class*="bg-white"]:not([class*="bg-white/"]) h5,
+[class*="bg-white"]:not([class*="bg-white/"]) h6,
+[class*="bg-white"]:not([class*="bg-white/"]) p,
+[class*="bg-white"]:not([class*="bg-white/"]) span:not([class*="bg-black"]):not([class*="bg-neutral-"]):not([class*="bg-nexus-"]),
+[class*="bg-white"]:not([class*="bg-white/"]) a,
+[class*="bg-white"]:not([class*="bg-white/"]) strong,
+[class*="bg-white"]:not([class*="bg-white/"]) b,
+[class*="bg-white"]:not([class*="bg-white/"]) label {
+  color: #000000 !important;
+}
+
+/* Icons inside white containers must be black */
+.bg-white svg,
+[class*="bg-white"]:not([class*="bg-white/"]) svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+/* Inputs, textareas, and selects with white background */
+input.bg-white,
+textarea.bg-white,
+select.bg-white,
+input[class*="bg-white"]:not([class*="bg-white/"]),
+textarea[class*="bg-white"]:not([class*="bg-white/"]),
+select[class*="bg-white"]:not([class*="bg-white/"]) {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  caret-color: #000000 !important;
+}
+
+.bg-white::placeholder,
+[class*="bg-white"]:not([class*="bg-white/"])::placeholder {
+  color: #52525b !important;
+  -webkit-text-fill-color: #52525b !important;
+}
+
+/* Fix browser autofill on dark inputs: prevent turning into white box with white text */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #141416 inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* If the input is explicitly white, autofill must have black text on white background */
+input.bg-white:-webkit-autofill,
+input[class*="bg-white"]:not([class*="bg-white/"]):-webkit-autofill,
+textarea.bg-white:-webkit-autofill,
+textarea[class*="bg-white"]:not([class*="bg-white/"]):-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #000000 !important;
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+
+/* Windows native <select> options: avoid white-on-white dropdown menus */
+select option {
+  background-color: #121214 !important;
+  color: #ffffff !important;
+}
+
+select.bg-white option,
+select[class*="bg-white"]:not([class*="bg-white/"]) option {
+  background-color: #ffffff !important;
+  color: #000000 !important;
 }
 
 /* Custom sleek monochrome scrollbar */

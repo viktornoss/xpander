@@ -303,7 +303,7 @@ export default function FloatingChatWidget() {
                       </button>
                     )}
                     {isUser ? (
-                      <div className="whitespace-pre-wrap">{m.content}</div>
+                      <div className="whitespace-pre-wrap text-black font-semibold">{m.content}</div>
                     ) : (
                       <MarkdownMessage content={m.content} isStreaming={m.isStreaming} />
                     )}
