@@ -110,3 +110,4 @@ export default function ZentrionLogo({
 
   return content;
 }
+

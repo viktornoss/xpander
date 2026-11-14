@@ -618,7 +618,7 @@ export default function Robot3DAvatar({
             {/* Animated Mouth */}
             <div className={`w-8 h-2 rounded ${isSpeaking ? 'bg-white animate-[bounce_0.3s_infinite]' : 'bg-neutral-700'}`} />
           </div>
-          <span className="text-[10px] font-mono text-neutral-400 mt-2">XPANDER-CORE-3D</span>
+          <span className="text-[10px] font-mono text-neutral-400 mt-2">ZENTRION-CORE-3D</span>
         </div>
       )}
 

@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     });
 
   } catch (error: any) {
-    console.error('[Xpander Native Engine Execution Error]:', error);
+    console.error('[Zentrion Native Engine Execution Error]:', error);
     return NextResponse.json(
       { error: error.message || 'Hiba történt a natív motor futtatása során.' },
       { status: 500 }

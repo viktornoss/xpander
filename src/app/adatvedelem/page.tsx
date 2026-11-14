@@ -33,7 +33,7 @@ export default function AdatvedelemPage() {
                   Adatvédelmi és Adatkezelési Tájékoztató
                 </h1>
                 <p className="text-xs text-gray-400 mt-1">
-                  GDPR & EU 2016/679 rendelet szerinti megfelelőség • Xpander.ai Vállalati Biztonság
+                  GDPR & EU 2016/679 rendelet szerinti megfelelőség • Zentrion.ai Vállalati Biztonság
                 </p>
               </div>
             </div>
@@ -47,11 +47,11 @@ export default function AdatvedelemPage() {
                 <span className="text-emerald-400">1.</span> Bevezetés és Adatkezelő
               </h2>
               <p>
-                Az <strong>Xpander.ai</strong> elkötelezett a felhasználók, megrendelők és ügyfelek személyes adatainak legmagasabb szintű védelme iránt. A jelen tájékoztató részletesen ismerteti, hogyan gyűjtjük, dolgozzuk fel és védjük a velünk megosztott adatokat.
+                Az <strong>Zentrion.ai</strong> elkötelezett a felhasználók, megrendelők és ügyfelek személyes adatainak legmagasabb szintű védelme iránt. A jelen tájékoztató részletesen ismerteti, hogyan gyűjtjük, dolgozzuk fel és védjük a velünk megosztott adatokat.
               </p>
               <div className="bg-white/5 p-4 rounded-xl border border-white/10 space-y-1 text-xs">
-                <p><strong>Adatkezelő:</strong> Xpander Automation & AI Systems</p>
-                <p><strong>Adatvédelmi kapcsolattartó email:</strong> xpander-automation.ai@outlook.hu</p>
+                <p><strong>Adatkezelő:</strong> Zentrion Automation & AI Systems</p>
+                <p><strong>Adatvédelmi kapcsolattartó email:</strong> zentrion-automation.ai@outlook.hu</p>
                 <p><strong>Alkalmazandó jog:</strong> GDPR (EU 2016/679) és az információs önrendelkezési jogról szóló 2011. évi CXII. törvény (Infotv.).</p>
               </div>
             </section>
@@ -87,7 +87,7 @@ export default function AdatvedelemPage() {
                   <span>Szigorú Adatvédelmi Garanciák AI Feldolgozás Esetén</span>
                 </div>
                 <p className="text-xs text-gray-300">
-                  Az Xpander.ai által használt OpenAI API és dedikált neurális hálók enterprise szintű szerződés keretében működnek.
+                  Az Zentrion.ai által használt OpenAI API és dedikált neurális hálók enterprise szintű szerződés keretében működnek.
                 </p>
                 <ul className="text-xs text-gray-300 space-y-1.5 list-disc pl-5">
                   <li><strong>Nincs modell tanítás az ügyfél adatain:</strong> Az Ügyfél dokumentumait, belső adatait és chat üzeneteit az OpenAI és a modellek NEM használják fel nyilvános modellek továbbképzésére.</li>
@@ -105,7 +105,7 @@ export default function AdatvedelemPage() {
                 Az Ügyfél bármikor kérelmezheti a Szolgáltatótól a rá vonatkozó személyes adatokhoz való hozzáférést, azok helyesbítését, törlését (az elfeledtetéshez való jog) vagy kezelésének korlátozását, valamint tiltakozhat a személyes adatok kezelése ellen.
               </p>
               <p className="text-xs text-gray-400">
-                Kérelmedet az <strong>xpander-automation.ai@outlook.hu</strong> e-mail címre küldve legkésőbb 72 órán belül feldolgozzuk és teljesítjük.
+                Kérelmedet az <strong>zentrion-automation.ai@outlook.hu</strong> e-mail címre küldve legkésőbb 72 órán belül feldolgozzuk és teljesítjük.
               </p>
             </section>
 
@@ -125,7 +125,7 @@ export default function AdatvedelemPage() {
             <div className="text-xs text-gray-400 text-center sm:text-left">
               Adatvédelmi kérdésed vagy törlési kérésed van? Fordulj hozzánk:
               <br />
-              <strong className="text-white">xpander-automation.ai@outlook.hu</strong>
+              <strong className="text-white">zentrion-automation.ai@outlook.hu</strong>
             </div>
             <Link
               href="/#contact"

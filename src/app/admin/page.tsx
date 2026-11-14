@@ -60,7 +60,7 @@ export default function AdminOverviewPage() {
           <div>
             <div className="flex items-center gap-2">
               <span className="text-xs font-bold text-white">Központi Rendszer Értesítési Cím:</span>
-              <span className="font-mono text-neon-blue text-xs font-bold">xpander-automation.ai@outlook.hu</span>
+              <span className="font-mono text-neon-blue text-xs font-bold">zentrion-automation.ai@outlook.hu</span>
             </div>
             <p className="text-[11px] text-gray-400">
               Minden ajánlatkérés, hibariasztás és chatbot lead ide érkezik.
@@ -135,7 +135,7 @@ export default function AdminOverviewPage() {
 
         <div className="rounded-2xl glass-panel p-5 border border-white/10 space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-gray-400 font-medium">XpanderFlow Motor & Szerver Uptime</span>
+            <span className="text-xs text-gray-400 font-medium">ZentrionFlow Motor & Szerver Uptime</span>
             <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
               <CheckCircle2 className="w-4 h-4" />
             </div>

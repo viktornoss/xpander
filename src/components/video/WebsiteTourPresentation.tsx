@@ -541,7 +541,7 @@ export default function WebsiteTourPresentation({ isOpen, onClose }: WebsiteTour
           email: contactEmail,
           phone: contactPhone,
           company: contactCompany,
-          service: 'Xpander.ai Rendszerbemutató Érdeklődés',
+          service: 'Zentrion.ai Rendszerbemutató Érdeklődés',
           message: contactMsg || 'A videós bemutató után azonnali felkeresést kérek.'
         })
       });
@@ -585,7 +585,7 @@ export default function WebsiteTourPresentation({ isOpen, onClose }: WebsiteTour
             </span>
             <div className="flex items-center gap-2">
               <span className="font-extrabold text-white text-xs sm:text-sm tracking-wide">
-                Xpander.ai • {lang === 'hu' ? 'Rendszerbemutató (3D Robot & Stúdió Hang)' : 'System Tour (3D Robot & Studio Voice)'}
+                Zentrion.ai • {lang === 'hu' ? 'Rendszerbemutató (3D Robot & Stúdió Hang)' : 'System Tour (3D Robot & Studio Voice)'}
               </span>
               <span className="hidden sm:inline-block px-2 py-0.5 rounded-full bg-white/10 text-[10px] font-mono text-neutral-300 border border-white/15">
                 {lang === 'hu' ? `Fejezet ${currentChapter.stepNumber} / ${TOUR_CHAPTERS.length}` : `Chapter ${currentChapter.stepNumber} of ${TOUR_CHAPTERS.length}`}
@@ -684,7 +684,7 @@ export default function WebsiteTourPresentation({ isOpen, onClose }: WebsiteTour
 
               {/* Dynamic Soundwave Equalizer Banner */}
               <div className="mt-3 flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-black/80 border border-white/15 backdrop-blur-md">
-                <span className="text-[11px] font-bold text-white font-mono">Xpander AI Host</span>
+                <span className="text-[11px] font-bold text-white font-mono">Zentrion AI Host</span>
                 <span className="text-neutral-500">•</span>
                 <div className="flex items-center gap-0.5">
                   <span className={`w-1 bg-white rounded-full transition-all duration-150 ${isSpeaking ? 'h-3 animate-pulse' : 'h-1'}`} />
@@ -756,19 +756,19 @@ export default function WebsiteTourPresentation({ isOpen, onClose }: WebsiteTour
               {currentChapter.contentType === 'video' && (
                 <div className="rounded-2xl border border-white/20 overflow-hidden bg-black shadow-2xl relative group aspect-video max-h-64 sm:max-h-72 w-full flex items-center justify-center">
                   <img
-                    src="/xpander-promo-video.gif"
-                    alt="Xpander.ai Official Video"
+                    src="/zentrion-promo-video.gif"
+                    alt="Zentrion.ai Official Video"
                     className="w-full h-full object-contain"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs text-neutral-300">
                     <span className="font-mono font-bold flex items-center gap-1.5">
                       <Video className="w-3.5 h-3.5 text-red-500 animate-pulse" />
-                      <span>Xpander.ai Hivatalos Promóciós Videó</span>
+                      <span>Zentrion.ai Hivatalos Promóciós Videó</span>
                     </span>
                     <a
-                      href="/xpander-promo-video.gif"
-                      download="xpander-video.gif"
+                      href="/zentrion-promo-video.gif"
+                      download="zentrion-video.gif"
                       className="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono text-[10px] font-bold border border-white/20 transition-all"
                     >
                       HD Letöltés
@@ -791,7 +791,7 @@ export default function WebsiteTourPresentation({ isOpen, onClose }: WebsiteTour
                       <strong className="text-white">Ügyfél:</strong> „Szia! Szeretném automatizálni a beérkező árajánlatkéréseinket és a számlázást.”
                     </div>
                     <div className="p-3 rounded-xl bg-white/10 border border-white/20 text-xs text-white">
-                      <strong className="text-emerald-400">Xpander AI:</strong> „Természetesen! Kétirányú szinkront tudunk kiépíteni a CRM rendszered és a Számlázz.hu között, 0.00% hibaszázalékkal.”
+                      <strong className="text-emerald-400">Zentrion AI:</strong> „Természetesen! Kétirányú szinkront tudunk kiépíteni a CRM rendszered és a Számlázz.hu között, 0.00% hibaszázalékkal.”
                     </div>
                   </div>
                 </div>
@@ -801,8 +801,8 @@ export default function WebsiteTourPresentation({ isOpen, onClose }: WebsiteTour
               {currentChapter.contentType === 'services' && (
                 <div className="rounded-2xl border border-white/15 overflow-hidden shadow-2xl relative group aspect-video max-h-60 sm:max-h-64">
                   <img
-                    src="/images/ads/xpander-ad-dashboard.jpg"
-                    alt="Xpander Integrations Dashboard"
+                    src="/images/ads/zentrion-ad-dashboard.jpg"
+                    alt="Zentrion Integrations Dashboard"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
@@ -816,7 +816,7 @@ export default function WebsiteTourPresentation({ isOpen, onClose }: WebsiteTour
               {currentChapter.contentType === 'workflow' && (
                 <div className="rounded-2xl p-5 bg-[#0a0a0d] border border-white/15 shadow-xl space-y-3 relative overflow-hidden">
                   <div className="flex items-center justify-between text-xs font-mono">
-                    <span className="text-neutral-400">XpanderFlow Csomagfolyam</span>
+                    <span className="text-neutral-400">ZentrionFlow Csomagfolyam</span>
                     <span className="text-white font-bold">&lt; 22ms Telemetria</span>
                   </div>
                   {/* Visual Node Diagram */}
@@ -970,7 +970,7 @@ export default function WebsiteTourPresentation({ isOpen, onClose }: WebsiteTour
                   <div className="flex flex-wrap items-center justify-between text-xs text-neutral-400 pt-2 border-t border-white/10">
                     <span className="flex items-center gap-1.5 text-neutral-300">
                       <Mail className="w-3.5 h-3.5 text-white" />
-                      <span>xpander-automation.ai@outlook.hu</span>
+                      <span>zentrion-automation.ai@outlook.hu</span>
                     </span>
                     <Link
                       href="/services/appointment-booking"
@@ -1093,8 +1093,8 @@ export default function WebsiteTourPresentation({ isOpen, onClose }: WebsiteTour
                     </div>
 
                     <a
-                      href="/audio/tour/xpander-tour-complete-hungarian.mp3"
-                      download="xpander-tour-magyar.mp3"
+                      href="/audio/tour/zentrion-tour-complete-hungarian.mp3"
+                      download="zentrion-tour-magyar.mp3"
                       onClick={() => setDownloadMenuOpen(false)}
                       className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/10 text-white text-xs font-semibold transition-all group"
                     >
@@ -1106,8 +1106,8 @@ export default function WebsiteTourPresentation({ isOpen, onClose }: WebsiteTour
                     </a>
 
                     <a
-                      href="/audio/tour/xpander-tour-complete-english.mp3"
-                      download="xpander-tour-english.mp3"
+                      href="/audio/tour/zentrion-tour-complete-english.mp3"
+                      download="zentrion-tour-english.mp3"
                       onClick={() => setDownloadMenuOpen(false)}
                       className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/10 text-white text-xs font-semibold transition-all group"
                     >
@@ -1119,8 +1119,8 @@ export default function WebsiteTourPresentation({ isOpen, onClose }: WebsiteTour
                     </a>
 
                     <a
-                      href="/xpander-promo-video.gif"
-                      download="xpander-promo-video.gif"
+                      href="/zentrion-promo-video.gif"
+                      download="zentrion-promo-video.gif"
                       onClick={() => setDownloadMenuOpen(false)}
                       className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/10 text-white text-xs font-semibold transition-all group"
                     >
@@ -1132,8 +1132,8 @@ export default function WebsiteTourPresentation({ isOpen, onClose }: WebsiteTour
                     </a>
 
                     <a
-                      href="/xpander-logo.svg"
-                      download="xpander-logo.svg"
+                      href="/zentrion-logo.svg"
+                      download="zentrion-logo.svg"
                       onClick={() => setDownloadMenuOpen(false)}
                       className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/10 text-white text-xs font-semibold transition-all group border-t border-white/10 pt-2"
                     >
@@ -1145,8 +1145,8 @@ export default function WebsiteTourPresentation({ isOpen, onClose }: WebsiteTour
                     </a>
 
                     <a
-                      href="/brand/xpander-app-icon-512.png"
-                      download="xpander-icon-512.png"
+                      href="/brand/zentrion-app-icon-512.png"
+                      download="zentrion-icon-512.png"
                       onClick={() => setDownloadMenuOpen(false)}
                       className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-white/10 text-white text-xs font-semibold transition-all group"
                     >

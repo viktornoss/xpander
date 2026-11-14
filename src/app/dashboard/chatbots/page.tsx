@@ -87,7 +87,7 @@ export default function ChatbotsDashboardPage() {
     }
   };
 
-  const embedCode = `<script async src="https://cdn.xpander.ai/widget.js" data-bot-id="${activeBot?.id}" data-theme="dark"></script>`;
+  const embedCode = `<script async src="https://cdn.zentrion.ai/widget.js" data-bot-id="${activeBot?.id}" data-theme="dark"></script>`;
 
   const copyEmbed = () => {
     navigator.clipboard.writeText(embedCode);

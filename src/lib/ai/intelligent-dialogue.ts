@@ -49,16 +49,16 @@ export function detectLanguage(text: string): 'hu' | 'en' | 'de' | 'es' | 'fr' |
 }
 
 /**
- * Intelligent Conversational AI Engine for xpander.ai
+ * Intelligent Conversational AI Engine for zentrion.ai
  * Fully multilingual (Hungarian, English, German, Spanish, French, Italian).
  * Provides deep, structured, consultative, human-like responses with zero robotic evasions.
  */
 export function generateIntelligentResponse(messages: ChatMessage[], systemPrompt?: string, isVoiceMode: boolean = false): string {
   if (!messages || messages.length === 0) {
     if (isVoiceMode) {
-      return 'Üdvözöllek az Xpander.ai felületén! Milyen folyamatot szeretnél automatizálni a cégedben?';
+      return 'Üdvözöllek az Zentrion.ai felületén! Milyen folyamatot szeretnél automatizálni a cégedben?';
     }
-    return 'Üdvözöllek az xpander.ai felületén! Miben segíthetek a vállalkozásod automatizálásával vagy autonóm AI ágensek bevezetésével kapcsolatban?';
+    return 'Üdvözöllek az zentrion.ai felületén! Miben segíthetek a vállalkozásod automatizálásával vagy autonóm AI ágensek bevezetésével kapcsolatban?';
   }
 
   const lastUserMsg = messages[messages.length - 1].content.trim();
@@ -86,7 +86,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     // English Voice Mode
     if (lang === 'en') {
       if (/^(hi|hello|hey|good morning|how are you)/.test(normMsg)) {
-        return `Hello! I am the Xpander.ai voice agent. How can I help you automate your business operations today?`;
+        return `Hello! I am the Zentrion.ai voice agent. How can I help you automate your business operations today?`;
       }
       if (normMsg.includes('price') || normMsg.includes('cost') || normMsg.includes('pricing')) {
         return `Our Starter plan is 650 dollars with a custom AI chatbot. Growth is 1,150 dollars with CRM and email automation. Which area would you like to streamline first?`;
@@ -103,7 +103,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     // German Voice Mode
     if (lang === 'de') {
       if (/^(hallo|guten|hi)/.test(normMsg)) {
-        return `Guten Tag! Ich bin der Xpander.ai Sprachassistent. Wie kann ich Ihnen bei der Automatisierung Ihrer Unternehmensprozesse helfen?`;
+        return `Guten Tag! Ich bin der Zentrion.ai Sprachassistent. Wie kann ich Ihnen bei der Automatisierung Ihrer Unternehmensprozesse helfen?`;
       }
       if (normMsg.includes('preis') || normMsg.includes('kosten')) {
         return `Unser Starter-Paket kostet 590 Euro, und das Growth-Paket 1.050 Euro inklusive CRM- und E-Mail-Automatisierung. Welcher Bereich interessiert Sie?`;
@@ -113,17 +113,17 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
 
     // Spanish Voice Mode
     if (lang === 'es') {
-      return `¡Hola! Soy el agente de voz de Xpander.ai. Automatizamos procesos empresariales con nuestro propio motor en TypeScript. ¿Qué área de tu negocio te gustaría automatizar?`;
+      return `¡Hola! Soy el agente de voz de Zentrion.ai. Automatizamos procesos empresariales con nuestro propio motor en TypeScript. ¿Qué área de tu negocio te gustaría automatizar?`;
     }
 
     // French Voice Mode
     if (lang === 'fr') {
-      return `Bonjour ! Je suis l'agent vocal de Xpander.ai. Nous automatisons vos processus d'entreprise avec notre propre moteur TypeScript. Quel flux souhaitez-vous optimiser ?`;
+      return `Bonjour ! Je suis l'agent vocal de Zentrion.ai. Nous automatisons vos processus d'entreprise avec notre propre moteur TypeScript. Quel flux souhaitez-vous optimiser ?`;
     }
 
     // Italian Voice Mode
     if (lang === 'it') {
-      return `Ciao! Sono l'assistente vocale di Xpander.ai. Automatizziamo i processi aziendali con il nostro motore proprietario TypeScript. Quale processo vorresti ottimizzare?`;
+      return `Ciao! Sono l'assistente vocale di Zentrion.ai. Automatizziamo i processi aziendali con il nostro motore proprietario TypeScript. Quale processo vorresti ottimizzare?`;
     }
 
     // Hungarian Voice Mode
@@ -132,7 +132,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     }
 
     if (normMsg.includes('ki vagy') || normMsg.includes('hogy hivnak') || normMsg.includes('mi a neved') || normMsg.includes('mi ez')) {
-      return `Az Xpander.ai intelligens hangalapú asszisztense vagyok. Valós időben válaszolok bármilyen kérdésedre az automatizációról, árakról vagy a saját TypeScript motorunkról.`;
+      return `Az Zentrion.ai intelligens hangalapú asszisztense vagyok. Valós időben válaszolok bármilyen kérdésedre az automatizációról, árakról vagy a saját TypeScript motorunkról.`;
     }
 
     if (normMsg.includes('koszonom') || normMsg.includes('koszi') || normMsg.includes('szuper') || normMsg.includes('nagyszeru') || normMsg.includes('rendben') || normMsg.includes('ertem')) {
@@ -180,7 +180,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     }
 
     if (normMsg.includes('iroda') || normMsg.includes('hol vagytok') || normMsg.includes('telefonszam') || normMsg.includes('kapcsolat') || normMsg.includes('cim')) {
-      return `Központi irodánk Budapesten, a Szabadság tér 7. szám alatt, a Bank Centerben található. Hívhatsz minket a plusz 36 1 800 9999-es számon, vagy írhatsz az xpander-automation.ai@outlook.hu címre.`;
+      return `Központi irodánk Budapesten, a Szabadság tér 7. szám alatt, a Bank Centerben található. Hívhatsz minket a plusz 36 1 800 9999-es számon, vagy írhatsz az zentrion-automation.ai@outlook.hu címre.`;
     }
 
     if (normMsg.includes('garancia') || normMsg.includes('sla') || normMsg.includes('biztonsag')) {
@@ -202,12 +202,12 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
 
     // Greetings
     if (/^(hi|hello|hey|good morning|good afternoon)/.test(normMsg)) {
-      return `${sal}Hello! 👋 Welcome to **xpander.ai** – the enterprise autonomous AI agent platform.\n\nHow can I assist your business today? We build:\n* **RAG-powered AI Chatbots** connected to your company documents,\n* **Intelligent Email & Customer Support Triage** via our native TypeScript engine,\n* **Two-way CRM Synchronization** (HubSpot, Salesforce, Pipedrive),\n* **Autonomous Multi-Agent Swarms** that execute multi-step workflows 24/7.\n\nWhat manual process would you like to automate?`;
+      return `${sal}Hello! 👋 Welcome to **zentrion.ai** – the enterprise autonomous AI agent platform.\n\nHow can I assist your business today? We build:\n* **RAG-powered AI Chatbots** connected to your company documents,\n* **Intelligent Email & Customer Support Triage** via our native TypeScript engine,\n* **Two-way CRM Synchronization** (HubSpot, Salesforce, Pipedrive),\n* **Autonomous Multi-Agent Swarms** that execute multi-step workflows 24/7.\n\nWhat manual process would you like to automate?`;
     }
 
     // Pricing & Cost
     if (normMsg.includes('price') || normMsg.includes('pricing') || normMsg.includes('cost') || normMsg.includes('how much') || normMsg.includes('plan')) {
-      return `${sal}At **xpander.ai**, we offer transparent, ROI-driven pricing tailored for growing enterprises:\n\n* **🚀 Starter ($650 / €590):** 1 Custom RAG AI Chatbot trained on your knowledge base, lead capture, and 5,000 monthly AI operations.\n* **⚡ Growth ($1,150 / €1,050):** Full internal workflow automation, 2-way CRM sync, automated email routing, and priority 4-hour SLA.\n* **🏢 Enterprise (Custom Quote):** Dedicated on-prem / private cloud TypeScript engine, custom Multi-Agent swarms, and 99.98% uptime guarantee.\n\nOur clients achieve full ROI in under 3 months. Would you like a free 20-minute process audit?`;
+      return `${sal}At **zentrion.ai**, we offer transparent, ROI-driven pricing tailored for growing enterprises:\n\n* **🚀 Starter ($650 / €590):** 1 Custom RAG AI Chatbot trained on your knowledge base, lead capture, and 5,000 monthly AI operations.\n* **⚡ Growth ($1,150 / €1,050):** Full internal workflow automation, 2-way CRM sync, automated email routing, and priority 4-hour SLA.\n* **🏢 Enterprise (Custom Quote):** Dedicated on-prem / private cloud TypeScript engine, custom Multi-Agent swarms, and 99.98% uptime guarantee.\n\nOur clients achieve full ROI in under 3 months. Would you like a free 20-minute process audit?`;
     }
 
     // Email Automation
@@ -222,7 +222,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
 
     // Engine & No-n8n / No-Make guarantee
     if (normMsg.includes('engine') || normMsg.includes('n8n') || normMsg.includes('make') || normMsg.includes('zapier')) {
-      return `Strategic difference: **xpander.ai runs on a proprietary, zero-lag TypeScript workflow engine (XpanderFlow)**.\n\n* **Ultra-low latency (< 25ms)** with no external third-party API queue.\n* **100% Data Privacy & GDPR compliance**: Your data stays on your dedicated infrastructure.\n* **No per-operation cloud fees**: Scale to millions of executions without exponential costs.`;
+      return `Strategic difference: **zentrion.ai runs on a proprietary, zero-lag TypeScript workflow engine (ZentrionFlow)**.\n\n* **Ultra-low latency (< 25ms)** with no external third-party API queue.\n* **100% Data Privacy & GDPR compliance**: Your data stays on your dedicated infrastructure.\n* **No per-operation cloud fees**: Scale to millions of executions without exponential costs.`;
     }
 
     // Guarantee & SLA
@@ -241,14 +241,14 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     const sal = detectedName ? `Sehr geehrte(r) ${detectedName}! ` : '';
 
     if (normMsg.includes('hallo') || normMsg.includes('guten tag') || normMsg.includes('servus')) {
-      return `${sal}Guten Tag! 👋 Willkommen bei **xpander.ai** – der Plattform für autonome Unternehmens-KI-Agenten.\n\nWie kann ich Ihnen helfen? Wir bieten:\n* **RAG-Chatbots** basierend auf Ihrer internen Wissensdatenbank,\n* **Intelligente E-Mail- und Ticket-Sortierung** ohne manuelle Arbeit,\n* **2-Wege CRM-Synchronisation** (HubSpot, Salesforce, Pipedrive),\n* **Autonome Multi-Agenten-Systeme** auf Basis unserer nativen TypeScript-Engine.\n\nWelchen Prozess möchten Sie automatisieren?`;
+      return `${sal}Guten Tag! 👋 Willkommen bei **zentrion.ai** – der Plattform für autonome Unternehmens-KI-Agenten.\n\nWie kann ich Ihnen helfen? Wir bieten:\n* **RAG-Chatbots** basierend auf Ihrer internen Wissensdatenbank,\n* **Intelligente E-Mail- und Ticket-Sortierung** ohne manuelle Arbeit,\n* **2-Wege CRM-Synchronisation** (HubSpot, Salesforce, Pipedrive),\n* **Autonome Multi-Agenten-Systeme** auf Basis unserer nativen TypeScript-Engine.\n\nWelchen Prozess möchten Sie automatisieren?`;
     }
 
     if (normMsg.includes('preis') || normMsg.includes('kosten') || normMsg.includes('angebot')) {
-      return `${sal}Bei **xpander.ai** bieten wir transparente, ROI-basierte Modelle:\n\n* **🚀 Starter (€590):** 1 individueller RAG-Chatbot, Lead-Erfassung und 5.000 monatliche KI-Aktionen.\n* **⚡ Growth (€1.050):** Unbegrenzte Workflows, CRM-Integration, automatisierte E-Mail-Verarbeitung und 4-Stunden-SLA.\n* **🏢 Enterprise (Auf Anfrage):** Eigene TypeScript-Server-Infrastruktur, Multi-Agenten und 99,98% Uptime-Garantie.\n\nMöchten Sie ein kostenloses 20-minütiges Audit vereinbaren?`;
+      return `${sal}Bei **zentrion.ai** bieten wir transparente, ROI-basierte Modelle:\n\n* **🚀 Starter (€590):** 1 individueller RAG-Chatbot, Lead-Erfassung und 5.000 monatliche KI-Aktionen.\n* **⚡ Growth (€1.050):** Unbegrenzte Workflows, CRM-Integration, automatisierte E-Mail-Verarbeitung und 4-Stunden-SLA.\n* **🏢 Enterprise (Auf Anfrage):** Eigene TypeScript-Server-Infrastruktur, Multi-Agenten und 99,98% Uptime-Garantie.\n\nMöchten Sie ein kostenloses 20-minütiges Audit vereinbaren?`;
     }
 
-    return `${sal}Bezüglich **"${lastUserMsg.slice(0, 60)}"**: Genau das lösen wir mit unserer nativen XpanderFlow-Engine und GPT-4o.\n\nWir bieten eine 30-Tage-Geld-zurück-Garantie und volle DSGVO-Konformität. Probieren Sie gerne unsere Live-Demos auf der Website aus oder vereinbaren Sie eine Beratung!`;
+    return `${sal}Bezüglich **"${lastUserMsg.slice(0, 60)}"**: Genau das lösen wir mit unserer nativen ZentrionFlow-Engine und GPT-4o.\n\nWir bieten eine 30-Tage-Geld-zurück-Garantie und volle DSGVO-Konformität. Probieren Sie gerne unsere Live-Demos auf der Website aus oder vereinbaren Sie eine Beratung!`;
   }
 
   // =========================================================================
@@ -256,7 +256,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
   // =========================================================================
   if (lang === 'es') {
     const sal = detectedName ? `¡Estimado/a ${detectedName}! ` : '';
-    return `${sal}¡Hola! 👋 Bienvenido/a a **xpander.ai** – la plataforma de agentes autónomos de IA para empresas.\n\nAutomatizamos tus procesos comerciales con nuestro motor nativo TypeScript (XpanderFlow) y OpenAI GPT-4o:\n* **Chatbots RAG** entrenados con tus documentos.\n* **Clasificación y respuesta automática de correos** (Gmail / Outlook).\n* **Sincronización bidireccional de CRM** (HubSpot, Salesforce).\n* **Garantía de 30 días** y soporte de voz en más de 95 idiomas.\n\n¿Qué proceso te gustaría optimizar hoy?`;
+    return `${sal}¡Hola! 👋 Bienvenido/a a **zentrion.ai** – la plataforma de agentes autónomos de IA para empresas.\n\nAutomatizamos tus procesos comerciales con nuestro motor nativo TypeScript (ZentrionFlow) y OpenAI GPT-4o:\n* **Chatbots RAG** entrenados con tus documentos.\n* **Clasificación y respuesta automática de correos** (Gmail / Outlook).\n* **Sincronización bidireccional de CRM** (HubSpot, Salesforce).\n* **Garantía de 30 días** y soporte de voz en más de 95 idiomas.\n\n¿Qué proceso te gustaría optimizar hoy?`;
   }
 
   // =========================================================================
@@ -264,7 +264,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
   // =========================================================================
   if (lang === 'fr') {
     const sal = detectedName ? `Bonjour ${detectedName} ! ` : '';
-    return `${sal}Bonjour ! 👋 Bienvenue sur **xpander.ai** – la plateforme d'agents IA autonomes pour entreprises.\n\nNous automatisons vos opérations grâce à notre moteur TypeScript natif (XpanderFlow) :\n* **Chatbots RAG intelligents** connectés à vos bases de connaissances,\n* **Tri et réponse automatisés aux e-mails** 24/7,\n* **Synchronisation CRM bidirectionnelle**,\n* **Garantie de remboursement de 30 jours**.\n\nQuel flux de travail souhaitez-vous automatiser ?`;
+    return `${sal}Bonjour ! 👋 Bienvenue sur **zentrion.ai** – la plateforme d'agents IA autonomes pour entreprises.\n\nNous automatisons vos opérations grâce à notre moteur TypeScript natif (ZentrionFlow) :\n* **Chatbots RAG intelligents** connectés à vos bases de connaissances,\n* **Tri et réponse automatisés aux e-mails** 24/7,\n* **Synchronisation CRM bidirectionnelle**,\n* **Garantie de remboursement de 30 jours**.\n\nQuel flux de travail souhaitez-vous automatiser ?`;
   }
 
   // =========================================================================
@@ -272,7 +272,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
   // =========================================================================
   if (lang === 'it') {
     const sal = detectedName ? `Gentile ${detectedName}! ` : '';
-    return `${sal}Buongiorno! 👋 Benvenuto su **xpander.ai** – la piattaforma enterprise di agenti IA autonomi.\n\nAutomatizziamo i processi aziendali con il nostro motore nativo TypeScript (XpanderFlow) e GPT-4o:\n* **Chatbot RAG intelligenti** con zero allucinazioni,\n* **Automazione email e smistamento ticket**,\n* **Sincronizzazione CRM a 2 vie** (HubSpot, Pipedrive),\n* **Garanzia 30 giorni soddisfatti o rimborsati**.\n\nQuale processo vorresti automatizzare oggi?`;
+    return `${sal}Buongiorno! 👋 Benvenuto su **zentrion.ai** – la piattaforma enterprise di agenti IA autonomi.\n\nAutomatizziamo i processi aziendali con il nostro motore nativo TypeScript (ZentrionFlow) e GPT-4o:\n* **Chatbot RAG intelligenti** con zero allucinazioni,\n* **Automazione email e smistamento ticket**,\n* **Sincronizzazione CRM a 2 vie** (HubSpot, Pipedrive),\n* **Garanzia 30 giorni soddisfatti o rimborsati**.\n\nQuale processo vorresti automatizzare oggi?`;
   }
 
   // =========================================================================
@@ -290,7 +290,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
   }
 
   if (/^(3|3\.|harmas|harmadik)$/.test(normMsg)) {
-    return `${salutation}A **3. opció (Enterprise csomag / Autonóm AI Ágensek):**\n\n* Saját infrastruktúrára telepített TypeScript XpanderFlow motor, külső felhős korlátok és műveleti díjak nélkül.\n* Többágenses rendszerek (kutató, elemző, számlázó és döntéshozó ágensek együttműködése).\n* Egyedi ERP, számlázó (Számlázz.hu, Billingo) és belső adatbázis integrációk, dedikált SLA garanciával.\n\nMilyen egyedi folyamatot szeretnél ezzel kiváltani?`;
+    return `${salutation}A **3. opció (Enterprise csomag / Autonóm AI Ágensek):**\n\n* Saját infrastruktúrára telepített TypeScript ZentrionFlow motor, külső felhős korlátok és műveleti díjak nélkül.\n* Többágenses rendszerek (kutató, elemző, számlázó és döntéshozó ágensek együttműködése).\n* Egyedi ERP, számlázó (Számlázz.hu, Billingo) és belső adatbázis integrációk, dedikált SLA garanciával.\n\nMilyen egyedi folyamatot szeretnél ezzel kiváltani?`;
   }
 
   // 2. Pozitív megerősítés
@@ -300,12 +300,12 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
 
   // 3. Negatív válasz
   if (/^(nem|nem erdekel|megsem|kesobb|koszi nem)$/.test(normMsg)) {
-    return `${salutation}Rendben van, semmi gond! Ha a jövőben szeretnél időt és költséget megtakarítani az ügyfélszolgálatodon vagy az adminisztrációdon, az xpander.ai felületén bármikor elérsz minket.\n\nSzép napot és sikeres vállalkozásfejlesztést kívánok!`;
+    return `${salutation}Rendben van, semmi gond! Ha a jövőben szeretnél időt és költséget megtakarítani az ügyfélszolgálatodon vagy az adminisztrációdon, az zentrion.ai felületén bármikor elérsz minket.\n\nSzép napot és sikeres vállalkozásfejlesztést kívánok!`;
   }
 
   // 4. Hangalapú AI / Voice asszisztens kérdések
   if (normMsg.includes('hang') || normMsg.includes('voice') || normMsg.includes('beszel') || normMsg.includes('mikrofon')) {
-    return `${salutation}Igen, az **xpander.ai teljes körű Voice AI (hangalapú AI) támogatással rendelkezik!**\n\n- **🎙️ Beszédhang felismerés (Speech-to-Text):** Bármilyen nyelven beszélhetsz hozzám a mikrofon gomb megnyomásával.\n- **🔊 Természetes gépi hangválasz (Text-to-Speech):** Az AI élőszóban is válaszol neked a kiválasztott nyelven.\n- **🌍 Többnyelvű hangtámogatás:** Magyar, angol, német, spanyol, francia és több mint 90 egyéb nyelven kommunikálunk valós időben!\n\nPróbáld ki a felső menüben lévő **Voice AI** gombot vagy a mikrofon ikont itt a csevegőben!`;
+    return `${salutation}Igen, az **zentrion.ai teljes körű Voice AI (hangalapú AI) támogatással rendelkezik!**\n\n- **🎙️ Beszédhang felismerés (Speech-to-Text):** Bármilyen nyelven beszélhetsz hozzám a mikrofon gomb megnyomásával.\n- **🔊 Természetes gépi hangválasz (Text-to-Speech):** Az AI élőszóban is válaszol neked a kiválasztott nyelven.\n- **🌍 Többnyelvű hangtámogatás:** Magyar, angol, német, spanyol, francia és több mint 90 egyéb nyelven kommunikálunk valós időben!\n\nPróbáld ki a felső menüben lévő **Voice AI** gombot vagy a mikrofon ikont itt a csevegőben!`;
   }
 
   // 5. EMAIL SZŰRÉS / EMAIL AUTOMATIZÁCIÓ
@@ -320,7 +320,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     normMsg.includes('outlook')
   ) {
     if (normMsg.includes('irj') || normMsg.includes('fogalmazz') || normMsg.includes('sablon')) {
-      return `${salutation}Örömmel! Íme egy konverzióra optimalizált, professzionális B2B megkereső email sablon, amelyet az automatizációs rendszerünk személyre szabva küld ki:\n\n---\n**Tárgy:** Gyors kérdés a(z) {{cegnev}} folyamataival kapcsolatban\n\n**Kedves {{nev}}!**\n\nLáttam a(z) {{cegnev}} növekedését a piacon, és feltűnt, hogy mekkora figyelmet fordítotok a gyors és minőségi ügyfélkiszolgálásra.\n\nA legtöbb piacvezető cégnél az értékesítők heti 12-15 órát töltenek el manuális email-válogatással és adminisztrációval ahelyett, hogy új ügyfelekkel tárgyalnának.\n\nAz xpander.ai-nál egy olyan **saját TypeScript alapú rendszert** fejlesztettünk, amely a beérkező ajánlatkéréseket másodpercek alatt szűri, rögzíti a CRM-be és előkészíti a választ – emberi kéz érintése nélkül.\n\nNyitott lennél egy 10 perces kötetlen bemutatóra jövő héten?\n\nÜdvözlettel,\n**{{te_neved}}**  \n*xpander.ai automatizációs partner*\n---\n\nSzeretnéd látni, hogyan néz ki ez a folyamat élesben?`;
+      return `${salutation}Örömmel! Íme egy konverzióra optimalizált, professzionális B2B megkereső email sablon, amelyet az automatizációs rendszerünk személyre szabva küld ki:\n\n---\n**Tárgy:** Gyors kérdés a(z) {{cegnev}} folyamataival kapcsolatban\n\n**Kedves {{nev}}!**\n\nLáttam a(z) {{cegnev}} növekedését a piacon, és feltűnt, hogy mekkora figyelmet fordítotok a gyors és minőségi ügyfélkiszolgálásra.\n\nA legtöbb piacvezető cégnél az értékesítők heti 12-15 órát töltenek el manuális email-válogatással és adminisztrációval ahelyett, hogy új ügyfelekkel tárgyalnának.\n\nAz zentrion.ai-nál egy olyan **saját TypeScript alapú rendszert** fejlesztettünk, amely a beérkező ajánlatkéréseket másodpercek alatt szűri, rögzíti a CRM-be és előkészíti a választ – emberi kéz érintése nélkül.\n\nNyitott lennél egy 10 perces kötetlen bemutatóra jövő héten?\n\nÜdvözlettel,\n**{{te_neved}}**  \n*zentrion.ai automatizációs partner*\n---\n\nSzeretnéd látni, hogyan néz ki ez a folyamat élesben?`;
     }
 
     return `${salutation}Az **Intelligens Email Automatizáció** pontosan arra való, hogy megszüntesse a beérkező levelek manuális olvasgatását és válogatását!\n\n**Hogyan működik a gyakorlatban?**\n1. **📥 Valós idejű beolvasás:** A rendszer közvetlenül figyeli a Gmail / Outlook postaládádat (pl. info@, sales@, support@ címek).\n2. **🧠 AI Tartalomelemzés (GPT-4o):** Másodpercek alatt kinyeri a feladó szándékát (Ajánlatkérés, Reklamáció, Számlázási kérdés, Spam), a csapatméretet és a prioritást.\n3. **⚡ Automatikus akció:**\n   - Sürgős lead esetén: azonnali naptárlink küldése + Slack/SMS riasztás a sales vezetőnek.\n   - Általános kérdés esetén: RAG tudásbázisból pontos válaszlevél-piszkozat készítése az értékesítőnek egyetlen kattintásos jóváhagyásra.\n   - Az adatok azonnali beírása a CRM-be (HubSpot, Pipedrive, MiniCRM).\n\nÜgyfeleinknél ez heti **10–15 munkaórát szabadít fel** értékesítőnként. Hány bejövő email érkezik hozzátok naponta?`;
@@ -347,7 +347,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     normMsg.includes('meddig tart') ||
     normMsg.includes('mennyi ideig')
   ) {
-    return `${salutation}Nálunk a bevezetés rendkívül gyors, mert a kész **saját TypeScript motorunkra (XpanderFlow)** építünk:\n\n* **🚀 AI Chatbot & RAG tudásbázis:** **5–7 munkanap** (anyagaid bekötése, tesztelés és weboldali beágyazás).\n* **⚡ Email & Lead automatizáció:** **7–10 munkanap** (CRM szinkron és levélsablonok felállítása).\n* **🏢 Komplex többágenses ERP/CRM rendszer:** **10–14 munkanap** (alapos hibakezelés és munkatársak betanítása).\n\nMár az első héten működő tesztkörnyezetet adunk át!`;
+    return `${salutation}Nálunk a bevezetés rendkívül gyors, mert a kész **saját TypeScript motorunkra (ZentrionFlow)** építünk:\n\n* **🚀 AI Chatbot & RAG tudásbázis:** **5–7 munkanap** (anyagaid bekötése, tesztelés és weboldali beágyazás).\n* **⚡ Email & Lead automatizáció:** **7–10 munkanap** (CRM szinkron és levélsablonok felállítása).\n* **🏢 Komplex többágenses ERP/CRM rendszer:** **10–14 munkanap** (alapos hibakezelés és munkatársak betanítása).\n\nMár az első héten működő tesztkörnyezetet adunk át!`;
   }
 
   // 8. Garancia / Kockázat
@@ -371,7 +371,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     normMsg.includes('magyarul') ||
     normMsg.includes('minden nyelven')
   ) {
-    return `${salutation}Az xpander.ai mind szövegesen, mind hangalapú AI-val (Voice AI) **több mint 95 nyelven** képes anyanyelvi szinten kommunikálni!\n\n- **🌍 Automatikus nyelvfelismerés:** Ha egy külföldi érdeklődő angolul, németül, franciául vagy spanyolul beszél hozzánk, a rendszer azonnal felismeri és ugyanazon a nyelven válaszol.\n- **🎙️ Többnyelvű Voice AI:** A hangalapú asszisztensünk az adott nyelv anyanyelvi kiejtésével beszél vissza.\n- **🇭🇺 Hibátlan magyar nyelvhelyesség:** Pontosan kezeli a magyar ragozást, tegezést/magázást és az üzleti udvariassági formákat.\n- **🔄 Valós idejű fordítás:** A beérkező megkeresést azonnal lefordítja a CRM-ben a csapatod nyelvére.`;
+    return `${salutation}Az zentrion.ai mind szövegesen, mind hangalapú AI-val (Voice AI) **több mint 95 nyelven** képes anyanyelvi szinten kommunikálni!\n\n- **🌍 Automatikus nyelvfelismerés:** Ha egy külföldi érdeklődő angolul, németül, franciául vagy spanyolul beszél hozzánk, a rendszer azonnal felismeri és ugyanazon a nyelven válaszol.\n- **🎙️ Többnyelvű Voice AI:** A hangalapú asszisztensünk az adott nyelv anyanyelvi kiejtésével beszél vissza.\n- **🇭🇺 Hibátlan magyar nyelvhelyesség:** Pontosan kezeli a magyar ragozást, tegezést/magázást és az üzleti udvariassági formákat.\n- **🔄 Valós idejű fordítás:** A beérkező megkeresést azonnal lefordítja a CRM-ben a csapatod nyelvére.`;
   }
 
   // 10. Miért jobb a saját motor, mint a Make / Zapier / n8n?
@@ -382,7 +382,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     normMsg.includes('kulonbseg') ||
     normMsg.includes('miert sajat')
   ) {
-    return `Ez az egyik legfontosabb stratégiai kérdés! Az **xpander.ai saját fejlesztésű TypeScript motorja (XpanderFlow)** és a külső felhős platformok (Make, Zapier, n8n) közötti fő különbségek:\n\n1. **⚡ Extrém alacsony késleltetés (< 25ms vs. 500-2000ms):** A mi motorunk közvetlenül a te vagy a dedikált szerverünk környezetében fut, nincs külső SaaS API sorbanállás.\n2. **🔒 100% Adatbiztonság és GDPR:** Az érzékeny ügyféladatok, számlák és belső emailek nem vándorolnak át harmadik fél felhős szerverein.\n3. **💰 Nincs havi műveleti felár (Operation fee):** A Zapiernél havi több tízezer művelet vagyonokba kerül; nálunk a végrehajtási volumennek nincs felára.\n4. **🧩 Vizuális drag-and-drop szerkesztő:** Saját 120 FPS simaságú felületen szerkesztheted a logikát, if/else feltételeket, ciklusokat és OpenAI GPT-4o csomópontokat.`;
+    return `Ez az egyik legfontosabb stratégiai kérdés! Az **zentrion.ai saját fejlesztésű TypeScript motorja (ZentrionFlow)** és a külső felhős platformok (Make, Zapier, n8n) közötti fő különbségek:\n\n1. **⚡ Extrém alacsony késleltetés (< 25ms vs. 500-2000ms):** A mi motorunk közvetlenül a te vagy a dedikált szerverünk környezetében fut, nincs külső SaaS API sorbanállás.\n2. **🔒 100% Adatbiztonság és GDPR:** Az érzékeny ügyféladatok, számlák és belső emailek nem vándorolnak át harmadik fél felhős szerverein.\n3. **💰 Nincs havi műveleti felár (Operation fee):** A Zapiernél havi több tízezer művelet vagyonokba kerül; nálunk a végrehajtási volumennek nincs felára.\n4. **🧩 Vizuális drag-and-drop szerkesztő:** Saját 120 FPS simaságú felületen szerkesztheted a logikát, if/else feltételeket, ciklusokat és OpenAI GPT-4o csomópontokat.`;
   }
 
   // 11. Árazás
@@ -394,7 +394,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     normMsg.includes('forint') ||
     normMsg.includes('huf')
   ) {
-    return `${salutation}Az xpander.ai transzparens, mérhető megtérülésre épülő csomagokkal dolgozik:\n\n* **🚀 Starter (240.000 Ft-tól):** Kisebb cégeknek: 1 db egyedi AI Chatbot céges tudásbázissal (RAG), automata email értesítő és havi 5 000 ingyenes AI művelet.\n* **⚡ Growth (380.000 Ft-tól):** Növekvő vállalkozásoknak: Korlátlan belső munkafolyamat, CRM kétirányú szinkronizáció, automata számlázás és prioritásos támogatás.\n* **🏢 Enterprise (Egyedi ajánlat):** Saját infrastruktúrára telepített TypeScript motor, egyedi AI ágensek, dedikált API konnektorok és SLA garancia.\n\nÁtlagosan ügyfeleink **2-3 hónapon belül teljes megtérülést (ROI)** érnek el a felszabadult munkaórák révén. Érdemes kalkulálnunk egy pontos számot a cégedre?`;
+    return `${salutation}Az zentrion.ai transzparens, mérhető megtérülésre épülő csomagokkal dolgozik:\n\n* **🚀 Starter (240.000 Ft-tól):** Kisebb cégeknek: 1 db egyedi AI Chatbot céges tudásbázissal (RAG), automata email értesítő és havi 5 000 ingyenes AI művelet.\n* **⚡ Growth (380.000 Ft-tól):** Növekvő vállalkozásoknak: Korlátlan belső munkafolyamat, CRM kétirányú szinkronizáció, automata számlázás és prioritásos támogatás.\n* **🏢 Enterprise (Egyedi ajánlat):** Saját infrastruktúrára telepített TypeScript motor, egyedi AI ágensek, dedikált API konnektorok és SLA garancia.\n\nÁtlagosan ügyfeleink **2-3 hónapon belül teljes megtérülést (ROI)** érnek el a felszabadult munkaórák révén. Érdemes kalkulálnunk egy pontos számot a cégedre?`;
   }
 
   // 12. Időpontfoglalás és Konzultáció (Élő hangos és írásbeli egyeztetés)
@@ -419,7 +419,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     normMsg.includes('mit tud ez a voice') ||
     normMsg.includes('hangfelismeres')
   ) {
-    return `${salutation}Ez az Xpander.ai élő, interaktív Voice AI demója! Képes valós időben beszédet felismerni több mint 95 nyelven, megérteni a szándékodat, és természetes emberi hangon válaszolni.\n\nUgyanilyen hangalapú AI agentet tudunk integrálni a céged weboldalára, webshopjába vagy a telefonos ügyfélszolgálatodra, így az ügyfeleid azonnal, gépelés nélkül választ kapnak minden kérdésükre.`;
+    return `${salutation}Ez az Zentrion.ai élő, interaktív Voice AI demója! Képes valós időben beszédet felismerni több mint 95 nyelven, megérteni a szándékodat, és természetes emberi hangon válaszolni.\n\nUgyanilyen hangalapú AI agentet tudunk integrálni a céged weboldalára, webshopjába vagy a telefonos ügyfélszolgálatodra, így az ügyfeleid azonnal, gépelés nélkül választ kapnak minden kérdésükre.`;
   }
 
   // 14. Számlázás és Pénzügyi Automatizáció (Billingo, Számlázz.hu)
@@ -441,7 +441,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     normMsg.includes('kepessegek') ||
     normMsg.includes('miben tudtok segiteni')
   ) {
-    return `${salutation}Az Xpander.ai csapata a repetitív manuális munkák teljes megszüntetésére szakosodott saját TypeScript motorral. Hét fő területen tudunk segíteni:\n\n1. **AI Chatbot & RAG Tudásbázis:** 24/7 weboldali ügyfélkiszolgálás 0% hallucinációval.\n2. **Voice AI Agentek:** Hangalapú asszisztensek és telefonos triage.\n3. **Email Automatizáció:** Beérkező levelek szűrése és válaszpiszkozat generálás.\n4. **B2B Lead Generálás:** Célzott döntéshozó-kutatás és személyre szabott outreach.\n5. **CRM Szinkronizáció:** HubSpot, Pipedrive, Salesforce kétirányú adatkapcsolat.\n6. **Időpontfoglaló & No-Show Védelem:** WhatsApp/SMS emlékeztetők a lemondások megszüntetésére.\n7. **Autonóm AI Munkatársak:** Többágenses rendszerek kutatásra, elemzésre és döntésekre.`;
+    return `${salutation}Az Zentrion.ai csapata a repetitív manuális munkák teljes megszüntetésére szakosodott saját TypeScript motorral. Hét fő területen tudunk segíteni:\n\n1. **AI Chatbot & RAG Tudásbázis:** 24/7 weboldali ügyfélkiszolgálás 0% hallucinációval.\n2. **Voice AI Agentek:** Hangalapú asszisztensek és telefonos triage.\n3. **Email Automatizáció:** Beérkező levelek szűrése és válaszpiszkozat generálás.\n4. **B2B Lead Generálás:** Célzott döntéshozó-kutatás és személyre szabott outreach.\n5. **CRM Szinkronizáció:** HubSpot, Pipedrive, Salesforce kétirányú adatkapcsolat.\n6. **Időpontfoglaló & No-Show Védelem:** WhatsApp/SMS emlékeztetők a lemondások megszüntetésére.\n7. **Autonóm AI Munkatársak:** Többágenses rendszerek kutatásra, elemzésre és döntésekre.`;
   }
 
   // 16. Kapcsolat, Iroda, Elérhetőség
@@ -452,17 +452,17 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     normMsg.includes('elerhetoseg') ||
     normMsg.includes('kapcsolat')
   ) {
-    return `${salutation}Személyesen a budapesti irodánkban találsz meg minket a Szabadság tér 7. szám alatt, a Bank Centerben.\n\n- **Központi email cím:** xpander-automation.ai@outlook.hu\n- **Telefonszám:** +36 1 800 9999 (hétköznap 9:00 és 18:00 között)\n\nSzívesen látunk egy személyes kávéra vagy online videóhívásra egy ingyenes folyamataudit keretében!`;
+    return `${salutation}Személyesen a budapesti irodánkban találsz meg minket a Szabadság tér 7. szám alatt, a Bank Centerben.\n\n- **Központi email cím:** zentrion-automation.ai@outlook.hu\n- **Telefonszám:** +36 1 800 9999 (hétköznap 9:00 és 18:00 között)\n\nSzívesen látunk egy személyes kávéra vagy online videóhívásra egy ingyenes folyamataudit keretében!`;
   }
 
-  // 17. Ki vagy te? / Mi az Xpander.ai?
+  // 17. Ki vagy te? / Mi az Zentrion.ai?
   if (
     normMsg.includes('ki vagy') ||
-    normMsg.includes('mi az az xpander') ||
+    normMsg.includes('mi az az zentrion') ||
     normMsg.includes('ki csinalta') ||
     normMsg.includes('cegrol')
   ) {
-    return `${salutation}Az Xpander.ai egy prémium enterprise AI automatizációs ügynökség és platform. Célunk, hogy a modern vállalkozásoknak ne kelljen órákat tölteniük manuális email-válogatással, másolgatással és adminisztrációval.\n\nKülönlegességünk, hogy semmilyen dobozos külső platformtól (Make, Zapier, n8n) nem függünk: 100% saját natív TypeScript motorral, garantált SLA rendelkezésre állással és szigorú titoktartással dolgozunk.`;
+    return `${salutation}Az Zentrion.ai egy prémium enterprise AI automatizációs ügynökség és platform. Célunk, hogy a modern vállalkozásoknak ne kelljen órákat tölteniük manuális email-válogatással, másolgatással és adminisztrációval.\n\nKülönlegességünk, hogy semmilyen dobozos külső platformtól (Make, Zapier, n8n) nem függünk: 100% saját natív TypeScript motorral, garantált SLA rendelkezésre állással és szigorú titoktartással dolgozunk.`;
   }
 
   // 18. CRM integrációk
@@ -473,7 +473,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     normMsg.includes('salesforce') ||
     normMsg.includes('minicrm')
   ) {
-    return `${salutation}Az xpander.ai integrációs modulja univerzális REST API és Webhook architektúrával rendelkezik. Közvetlenül összekapcsolható a piacvezető rendszerekkel:\n\n- **CRM rendszerek:** HubSpot, Pipedrive, Salesforce, Zoho, MiniCRM\n- **Kommunikáció:** Gmail, Microsoft Outlook, Slack, WhatsApp Business API\n- **Pénzügy:** Számlázz.hu, Billingo, Stripe\n- **Adatbázisok:** Google Drive, Google Sheets, Supabase, PostgreSQL\n\nMilyen rendszert használtok jelenleg?`;
+    return `${salutation}Az zentrion.ai integrációs modulja univerzális REST API és Webhook architektúrával rendelkezik. Közvetlenül összekapcsolható a piacvezető rendszerekkel:\n\n- **CRM rendszerek:** HubSpot, Pipedrive, Salesforce, Zoho, MiniCRM\n- **Kommunikáció:** Gmail, Microsoft Outlook, Slack, WhatsApp Business API\n- **Pénzügy:** Számlázz.hu, Billingo, Stripe\n- **Adatbázisok:** Google Drive, Google Sheets, Supabase, PostgreSQL\n\nMilyen rendszert használtok jelenleg?`;
   }
 
   // 19. Chatbot és RAG technológia
@@ -484,12 +484,12 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     normMsg.includes('tudasbazis') ||
     normMsg.includes('hallucinacio')
   ) {
-    return `${salutation}Az xpander.ai RAG-alapú (Retrieval-Augmented Generation) chatbotjai:\n\n- **📚 Bármilyen forrásból tanulnak:** PDF-ek, belső GYIK, weboldal URL, Notion oldalak vagy termékkatalógusok.\n- **🛡️ 0% Hallucináció:** Szigorú prompt védelem védi: ha egy információ nem szerepel a dokumentumokban, nem talál ki választ, hanem intelligensen felajánlja az emberi kolléga visszahívását.\n- **🎯 1 kattintásos beágyazás:** Egyetlen sor kóddal elhelyezhető tetszőleges weboldalon.\n- **📈 Lead-rögzítés:** Beszélgetés közben természetes módon kéri el az érdeklődő email címét vagy telefonszámát és beküldi a CRM-be.`;
+    return `${salutation}Az zentrion.ai RAG-alapú (Retrieval-Augmented Generation) chatbotjai:\n\n- **📚 Bármilyen forrásból tanulnak:** PDF-ek, belső GYIK, weboldal URL, Notion oldalak vagy termékkatalógusok.\n- **🛡️ 0% Hallucináció:** Szigorú prompt védelem védi: ha egy információ nem szerepel a dokumentumokban, nem talál ki választ, hanem intelligensen felajánlja az emberi kolléga visszahívását.\n- **🎯 1 kattintásos beágyazás:** Egyetlen sor kóddal elhelyezhető tetszőleges weboldalon.\n- **📈 Lead-rögzítés:** Beszélgetés közben természetes módon kéri el az érdeklődő email címét vagy telefonszámát és beküldi a CRM-be.`;
   }
 
   // 20. Üdvözlés
   if (/^(szia|udv|hello|szervusz|jo napot|szep napot|hali|cso|csa|mizu|hogy vagy)/.test(normMsg)) {
-    return `${salutation}Szia! Minden szuper, készen állok a munkára! Az Xpander.ai automatizációs és Voice AI asszisztense vagyok.\n\nMiben lehetek ma a segítségedre? Érdekel valamelyik szolgáltatásunk (Chatbot, Voice AI, Email szűrés, CRM, Lead generálás, Időpontfoglalás), vagy egy konkrét üzleti kihívásodat beszélnénk át?`;
+    return `${salutation}Szia! Minden szuper, készen állok a munkára! Az Zentrion.ai automatizációs és Voice AI asszisztense vagyok.\n\nMiben lehetek ma a segítségedre? Érdekel valamelyik szolgáltatásunk (Chatbot, Voice AI, Email szűrés, CRM, Lead generálás, Időpontfoglalás), vagy egy konkrét üzleti kihívásodat beszélnénk át?`;
   }
 
   // Dinamikus intelligens válasz

@@ -3,7 +3,7 @@
 import React from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import XpanderLogo from '@/components/brand/XpanderLogo';
+import ZentrionLogo from '@/components/brand/ZentrionLogo';
 import { ShieldCheck, FileText, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -34,7 +34,7 @@ export default function AszfPage() {
                   Általános Szerződési Feltételek (ÁSZF)
                 </h1>
                 <p className="text-xs text-gray-400 mt-1">
-                  Hatályos: 2026. január 1-től visszavonásig • Xpander.ai Vállalati Rendszerek
+                  Hatályos: 2026. január 1-től visszavonásig • Zentrion.ai Vállalati Rendszerek
                 </p>
               </div>
             </div>
@@ -48,13 +48,13 @@ export default function AszfPage() {
                 <span className="text-neon-blue">1.</span> A Szolgáltató Adatai és Hatály
               </h2>
               <p>
-                Jelen Általános Szerződési Feltételek (a továbbiakban: <strong>ÁSZF</strong>) az <strong>Xpander.ai</strong> (a továbbiakban: Szolgáltató) által nyújtott szoftverfejlesztési, autonóm AI ügynök (agent) tervezési, munkafolyamat-automatizálási (XpanderFlow) és RAG chatbot üzemeltetési szolgáltatások igénybevételének jogi feltételeit rögzíti.
+                Jelen Általános Szerződési Feltételek (a továbbiakban: <strong>ÁSZF</strong>) az <strong>Zentrion.ai</strong> (a továbbiakban: Szolgáltató) által nyújtott szoftverfejlesztési, autonóm AI ügynök (agent) tervezési, munkafolyamat-automatizálási (ZentrionFlow) és RAG chatbot üzemeltetési szolgáltatások igénybevételének jogi feltételeit rögzíti.
               </p>
               <div className="bg-white/5 p-4 rounded-xl border border-white/10 space-y-1.5 text-xs text-gray-300">
-                <p><strong>Szolgáltató elnevezése:</strong> Xpander Automation & AI Systems</p>
-                <p><strong>Központi kapcsolattartó email:</strong> xpander-automation.ai@outlook.hu</p>
+                <p><strong>Szolgáltató elnevezése:</strong> Zentrion Automation & AI Systems</p>
+                <p><strong>Központi kapcsolattartó email:</strong> zentrion-automation.ai@outlook.hu</p>
                 <p><strong>Székhely:</strong> 1054 Budapest, Szabadság tér 7. (Bank Center)</p>
-                <p><strong>Hivatalos weboldal:</strong> https://xpander.ai</p>
+                <p><strong>Hivatalos weboldal:</strong> https://zentrion.ai</p>
               </div>
             </section>
 
@@ -63,7 +63,7 @@ export default function AszfPage() {
                 <span className="text-neon-blue">2.</span> A Szolgáltatás Tárgya és Technológiai Garanciák
               </h2>
               <p>
-                A Szolgáltató vállalja B2B és vállalati ügyfelei részére egyedi, saját natív TypeScript motorra (XpanderFlow) épülő automatizációk, API-integrációk, intelligens email-feldolgozók, valamint mesterséges intelligenciára épülő döntéshozó és ügyfélszolgálati rendszerek kifejlesztését és karbantartását.
+                A Szolgáltató vállalja B2B és vállalati ügyfelei részére egyedi, saját natív TypeScript motorra (ZentrionFlow) épülő automatizációk, API-integrációk, intelligens email-feldolgozók, valamint mesterséges intelligenciára épülő döntéshozó és ügyfélszolgálati rendszerek kifejlesztését és karbantartását.
               </p>
               <ul className="space-y-2 pl-4 list-disc marker:text-neon-blue text-xs sm:text-sm text-gray-300">
                 <li><strong>Függetlenségi garancia:</strong> A Szolgáltató rendszerei semmilyen külső korlátozott platformtól (mint például Make.com, n8n vagy Zapier) nem függnek; a végrehajtás saját dedikált backend motoron történik.</li>
@@ -121,7 +121,7 @@ export default function AszfPage() {
             <div className="text-xs text-gray-400 text-center sm:text-left">
               Kérdésed merült fel a szerződési feltételekkel kapcsolatban? Írj nekünk:
               <br />
-              <strong className="text-white">xpander-automation.ai@outlook.hu</strong>
+              <strong className="text-white">zentrion-automation.ai@outlook.hu</strong>
             </div>
             <Link
               href="/#contact"

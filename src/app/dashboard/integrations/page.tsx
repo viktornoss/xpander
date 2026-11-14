@@ -106,7 +106,7 @@ export default function IntegrationsPage() {
             Újrafelhasználható API & Webhook Integrációk
           </h1>
           <p className="text-xs sm:text-sm text-gray-400 mt-1">
-            Kapcsold össze a saját backend rendszereidet, CRM-edet és webhookjaidat az xpander.ai Automatizációs Motorral.
+            Kapcsold össze a saját backend rendszereidet, CRM-edet és webhookjaidat az zentrion.ai Automatizációs Motorral.
           </p>
         </div>
 

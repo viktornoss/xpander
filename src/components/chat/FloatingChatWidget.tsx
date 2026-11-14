@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import MarkdownMessage from '@/components/chat/MarkdownMessage';
 import { useVoiceAi } from '@/components/voice/VoiceAiContext';
-import XpanderLogo from '@/components/brand/XpanderLogo';
+import ZentrionLogo from '@/components/brand/ZentrionLogo';
 
 interface ChatMessage {
   id: string;
@@ -35,7 +35,7 @@ export default function FloatingChatWidget() {
     {
       id: 'm1',
       role: 'assistant',
-      content: 'Szia! 👋 Az **xpander.ai** asszisztense vagyok. Milyen folyamatot szeretnél automatizálni a cégedben?',
+      content: 'Szia! 👋 Az **zentrion.ai** asszisztense vagyok. Milyen folyamatot szeretnél automatizálni a cégedben?',
       timestamp: 'Most'
     }
   ]);
@@ -189,7 +189,7 @@ export default function FloatingChatWidget() {
         body: JSON.stringify({
           messages: newHistory.map(m => ({ role: m.role, content: m.content })),
           apiKey: apiKey || undefined,
-          systemPrompt: 'Te az xpander.ai Agency szakértő lebegő weboldali asszisztense vagy. Válaszolj tömören, világosan, segítőkészen és strukturáltan.'
+          systemPrompt: 'Te az zentrion.ai Agency szakértő lebegő weboldali asszisztense vagy. Válaszolj tömören, világosan, segítőkészen és strukturáltan.'
         })
       });
 
@@ -226,13 +226,13 @@ export default function FloatingChatWidget() {
             <div className="flex items-center gap-2.5">
               <div className="relative">
                 <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
-                  <XpanderLogo iconOnly size="sm" />
+                  <ZentrionLogo iconOnly size="sm" />
                 </div>
                 <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400" />
               </div>
               <div>
                 <div className="text-xs font-bold text-white flex items-center gap-1.5">
-                  <span>Xpander.ai Asszisztens</span>
+                  <span>Zentrion.ai Asszisztens</span>
                   <span className="text-[9px] px-1.5 py-0.2 rounded bg-white/10 text-white font-mono">
                     {apiKey ? 'GPT-4o' : 'Multi-Lingual'}
                   </span>
@@ -364,7 +364,7 @@ export default function FloatingChatWidget() {
         <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 hidden sm:flex items-center">
           <div className="px-3.5 py-1.5 rounded-full bg-black/90 border border-white/20 text-white text-xs font-bold whitespace-nowrap shadow-xl flex items-center gap-2 backdrop-blur-md">
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-            <span>Xpander AI Asszisztens</span>
+            <span>Zentrion AI Asszisztens</span>
           </div>
           <div className="w-2 h-2 bg-black/90 border-r border-t border-white/20 transform rotate-45 -ml-1" />
         </div>

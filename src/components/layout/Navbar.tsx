@@ -70,26 +70,14 @@ export default function Navbar() {
           </nav>
 
           {/* Right Action Buttons (Clean & High-Contrast) */}
-          <div className="hidden md:flex items-center gap-2.5">
-            {/* Free AI Audit Pill */}
+          <div className="hidden md:flex items-center gap-3">
+            {/* Primary CTA: Ingyenes AI Audit */}
             <Link 
               href="/audit" 
-              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 group ${
-                pathname === '/audit' 
-                  ? 'bg-white text-black shadow' 
-                  : 'bg-white/5 hover:bg-white/15 border border-white/15 text-neutral-200 hover:text-white'
-              }`}
-            >
-              <Sparkles className="w-3.5 h-3.5 text-white group-hover:rotate-12 transition-transform" />
-              <span>AI Audit</span>
-            </Link>
-
-            {/* Primary CTA: Időpontfoglalás */}
-            <Link
-              href="/services/appointment-booking"
               className="px-4 py-2 rounded-full bg-white text-black font-bold text-xs hover:bg-neutral-200 transition-all shadow-md hover:scale-105 active:scale-95 tracking-wide flex items-center gap-1.5"
             >
-              <span>Időpontfoglalás</span>
+              <Sparkles className="w-3.5 h-3.5 text-black" />
+              <span>Ingyenes AI Audit</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
 
@@ -194,18 +182,10 @@ export default function Navbar() {
             <Link
               href="/audit"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-full bg-white/10 border border-white/15 text-white font-bold text-xs"
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-white text-black font-bold text-xs shadow-md"
             >
-              <Sparkles className="w-3.5 h-3.5 text-white" />
+              <Sparkles className="w-3.5 h-3.5 text-black" />
               <span>Ingyenes AI Folyamat-Audit</span>
-            </Link>
-
-            <Link
-              href="/services/appointment-booking"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 py-2.5 rounded-full bg-white text-black font-bold text-xs"
-            >
-              <span>Időpontfoglalás</span>
               <ArrowRight className="w-3.5 h-3.5 text-black" />
             </Link>
 

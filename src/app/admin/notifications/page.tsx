@@ -30,7 +30,7 @@ interface NotificationLog {
 export default function AdminNotificationsPage() {
   const [logs, setLogs] = useState<NotificationLog[]>([]);
   const [loading, setLoading] = useState(true);
-  const [targetEmail, setTargetEmail] = useState('xpander-automation.ai@outlook.hu');
+  const [targetEmail, setTargetEmail] = useState('zentrion-automation.ai@outlook.hu');
   const [actionFeedback, setActionFeedback] = useState<string | null>(null);
   const [selectedLog, setSelectedLog] = useState<NotificationLog | null>(null);
   const [isSending, setIsSending] = useState(false);
@@ -81,7 +81,7 @@ export default function AdminNotificationsPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          source: 'XpanderFlow Engine Telemetria',
+          source: 'ZentrionFlow Engine Telemetria',
           message: 'Szimulált hiba: Időtúllépés külső REST API végponton (504 Gateway Timeout)',
           payload: { endpoint: 'https://crm.partner.hu/v2/contacts', timeoutMs: 15000 }
         })

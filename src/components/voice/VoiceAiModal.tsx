@@ -15,7 +15,7 @@ import {
   Zap,
   Ear
 } from 'lucide-react';
-import XpanderLogo from '@/components/brand/XpanderLogo';
+import ZentrionLogo from '@/components/brand/ZentrionLogo';
 import Robot3DAvatar from '@/components/voice/Robot3DAvatar';
 
 /**
@@ -52,8 +52,8 @@ function cleanTextForNaturalSpeech(text: string): string {
     .replace(/%/g, ' százalék')
     .replace(/\b24\/7\b/gi, 'éjjel-nappal')
     .replace(/\b\+36\s*1\s*800\s*9999\b/gi, 'plusz 36 1 800 9999')
-    .replace(/\bXpanderFlow\b/gi, 'Ikszpander Fló')
-    .replace(/\bxpander\.ai\b/gi, 'Ikszpander pont áj')
+    .replace(/\bZentrionFlow\b/gi, 'Ikszpander Fló')
+    .replace(/\bzentrion\.ai\b/gi, 'Ikszpander pont áj')
     .replace(/\bMake\.com\b/gi, 'Mék pont kom')
     .replace(/\bMake\s*\/\s*n8n\b/gi, 'Mék vagy en nyolc en')
     .replace(/\bn8n\b/gi, 'en nyolc en')
@@ -116,7 +116,7 @@ export default function VoiceAiModal({ isOpen, onClose }: VoiceAiModalProps) {
     {
       id: 'vm-welcome',
       role: 'assistant',
-      text: 'Szia! Az Xpander.ai Voice Agent demójában vagy. Kérdezz bátran bármiről élőszóban, és természetes hanggal válaszolok!',
+      text: 'Szia! Az Zentrion.ai Voice Agent demójában vagy. Kérdezz bátran bármiről élőszóban, és természetes hanggal válaszolok!',
       timestamp: 'Most'
     }
   ]);
@@ -295,7 +295,7 @@ export default function VoiceAiModal({ isOpen, onClose }: VoiceAiModalProps) {
         body: JSON.stringify({
           messages: [...conversation, userMsg].map(m => ({ role: m.role, content: m.text })),
           isVoiceMode: true, // Guarantees concise 1-2 sentence spoken answers
-          systemPrompt: `Te az xpander.ai professzionális, emberi hangon beszélő Voice AI asszisztense vagy.
+          systemPrompt: `Te az zentrion.ai professzionális, emberi hangon beszélő Voice AI asszisztense vagy.
 Beszélj 1-2 természetes, élő mondatban, barátságosan, közvetlenül, mint egy telefonos tanácsadó!
 Soha ne használj felsorolást, markdown formázást vagy emojikat!`
         })
@@ -500,7 +500,7 @@ Soha ne használj felsorolást, markdown formázást vagy emojikat!`
         {/* Modal Top Bar */}
         <div className="flex items-center justify-between border-b border-white/10 pb-3 relative z-10">
           <div className="flex items-center gap-3">
-            <XpanderLogo size="sm" />
+            <ZentrionLogo size="sm" />
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-full bg-white/10 text-white border border-white/20 flex items-center gap-1.5 shadow-sm">
                 <Radio className={`w-3 h-3 ${isSpeaking || isListening ? 'animate-pulse text-white' : 'text-neutral-400'}`} />

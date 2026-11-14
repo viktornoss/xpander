@@ -43,8 +43,8 @@ function cleanSpeechText(text: string): string {
     .replace(/\b99[,.]98%/gi, '99 egész 98 százalék')
     .replace(/%/g, ' százalék')
     .replace(/\b24\/7\b/gi, 'éjjel-nappal')
-    .replace(/\bXpanderFlow\b/gi, 'Ikszpander Fló')
-    .replace(/\bxpander\.ai\b/gi, 'Ikszpander pont áj')
+    .replace(/\bZentrionFlow\b/gi, 'Ikszpander Fló')
+    .replace(/\bzentrion\.ai\b/gi, 'Ikszpander pont áj')
     .replace(/\bMake\.com\b/gi, 'Mék pont kom')
     .replace(/\bn8n\b/gi, 'en nyolc en')
     .replace(/\bMake\b/gi, 'Mék')
@@ -60,7 +60,7 @@ function cleanSpeechText(text: string): string {
 }
 
 const PRESET_QUESTIONS = [
-  'Mit tud az Xpander.ai?',
+  'Mit tud az Zentrion.ai?',
   'Miért jobb a saját motor, mint a Make vagy n8n?',
   'Milyen árakkal dolgoztok?',
   'Hogyan működik az időpontfoglaló AI?'
@@ -71,7 +71,7 @@ export default function RobotVoiceShowcase() {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [isThinking, setIsThinking] = useState(false);
-  const [lastMessage, setLastMessage] = useState('Szia! Én vagyok az Xpander.ai 3D Voice Ügynöke. Kérdezz tőlem bármit!');
+  const [lastMessage, setLastMessage] = useState('Szia! Én vagyok az Zentrion.ai 3D Voice Ügynöke. Kérdezz tőlem bármit!');
   const [bargeInDetected, setBargeInDetected] = useState(false);
 
   const synthRef = useRef<SpeechSynthesis | null>(null);
@@ -143,12 +143,12 @@ export default function RobotVoiceShowcase() {
 
       if (!res.ok) throw new Error('API error');
       const data = await res.json();
-      const reply = data.reply || data.text || 'Az Xpander.ai vállalati folyamatautomatizálási platform zökkenőmentesen köti össze rendszereidet saját natív motorral.';
+      const reply = data.reply || data.text || 'Az Zentrion.ai vállalati folyamatautomatizálási platform zökkenőmentesen köti össze rendszereidet saját natív motorral.';
       
       setLastMessage(reply);
       speakText(reply);
     } catch {
-      const fallback = 'Az Xpander.ai egyedi vállalati AI ügynököket és automatizált munkafolyamatokat épít natív TypeScript alapon, zéró külső függőséggel.';
+      const fallback = 'Az Zentrion.ai egyedi vállalati AI ügynököket és automatizált munkafolyamatokat épít natív TypeScript alapon, zéró külső függőséggel.';
       setLastMessage(fallback);
       speakText(fallback);
     }
@@ -219,7 +219,7 @@ export default function RobotVoiceShowcase() {
         <div className="text-center max-w-3xl mx-auto space-y-4 scroll-reveal">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono font-bold tracking-wider text-neutral-300">
             <Radio className="w-3.5 h-3.5 text-white animate-pulse" />
-            <span>XPANDER-VOICE-3D ENGINE</span>
+            <span>ZENTRION-VOICE-3D ENGINE</span>
           </div>
 
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase leading-tight">
@@ -227,7 +227,7 @@ export default function RobotVoiceShowcase() {
           </h2>
 
           <p className="text-neutral-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            Nem pusztán hanghullámok: az Xpander.ai 3D robotja valós időben artikulál és beszél, miközben azonnal válaszol minden kérdésedre.
+            Nem pusztán hanghullámok: az Zentrion.ai 3D robotja valós időben artikulál és beszél, miközben azonnal válaszol minden kérdésedre.
           </p>
         </div>
 
@@ -292,7 +292,7 @@ export default function RobotVoiceShowcase() {
               <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <div className="flex items-center gap-2 text-xs font-mono text-neutral-400">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                  <span className="text-white font-bold">XPANDER-CORE-v2</span>
+                  <span className="text-white font-bold">ZENTRION-CORE-v2</span>
                   <span>|</span>
                   <span>LATENCY: &lt; 22ms</span>
                 </div>

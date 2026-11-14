@@ -7,7 +7,7 @@ import Footer from '@/components/layout/Footer';
 import FloatingChatWidget from '@/components/chat/FloatingChatWidget';
 import ScrollAnimationProvider from '@/components/effects/ScrollAnimationProvider';
 import Robot3DAvatar from '@/components/voice/Robot3DAvatar';
-import XpanderLogo from '@/components/brand/XpanderLogo';
+import ZentrionLogo from '@/components/brand/ZentrionLogo';
 import { 
   Sparkles, 
   ArrowRight, 
@@ -106,7 +106,7 @@ export default function AuditPage() {
 
     setTimeout(() => {
       setScanProgress(45);
-      setScanStepText('XpanderFlow natív TypeScript csomópontok illesztése...');
+      setScanStepText('ZentrionFlow natív TypeScript csomópontok illesztése...');
     }, 700);
 
     setTimeout(() => {
@@ -179,7 +179,7 @@ export default function AuditPage() {
             <div className="text-center max-w-3xl mx-auto space-y-4 scroll-reveal">
               <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono font-bold tracking-wider text-neutral-300 shadow-sm">
                 <Sparkles className="w-3.5 h-3.5 text-white" />
-                <span>XPANDER DIAGNOSTIC ENGINE v2</span>
+                <span>ZENTRION DIAGNOSTIC ENGINE v2</span>
                 <span className="text-neutral-600">|</span>
                 <span className="text-white font-extrabold">100% INGYENES</span>
               </div>
@@ -246,7 +246,7 @@ export default function AuditPage() {
                   </div>
 
                   <div className="text-[11px] font-mono text-neutral-500">
-                    0 Make/n8n függőség • Saját XpanderFlow Motor
+                    0 Make/n8n függőség • Saját ZentrionFlow Motor
                   </div>
                 </div>
               </div>
@@ -806,7 +806,7 @@ export default function AuditPage() {
                               Hivatalos AI Audit Riport Sikeresen Rögzítve & Kiküldve!
                             </h4>
                             <p className="text-xs text-neutral-400">
-                              A dokumentációt továbbítottuk a megadott címre ({clientEmail}) és az ügyeletes mérnökünknek (xpander-automation.ai@outlook.hu).
+                              A dokumentációt továbbítottuk a megadott címre ({clientEmail}) és az ügyeletes mérnökünknek (zentrion-automation.ai@outlook.hu).
                             </p>
                           </div>
                         </div>

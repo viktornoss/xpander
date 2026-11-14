@@ -152,10 +152,10 @@ export default function SettingsPage() {
       <div className="rounded-3xl glass-panel p-6 sm:p-8 border border-white/10 space-y-4">
         <h2 className="text-base font-bold text-white flex items-center gap-2">
           <Key className="w-4 h-4 text-neon-cyan" />
-          <span>xpander.ai API Hozzáférési Kulcs</span>
+          <span>zentrion.ai API Hozzáférési Kulcs</span>
         </h2>
         <p className="text-xs text-gray-400">
-          Ezzel a kulccsal indíthatsz külső rendszerekből autonóm munkafolyamatokat az xpander.ai Gatewayen keresztül.
+          Ezzel a kulccsal indíthatsz külső rendszerekből autonóm munkafolyamatokat az zentrion.ai Gatewayen keresztül.
         </p>
 
         <div className="flex items-center gap-2 p-3 rounded-xl bg-nexus-900 border border-white/10">

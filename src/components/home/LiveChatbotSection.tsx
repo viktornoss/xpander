@@ -22,7 +22,7 @@ import {
   Radio
 } from 'lucide-react';
 import MarkdownMessage from '@/components/chat/MarkdownMessage';
-import XpanderLogo from '@/components/brand/XpanderLogo';
+import ZentrionLogo from '@/components/brand/ZentrionLogo';
 import { useVoiceAi } from '@/components/voice/VoiceAiContext';
 
 interface ChatMessage {
@@ -47,7 +47,7 @@ export default function LiveChatbotSection() {
     {
       id: 'm1',
       role: 'assistant',
-      content: `Üdvözöllek az **xpander.ai** felületén! 👋\n\nÉn az xpander.ai dedikált AI asszisztense vagyok. Kérdezz bátran:\n- Hogyan tudjuk a manuális folyamataidat kiváltani **saját XpanderFlow TypeScript motorunkkal** és autonóm AI agentekkel,\n- Miként működik a céges tudásbázisra épülő **RAG Chatbotunk**,\n- Vagy kérj tőlem egy **azonnali folyamattervezetet / email sablont** a cégedre szabva!\n\nMilyen területen szeretnél időt és költséget megtakarítani?`,
+      content: `Üdvözöllek az **zentrion.ai** felületén! 👋\n\nÉn az zentrion.ai dedikált AI asszisztense vagyok. Kérdezz bátran:\n- Hogyan tudjuk a manuális folyamataidat kiváltani **saját ZentrionFlow TypeScript motorunkkal** és autonóm AI agentekkel,\n- Miként működik a céges tudásbázisra épülő **RAG Chatbotunk**,\n- Vagy kérj tőlem egy **azonnali folyamattervezetet / email sablont** a cégedre szabva!\n\nMilyen területen szeretnél időt és költséget megtakarítani?`,
       timestamp: 'Most'
     }
   ]);
@@ -235,8 +235,8 @@ export default function LiveChatbotSection() {
           messages: newHistory.map(m => ({ role: m.role, content: m.content })),
           apiKey: apiKey || undefined,
           model: apiKey ? 'gpt-4o' : undefined,
-          systemPrompt: `Te az xpander.ai Automation Agency hivatalos és intelligens szakértő asszisztense vagy.
-A céged vállalati AI rendszereket, RAG chatbotokat, saját fejlesztésű TypeScript munkafolyamat motort (XpanderFlow) és autonóm ágenseket épít B2B vállalkozásoknak.
+          systemPrompt: `Te az zentrion.ai Automation Agency hivatalos és intelligens szakértő asszisztense vagy.
+A céged vállalati AI rendszereket, RAG chatbotokat, saját fejlesztésű TypeScript munkafolyamat motort (ZentrionFlow) és autonóm ágenseket épít B2B vállalkozásoknak.
 Válaszolj mint egy Senior AI Solutions Architect: barátságosan, professzionálisan, strukturáltan (használj félkövér kiemelést és listajeleket), és adj konkrét gyakorlati tippeket!`
         })
       });
@@ -274,7 +274,7 @@ Válaszolj mint egy Senior AI Solutions Architect: barátságosan, professzioná
       {
         id: 'm1',
         role: 'assistant',
-        content: 'Üdvözöllek újra! Milyen kérdésed van az xpander.ai automatizációkkal vagy a saját TypeScript motorral kapcsolatban?',
+        content: 'Üdvözöllek újra! Milyen kérdésed van az zentrion.ai automatizációkkal vagy a saját TypeScript motorral kapcsolatban?',
         timestamp: 'Most'
       }
     ]);
@@ -292,7 +292,7 @@ Válaszolj mint egy Senior AI Solutions Architect: barátságosan, professzioná
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase">
-            Próbáld ki az Xpander.ai Chatbotot!
+            Próbáld ki az Zentrion.ai Chatbotot!
           </h2>
 
           <p className="text-sm sm:text-base text-neutral-400 font-normal">
@@ -318,7 +318,7 @@ Válaszolj mint egy Senior AI Solutions Architect: barátságosan, professzioná
 
               <div>
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-sm font-bold text-white">Xpander.ai Asszisztens</span>
+                  <span className="text-sm font-bold text-white">Zentrion.ai Asszisztens</span>
                   {apiKey ? (
                     <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-white/10 text-white border border-white/15 flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
@@ -327,7 +327,7 @@ Válaszolj mint egy Senior AI Solutions Architect: barátságosan, professzioná
                   ) : (
                     <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-white/10 text-white border border-white/15 flex items-center gap-1">
                       <Cpu className="w-3 h-3" />
-                      Xpander Cognitive Mesh v2
+                      Zentrion Cognitive Mesh v2
                     </span>
                   )}
                 </div>
@@ -531,7 +531,7 @@ Válaszolj mint egy Senior AI Solutions Architect: barátságosan, professzioná
                 <div className="flex items-center justify-between">
                   <span className="font-semibold text-white">Alapértelmezett mód:</span>
                   <span className="px-2 py-0.5 rounded-full bg-neon-purple/20 text-neon-purple font-mono font-bold">
-                    xpander Cognitive v2
+                    zentrion Cognitive v2
                   </span>
                 </div>
                 <p className="text-gray-400 leading-relaxed">

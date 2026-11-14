@@ -24,7 +24,7 @@ import {
   Check
 } from 'lucide-react';
 import { useAuth } from '@/lib/auth-context';
-import XpanderLogo from '@/components/brand/XpanderLogo';
+import ZentrionLogo from '@/components/brand/ZentrionLogo';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -54,7 +54,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           
           {/* Logo & Agency brand */}
           <div className="px-2">
-            <XpanderLogo size="md" showSubtitle subtitleText="Client Portal" linkToHome />
+            <ZentrionLogo size="md" showSubtitle subtitleText="Client Portal" linkToHome />
           </div>
 
           {/* User info box */}
@@ -155,12 +155,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             >
               {mobileSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
-            <XpanderLogo size="sm" linkToHome />
+            <ZentrionLogo size="sm" linkToHome />
           </div>
 
           <div className="hidden sm:flex items-center gap-2 text-xs text-gray-400">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>XpanderFlow TS Motor & OpenAI Rendszerek: <strong>100% Online</strong></span>
+            <span>ZentrionFlow TS Motor & OpenAI Rendszerek: <strong>100% Online</strong></span>
           </div>
 
           {/* Right Header items */}

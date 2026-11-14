@@ -33,7 +33,7 @@ export default function SlaPage() {
                   Service Level Agreement (SLA)
                 </h1>
                 <p className="text-xs text-gray-400 mt-1">
-                  Vállalati Rendelkezésre Állás & Műszaki Garanciák • Xpander.ai
+                  Vállalati Rendelkezésre Állás & Műszaki Garanciák • Zentrion.ai
                 </p>
               </div>
             </div>
@@ -66,7 +66,7 @@ export default function SlaPage() {
                 <span className="text-neon-cyan">1.</span> Hatály és Cél
               </h2>
               <p>
-                Jelen Szolgáltatási Szint Megállapodás (SLA) határozza meg az <strong>Xpander.ai</strong> által biztosított infrastruktúra és az egyedileg épített XpanderFlow munkafolyamatok rendelkezésre állási követelményeit, a hibaelhárítás határidőit és a kötbérfeltételeket.
+                Jelen Szolgáltatási Szint Megállapodás (SLA) határozza meg az <strong>Zentrion.ai</strong> által biztosított infrastruktúra és az egyedileg épített ZentrionFlow munkafolyamatok rendelkezésre állási követelményeit, a hibaelhárítás határidőit és a kötbérfeltételeket.
               </p>
             </section>
 
@@ -138,7 +138,7 @@ export default function SlaPage() {
             <div className="text-xs text-gray-400 text-center sm:text-left">
               Technikai támogatásra vagy SLA kérdésre van szükséged?
               <br />
-              <strong className="text-white">xpander-automation.ai@outlook.hu</strong>
+              <strong className="text-white">zentrion-automation.ai@outlook.hu</strong>
             </div>
             <Link
               href="/#contact"

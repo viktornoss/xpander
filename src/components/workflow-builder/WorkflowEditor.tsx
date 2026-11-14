@@ -546,7 +546,7 @@ export default function WorkflowEditor({ initialWorkflow, onSave }: WorkflowEdit
 
           <div className="pt-3 border-t border-white/10 text-[10px] text-gray-400 flex items-center gap-1.5">
             <Cpu className="w-3.5 h-3.5 text-neon-purple" />
-            <span>XpanderFlow 120 FPS Motor</span>
+            <span>ZentrionFlow 120 FPS Motor</span>
           </div>
         </div>
 

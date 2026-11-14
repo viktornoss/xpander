@@ -171,7 +171,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       id: `notif-${Date.now()}`,
       userId: newUser.id,
       title: 'Sikeres regisztráció!',
-      message: `Üdvözlünk az xpander.ai platformon, ${name}! Tekintsd meg az aktív automatizációkat vagy kérj egyedi AI rendszert.`,
+      message: `Üdvözlünk az zentrion.ai platformon, ${name}! Tekintsd meg az aktív automatizációkat vagy kérj egyedi AI rendszert.`,
       type: 'success',
       timestamp: 'Most',
       read: false,

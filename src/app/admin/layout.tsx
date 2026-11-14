@@ -19,7 +19,7 @@ import {
   Mail
 } from 'lucide-react';
 import { useAuth } from '@/lib/auth-context';
-import XpanderLogo from '@/components/brand/XpanderLogo';
+import ZentrionLogo from '@/components/brand/ZentrionLogo';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -76,14 +76,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           
           {/* Admin Header */}
           <div className="px-2">
-            <XpanderLogo size="md" showSubtitle subtitleText="Admin Portál" linkToHome />
+            <ZentrionLogo size="md" showSubtitle subtitleText="Admin Portál" linkToHome />
           </div>
 
           {/* Admin user info */}
           <div className="p-3 rounded-2xl bg-neon-purple/10 border border-neon-purple/20 space-y-1">
             <div className="text-xs font-bold text-white truncate">{currentUser?.name}</div>
             <div className="text-[11px] text-neon-purple font-semibold">Főadminisztrátor</div>
-            <div className="text-[10px] text-gray-400 font-mono">xpander-admin-hq</div>
+            <div className="text-[10px] text-gray-400 font-mono">zentrion-admin-hq</div>
           </div>
 
           {/* Admin Nav */}
@@ -137,7 +137,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <div className="flex-1 flex flex-col min-w-0">
         <header className="h-16 border-b border-white/10 bg-nexus-950/80 backdrop-blur-xl px-4 sm:px-8 flex items-center justify-between sticky top-0 z-20">
           <div className="flex items-center gap-2 text-xs">
-            <span className="font-bold text-white">xpander.ai Agency Adminisztráció</span>
+            <span className="font-bold text-white">zentrion.ai Agency Adminisztráció</span>
             <span className="text-gray-400">|</span>
             <span className="text-neon-cyan font-mono">v2.4.0 Live</span>
           </div>

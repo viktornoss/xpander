@@ -1,12 +1,12 @@
 /**
- * Central Email & Notification Dispatcher for XPANDER / NEXUS AI Agency
- * Target master address: xpander-automation.ai@outlook.hu
+ * Central Email & Notification Dispatcher for ZENTRION / NEXUS AI Agency
+ * Target master address: zentrion-automation.ai@outlook.hu
  * Handles all inquiries, contact form questions, workflow engine errors, and system alerts.
  */
 
 import nodemailer from 'nodemailer';
 
-export const MASTER_NOTIFICATION_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || 'xpander-automation.ai@outlook.hu';
+export const MASTER_NOTIFICATION_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || 'zentrion-automation.ai@outlook.hu';
 
 export interface EmailNotification {
   id: string;
@@ -73,7 +73,7 @@ export async function dispatchEmail(payload: {
       });
 
       await transporter.sendMail({
-        from: `"XPANDER Automation" <${process.env.SMTP_USER || targetEmail}>`,
+        from: `"ZENTRION Automation" <${process.env.SMTP_USER || targetEmail}>`,
         to: targetEmail,
         subject: payload.subject,
         text: payload.textContent,
@@ -93,8 +93,8 @@ export async function dispatchEmail(payload: {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Origin': 'https://xpander-automation.ai',
-        'Referer': 'https://xpander-automation.ai'
+        'Origin': 'https://zentrion-automation.ai',
+        'Referer': 'https://zentrion-automation.ai'
       },
       body: JSON.stringify({
         _subject: payload.subject,
@@ -127,7 +127,7 @@ export async function dispatchEmail(payload: {
           'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
         },
         body: JSON.stringify({
-          from: 'xpander.ai Automation <onboarding@resend.dev>',
+          from: 'zentrion.ai Automation <onboarding@resend.dev>',
           to: [targetEmail],
           subject: payload.subject,
           html: payload.htmlContent,
@@ -148,7 +148,7 @@ export async function dispatchEmail(payload: {
     type: payload.type,
     subject: payload.subject,
     to: targetEmail,
-    from: 'system@xpander.ai',
+    from: 'system@zentrion.ai',
     createdAt: new Date().toISOString(),
     status: sentStatus,
     metadata: payload.metadata,
@@ -223,7 +223,7 @@ Időbélyeg: ${new Date().toLocaleString('hu-HU')}
       </div>
 
       <p style="font-size: 11px; color: #6b7280; margin-top: 24px; border-top: 1px solid #1f2937; padding-top: 12px;">
-        Ez a levél automatikusan lett kézbesítve a(z) <strong>${MASTER_NOTIFICATION_EMAIL}</strong> címre az xpander.ai rendszertől.
+        Ez a levél automatikusan lett kézbesítve a(z) <strong>${MASTER_NOTIFICATION_EMAIL}</strong> címre az zentrion.ai rendszertől.
       </p>
     </div>
   `;
@@ -363,7 +363,7 @@ export async function sendOrderNotification(data: {
   const subject = `🎉 [ÚJ MEGRENDELÉS] ${data.serviceTitle} - ${data.customerName} (${data.price})`;
 
   const textContent = `
-ÚJ MEGRENDELÉS ÉRKEZETT AZ XPANDER.AI RENDSZERBEN!
+ÚJ MEGRENDELÉS ÉRKEZETT AZ ZENTRION.AI RENDSZERBEN!
 
 Megrendelés ID: ${data.orderId}
 Szolgáltatás: ${data.serviceTitle}

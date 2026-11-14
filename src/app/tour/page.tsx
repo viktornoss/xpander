@@ -20,7 +20,7 @@ export default function TourPage() {
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 text-xs font-semibold text-neutral-300">
             <Sparkles className="w-3.5 h-3.5 text-white" />
-            <span>Xpander.ai Hivatalos Rendszerbemutató</span>
+            <span>Zentrion.ai Hivatalos Rendszerbemutató</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight uppercase">
@@ -28,7 +28,7 @@ export default function TourPage() {
           </h1>
 
           <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
-            Ismerd meg lépésről lépésre, hogyan veszi át az Xpander.ai a monoton operatív feladatokat, hogyan működik a 3D Voice AI és a valós idejű munkafolyamat motorunk.
+            Ismerd meg lépésről lépésre, hogyan veszi át az Zentrion.ai a monoton operatív feladatokat, hogyan működik a 3D Voice AI és a valós idejű munkafolyamat motorunk.
           </p>
 
           <div className="pt-2">

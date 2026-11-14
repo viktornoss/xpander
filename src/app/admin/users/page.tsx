@@ -65,7 +65,7 @@ export default function AdminUsersPage() {
   };
 
   const copyCredentials = (user: UserProfile) => {
-    const credText = `xpander.ai Belépési Adatok:\nNév: ${user.name}\nEmail: ${user.email}\nJelszó: ${user.plainPassword || 'Nincs külön jelszó megadva'}\nCég: ${user.company}\nElőfizetés: ${user.plan}`;
+    const credText = `zentrion.ai Belépési Adatok:\nNév: ${user.name}\nEmail: ${user.email}\nJelszó: ${user.plainPassword || 'Nincs külön jelszó megadva'}\nCég: ${user.company}\nElőfizetés: ${user.plan}`;
     navigator.clipboard.writeText(credText);
     setCopiedId(user.id);
     setFeedbackMessage(`Belépési adatok vágólapra másolva: ${user.email}`);
@@ -113,7 +113,7 @@ export default function AdminUsersPage() {
       role: newUserForm.role,
       plan: newUserForm.plan,
       createdAt: new Date().toISOString().split('T')[0],
-      plainPassword: newUserForm.password || 'XpanderPass2026!',
+      plainPassword: newUserForm.password || 'ZentrionPass2026!',
       apiKey: `nx_live_${Math.random().toString(36).substring(2, 15)}`,
       status: 'active',
       lastLogin: 'Még nem lépett be'
@@ -138,7 +138,7 @@ export default function AdminUsersPage() {
     const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(users, null, 2));
     const downloadAnchor = document.createElement('a');
     downloadAnchor.setAttribute('href', dataStr);
-    downloadAnchor.setAttribute('download', `xpander_users_export_${new Date().toISOString().split('T')[0]}.json`);
+    downloadAnchor.setAttribute('download', `zentrion_users_export_${new Date().toISOString().split('T')[0]}.json`);
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
@@ -206,7 +206,7 @@ export default function AdminUsersPage() {
             <CheckCircle2 className="w-4 h-4 shrink-0" />
             <span className="font-semibold">{feedbackMessage}</span>
           </div>
-          <span className="text-[10px] text-emerald-400/80">xpander.ai Rendszernapló Frissítve</span>
+          <span className="text-[10px] text-emerald-400/80">zentrion.ai Rendszernapló Frissítve</span>
         </div>
       )}
 
@@ -667,7 +667,7 @@ export default function AdminUsersPage() {
                     type="text"
                     value={newUserForm.password}
                     onChange={(e) => setNewUserForm({ ...newUserForm, password: e.target.value })}
-                    placeholder="Pl. XpanderPass2026!"
+                    placeholder="Pl. ZentrionPass2026!"
                     className="flex-1 px-3 py-2 rounded-xl bg-nexus-900 border border-white/10 text-white font-mono focus:outline-none focus:border-neon-blue"
                   />
                   <button

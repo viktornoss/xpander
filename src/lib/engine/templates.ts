@@ -85,7 +85,7 @@ export const TEMPLATE_LEAD_QUALIFIER: WorkflowDefinition = {
       position: { x: 1240, y: 90 },
       config: {
         to: '{{trigger.payload.email}}',
-        subject: 'Időpontfoglalás az xpander.ai Vezető Mérnökével'
+        subject: 'Időpontfoglalás az zentrion.ai Vezető Mérnökével'
       }
     },
     {
@@ -97,7 +97,7 @@ export const TEMPLATE_LEAD_QUALIFIER: WorkflowDefinition = {
       position: { x: 950, y: 280 },
       config: {
         to: '{{trigger.payload.email}}',
-        subject: 'Üdvözöl az xpander.ai! Hasznos esettanulmányok az induláshoz'
+        subject: 'Üdvözöl az zentrion.ai! Hasznos esettanulmányok az induláshoz'
       }
     },
     {

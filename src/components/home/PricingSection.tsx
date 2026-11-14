@@ -173,7 +173,7 @@ export default function PricingSection() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-4 h-4 text-white shrink-0" />
-                  <span>Havi 50,000 feladat & XpanderFlow munkafolyamat futás</span>
+                  <span>Havi 50,000 feladat & ZentrionFlow munkafolyamat futás</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-4 h-4 text-white shrink-0" />
@@ -226,7 +226,7 @@ export default function PricingSection() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-4 h-4 text-white shrink-0" />
-                  <span>Dedikált XpanderFlow TS szerver és privát felhő</span>
+                  <span>Dedikált ZentrionFlow TS szerver és privát felhő</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-4 h-4 text-white shrink-0" />

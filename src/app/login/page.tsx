@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Bot, Lock, Mail, ArrowRight, ShieldCheck, UserCheck, AlertCircle, Sparkles } from 'lucide-react';
 import { useAuth } from '@/lib/auth-context';
 import { DEMO_CLIENT, DEMO_ADMIN } from '@/lib/mock-data';
-import XpanderLogo from '@/components/brand/XpanderLogo';
+import ZentrionLogo from '@/components/brand/ZentrionLogo';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -62,7 +62,7 @@ export default function LoginPage() {
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
         <div className="flex justify-center mb-6">
-          <XpanderLogo size="lg" linkToHome />
+          <ZentrionLogo size="lg" linkToHome />
         </div>
         <h2 className="text-center text-2xl font-extrabold text-white">
           Bejelentkezés a Platformra

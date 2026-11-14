@@ -21,7 +21,7 @@ export async function POST(
 
     return NextResponse.json({
       success: true,
-      message: 'XpanderFlow Natív Webhook sikeresen feldolgozva.',
+      message: 'ZentrionFlow Natív Webhook sikeresen feldolgozva.',
       webhookId,
       runId: runResult.id,
       durationMs: runResult.durationMs,
@@ -43,7 +43,7 @@ export async function GET(
 ) {
   return NextResponse.json({
     status: 'online',
-    engine: 'xpander.ai Native TypeScript Automation Gateway',
+    engine: 'zentrion.ai Native TypeScript Automation Gateway',
     webhookId: params.webhookId,
     timestamp: new Date().toISOString()
   });

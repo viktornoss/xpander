@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Shield, ArrowRight } from 'lucide-react';
-import XpanderLogo from '@/components/brand/XpanderLogo';
+import ZentrionLogo from '@/components/brand/ZentrionLogo';
 import { INITIAL_SERVICES } from '@/lib/mock-data';
 
 export default function Footer() {
@@ -17,7 +17,7 @@ export default function Footer() {
           
           {/* Column 1: Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <XpanderLogo size="lg" showSubtitle subtitleText="Enterprise AI Platform" linkToHome />
+            <ZentrionLogo size="lg" showSubtitle subtitleText="Enterprise AI Platform" linkToHome />
             
             <p className="text-sm text-neutral-400 max-w-sm leading-relaxed">
               B2B vállalkozások skálázása autonóm AI agentekkel, RAG chatbotokkal és a saját TypeScript munkafolyamat-motorral. Autonóm digitális munkaerő a modern gazdaságban.
@@ -130,8 +130,8 @@ export default function Footer() {
             <div className="pt-2 text-xs text-neutral-400 space-y-1">
               <div>
                 Email:{' '}
-                <a href="mailto:xpander-automation.ai@outlook.hu" className="text-neutral-300 hover:text-white transition-colors">
-                  xpander-automation.ai@outlook.hu
+                <a href="mailto:zentrion-automation.ai@outlook.hu" className="text-neutral-300 hover:text-white transition-colors">
+                  zentrion-automation.ai@outlook.hu
                 </a>
               </div>
               <div>Tel: +36 1 800 9999</div>

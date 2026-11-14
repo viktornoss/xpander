@@ -237,7 +237,7 @@ export default function ServiceDetailPage() {
           type: 'email_triage',
           userEmail: testEmailAddress || undefined,
           payload: {
-            emailSubject: 'Xpander.ai Email Triage Teszt',
+            emailSubject: 'Zentrion.ai Email Triage Teszt',
             emailBody: emailText,
             autoDraft: emailParsed.autoDraft
           }
@@ -392,7 +392,7 @@ export default function ServiceDetailPage() {
               {orderedSuccess && (
                 <div className="p-3.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs flex items-center gap-2 animate-in fade-in">
                   <Check className="w-4 h-4" />
-                  <span>A megrendelésed bekerült a Dashboardodra és értesítést küldtünk (xpander-automation.ai@outlook.hu)!</span>
+                  <span>A megrendelésed bekerült a Dashboardodra és értesítést küldtünk (zentrion-automation.ai@outlook.hu)!</span>
                 </div>
               )}
             </div>
@@ -426,7 +426,7 @@ export default function ServiceDetailPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-neon-cyan shrink-0" />
-                  <span>Közvetlen értesítés: xpander-automation.ai@outlook.hu</span>
+                  <span>Közvetlen értesítés: zentrion-automation.ai@outlook.hu</span>
                 </div>
               </div>
 
@@ -454,7 +454,7 @@ export default function ServiceDetailPage() {
               </div>
 
               <span className="text-xs font-mono px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-gray-300 w-fit">
-                Motor: XpanderFlow TS + GPT-4o
+                Motor: ZentrionFlow TS + GPT-4o
               </span>
             </div>
 
@@ -732,7 +732,7 @@ export default function ServiceDetailPage() {
                 </div>
 
                 <div className="rounded-2xl bg-nexus-950 border border-white/10 p-5 text-xs space-y-3 font-mono">
-                  <span className="font-bold text-indigo-400 text-xs font-sans block">XpanderFlow CRM Eseménynapló:</span>
+                  <span className="font-bold text-indigo-400 text-xs font-sans block">ZentrionFlow CRM Eseménynapló:</span>
                   {crmSyncSteps.length > 0 ? (
                     <div className="space-y-2">
                       {crmSyncSteps.map((step, idx) => (
@@ -850,7 +850,7 @@ export default function ServiceDetailPage() {
 
                           <div className="space-y-1 text-[11px] text-gray-300">
                             <p>
-                              📧 <strong>Kiküldött Email:</strong> Továbbítva az <em>xpander-automation.ai@outlook.hu</em> {bookedDetails?.email ? `és a(z) ${bookedDetails.email}` : ''} címekre.
+                              📧 <strong>Kiküldött Email:</strong> Továbbítva az <em>zentrion-automation.ai@outlook.hu</em> {bookedDetails?.email ? `és a(z) ${bookedDetails.email}` : ''} címekre.
                             </p>
                             <p>
                               📱 <strong>SMS Gateway:</strong> {bookingDispatchResult.sms?.carrier} • Kézbesítve ({bookingDispatchResult.sms?.latencyMs}ms)
@@ -907,7 +907,7 @@ export default function ServiceDetailPage() {
                                     const blob = new Blob([bookingDispatchResult.icsData], { type: 'text/calendar;charset=utf-8' });
                                     const link = document.createElement('a');
                                     link.href = window.URL.createObjectURL(blob);
-                                    link.setAttribute('download', `Xpander_Idopont_${Date.now()}.ics`);
+                                    link.setAttribute('download', `Zentrion_Idopont_${Date.now()}.ics`);
                                     document.body.appendChild(link);
                                     link.click();
                                     document.body.removeChild(link);
@@ -1099,7 +1099,7 @@ export default function ServiceDetailPage() {
             </div>
 
             <p className="text-[11px] text-gray-500">
-              Központi kapcsolattartás és számlázás: xpander-automation.ai@outlook.hu
+              Központi kapcsolattartás és számlázás: zentrion-automation.ai@outlook.hu
             </p>
           </div>
 

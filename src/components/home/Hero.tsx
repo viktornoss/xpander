@@ -19,7 +19,7 @@ import {
   Calendar,
   Lock
 } from 'lucide-react';
-import XpanderLogo from '@/components/brand/XpanderLogo';
+import ZentrionLogo from '@/components/brand/ZentrionLogo';
 import { useVoiceAi } from '@/components/voice/VoiceAiContext';
 import WebsiteTourPresentation from '@/components/video/WebsiteTourPresentation';
 
@@ -155,7 +155,7 @@ export default function Hero() {
           
           {/* Top Logo Badge */}
           <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-neutral-900/90 border border-white/10 text-xs font-semibold text-neutral-300 shadow-sm">
-            <XpanderLogo iconOnly size="sm" />
+            <ZentrionLogo iconOnly size="sm" />
             <span className="font-extrabold text-white tracking-wide">Zentrion.ai</span>
             <span className="text-neutral-600">|</span>
             <span className="text-neutral-400 font-medium">Enterprise AI Automation Platform</span>

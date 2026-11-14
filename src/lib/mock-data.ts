@@ -31,7 +31,7 @@ export const INITIAL_SERVICES: ServiceDetail[] = [
       '0 felesleges éjszakai vagy hétvégi kiesés',
       'Többnyelvű támogatás több mint 95 nyelven azonnal'
     ],
-    techStack: ['OpenAI GPT-4o', 'LangChain', 'Pinecone Vector DB', 'Next.js', 'XpanderFlow Engine'],
+    techStack: ['OpenAI GPT-4o', 'LangChain', 'Pinecone Vector DB', 'Next.js', 'ZentrionFlow Engine'],
     pricingNote: 'Kezdve 290.000 Ft-tól egyszeri implementáció vagy havi konstrukció',
     demoType: 'chat'
   },
@@ -57,7 +57,7 @@ export const INITIAL_SERVICES: ServiceDetail[] = [
       'Konzisztens, udvarias és pontos válaszok minden csatornán',
       'Az emberi ügyfélszolgálat a stratégiai ügyfelekre fókuszálhat'
     ],
-    techStack: ['OpenAI API', 'XpanderFlow TS Engine', 'Zendesk / Intercom API', 'Supabase Vector'],
+    techStack: ['OpenAI API', 'ZentrionFlow TS Engine', 'Zendesk / Intercom API', 'Supabase Vector'],
     pricingNote: 'Kezdve 420.000 Ft-tól folyamatmérettől függően',
     demoType: 'crm'
   },
@@ -83,7 +83,7 @@ export const INITIAL_SERVICES: ServiceDetail[] = [
       'Azonnali belső értesítés a kiemelt ügyfelek leveleiről',
       'Pontos és professzionális céges hangnem minden levélben'
     ],
-    techStack: ['Microsoft Graph API', 'Gmail REST API', 'OpenAI GPT-4o', 'XpanderFlow Core'],
+    techStack: ['Microsoft Graph API', 'Gmail REST API', 'OpenAI GPT-4o', 'ZentrionFlow Core'],
     pricingNote: 'Kezdve 240.000 Ft-tól',
     demoType: 'email'
   },
@@ -109,7 +109,7 @@ export const INITIAL_SERVICES: ServiceDetail[] = [
       'Folyamatos heti 15-30 minősített tárgyalási lehetőség',
       'Skálázható új piacokra lépés minimális költséggel'
     ],
-    techStack: ['Apollo API', 'Hunter.io', 'OpenAI GPT-4o', 'Instantly / Smartlead', 'XpanderFlow Engine'],
+    techStack: ['Apollo API', 'Hunter.io', 'OpenAI GPT-4o', 'Instantly / Smartlead', 'ZentrionFlow Engine'],
     pricingNote: 'Kezdve 380.000 Ft-tól + opcionális sikerdíj',
     demoType: 'lead'
   },
@@ -135,7 +135,7 @@ export const INITIAL_SERVICES: ServiceDetail[] = [
       'Nincs több elfelejtett follow-up vagy elveszett érdeklődő',
       'Valós idejű vezetői rálátás az eladási ciklusra'
     ],
-    techStack: ['HubSpot API', 'Pipedrive REST API', 'Whisper AI', 'XpanderFlow TS Core', 'Supabase'],
+    techStack: ['HubSpot API', 'Pipedrive REST API', 'Whisper AI', 'ZentrionFlow TS Core', 'Supabase'],
     pricingNote: 'Kezdve 350.000 Ft-tól meglévő CRM struktúrához',
     demoType: 'crm'
   },
@@ -161,7 +161,7 @@ export const INITIAL_SERVICES: ServiceDetail[] = [
       'Csak azokkal ülsz le tárgyalni, akik valóban a célcsoportodba tartoznak',
       '24 órás foglalási lehetőség külföldi partnereknek is'
     ],
-    techStack: ['Google Calendar API', 'Twilio SMS', 'Calendly / Cal.com API', 'XpanderFlow Engine'],
+    techStack: ['Google Calendar API', 'Twilio SMS', 'Calendly / Cal.com API', 'ZentrionFlow Engine'],
     pricingNote: 'Kezdve 190.000 Ft-tól',
     demoType: 'booking'
   },
@@ -187,7 +187,7 @@ export const INITIAL_SERVICES: ServiceDetail[] = [
       'Drasztikus költségelőny a hagyományos outsourcinggal szemben',
       'Azonnali skálázhatóság: 1 ágensről 50-re egy kattintással'
     ],
-    techStack: ['LangGraph', 'CrewAI', 'OpenAI o1 / GPT-4o', 'XpanderFlow Native Nodes', 'Docker'],
+    techStack: ['LangGraph', 'CrewAI', 'OpenAI o1 / GPT-4o', 'ZentrionFlow Native Nodes', 'Docker'],
     pricingNote: 'Konzultáció és egyedi ajánlat alapján',
     demoType: 'agent'
   }
@@ -212,15 +212,15 @@ export const DEMO_CLIENT: UserProfile = {
 export const DEMO_ADMIN: UserProfile = {
   id: 'usr-admin-001',
   name: 'Nagy Viktor',
-  email: 'xpander-automation.ai@outlook.hu',
+  email: 'zentrion-automation.ai@outlook.hu',
   role: 'admin',
-  company: 'xpander.ai Automation HQ',
+  company: 'zentrion.ai Automation HQ',
   avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=250&q=80',
   plan: 'Enterprise',
   createdAt: '2025-10-01',
   phone: '+36 1 800 9999',
   apiKey: 'nx_admin_master_supersecret_key_88',
-  plainPassword: 'XpanderAdmin2026!',
+  plainPassword: 'ZentrionAdmin2026!',
   status: 'active',
   lastLogin: '2026-03-14 15:40'
 };
@@ -401,7 +401,7 @@ export const INITIAL_NOTIFICATIONS: AppNotification[] = [
   {
     id: 'notif-1',
     userId: 'usr-client-001',
-    title: 'Sikeres XpanderFlow munkafolyamat futás',
+    title: 'Sikeres ZentrionFlow munkafolyamat futás',
     message: 'A "HubSpot CRM Napi Kétirányú Szinkron" hiba nélkül lefutott a natív TS motoron.',
     type: 'success',
     timestamp: '1 órája',

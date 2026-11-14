@@ -13,18 +13,18 @@ export async function POST(req: Request) {
     // 1. APPOINTMENT BOOKING DEMO DISPATCH
     if (type === 'appointment') {
       const { slot = 'Holnap 14:00', clientName = 'Teszt Felhasználó' } = payload || {};
-      const subject = `[Xpander.ai Időpontfoglaló] Sikeres Foglalás Megerősítése: ${slot}`;
+      const subject = `[Zentrion.ai Időpontfoglaló] Sikeres Foglalás Megerősítése: ${slot}`;
 
       const htmlContent = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #09090b; color: #ffffff; padding: 28px; border-radius: 16px; border: 1px solid #27272a;">
           <div style="text-align: center; margin-bottom: 24px;">
-            <h1 style="color: #ffffff; margin: 0; font-size: 26px; font-weight: 900;">Xpander.ai</h1>
+            <h1 style="color: #ffffff; margin: 0; font-size: 26px; font-weight: 900;">Zentrion.ai</h1>
             <p style="color: #06b6d4; font-size: 13px; font-weight: bold; margin-top: 4px; text-transform: uppercase;">Automatikus Időpont-Megerősítő & No-Show Védelem</p>
           </div>
           
           <div style="background: #18181b; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #10b981;">
             <p style="margin: 0; font-size: 14px; color: #d4d4d8;">Kedves <strong>${clientName}</strong>!</p>
-            <p style="margin: 8px 0 0 0; font-size: 16px; color: #ffffff;">Az időpontod sikeresen lefoglalásra került az Xpander.ai rendszerében:</p>
+            <p style="margin: 8px 0 0 0; font-size: 16px; color: #ffffff;">Az időpontod sikeresen lefoglalásra került az Zentrion.ai rendszerében:</p>
             <div style="background: #27272a; padding: 14px; border-radius: 8px; margin-top: 12px; font-size: 20px; font-weight: bold; color: #10b981; text-align: center;">
               📅 ${slot}
             </div>
@@ -43,13 +43,13 @@ export async function POST(req: Request) {
           </div>
 
           <p style="font-size: 11px; color: #71717a; text-align: center; margin: 0;">
-            Ez a levél az Xpander.ai élő időpontfoglaló rendszeréből került kiküldésre.
+            Ez a levél az Zentrion.ai élő időpontfoglaló rendszeréből került kiküldésre.
           </p>
         </div>
       `;
 
       const textContent = `
-Xpander.ai Időpont-Foglaló Megerősítés
+Zentrion.ai Időpont-Foglaló Megerősítés
 Időpont: ${slot}
 Név: ${clientName}
 Telefonszám: ${userPhone || '+36 30 123 4567'}
@@ -94,7 +94,7 @@ Helyszín: Online vagy 1054 Budapest, Szabadság tér 7.
         }
 
         const info = await transporter.sendMail({
-          from: '"Xpander.ai Időpontfoglaló" <no-reply@xpander.ai>',
+          from: '"Zentrion.ai Időpontfoglaló" <no-reply@zentrion.ai>',
           to: recipients.join(', '),
           subject,
           text: textContent,
@@ -116,7 +116,7 @@ Helyszín: Online vagy 1054 Budapest, Szabadság tér 7.
         carrier: 'Vodafone / Telekom / Yettel HU Gateway',
         status: 'DELIVERED',
         recipient: userPhone || '+36 30 123 4567',
-        messageText: `[Xpander.ai] Kedves ${clientName}! Időpontod rögzítve: ${slot}. Lemondás esetén válaszolj: LEMONDÁS. Ügyfélszolgálat: +36 1 800 9999`,
+        messageText: `[Zentrion.ai] Kedves ${clientName}! Időpontod rögzítve: ${slot}. Lemondás esetén válaszolj: LEMONDÁS. Ügyfélszolgálat: +36 1 800 9999`,
         sentAt: timestamp,
         latencyMs: 340,
         carrierId: `CARRIER_HU_${Math.floor(Math.random() * 899999 + 100000)}`
@@ -126,16 +126,16 @@ Helyszín: Online vagy 1054 Budapest, Szabadság tér 7.
       const icsData = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
-        'PRODID:-//Xpander.ai//Idopontfoglalo//HU',
+        'PRODID:-//Zentrion.ai//Idopontfoglalo//HU',
         'CALSCALE:GREGORIAN',
         'METHOD:REQUEST',
         'BEGIN:VEVENT',
-        `UID:${trackingId}@xpander.ai`,
+        `UID:${trackingId}@zentrion.ai`,
         `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
         `DTSTART:${new Date(Date.now() + 86400000).toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
         `DTEND:${new Date(Date.now() + 86400000 + 1800000).toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
-        `SUMMARY:Xpander.ai Folyamat-Audit (${slot})`,
-        `DESCRIPTION:Kedves ${clientName}! Online konzultacio az Xpander.ai automatizacios szakertovel.\\nIdopont: ${slot}\\nAzonosito: ${trackingId}`,
+        `SUMMARY:Zentrion.ai Folyamat-Audit (${slot})`,
+        `DESCRIPTION:Kedves ${clientName}! Online konzultacio az Zentrion.ai automatizacios szakertovel.\\nIdopont: ${slot}\\nAzonosito: ${trackingId}`,
         'LOCATION:Online Google Meet vagy 1054 Budapest, Szabadsag ter 7.',
         'STATUS:CONFIRMED',
         'END:VEVENT',
@@ -160,11 +160,11 @@ Helyszín: Online vagy 1054 Budapest, Szabadság tér 7.
     // 2. EMAIL AUTOMATION DEMO DISPATCH
     if (type === 'email_triage') {
       const { emailSubject = 'Ajánlatkérés', emailBody = '', autoDraft = '' } = payload || {};
-      const subject = `[Xpander.ai Email AI Demó] Beérkező levél feldolgozva: ${emailSubject}`;
+      const subject = `[Zentrion.ai Email AI Demó] Beérkező levél feldolgozva: ${emailSubject}`;
 
       const htmlContent = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #09090b; color: #ffffff; padding: 28px; border-radius: 16px; border: 1px solid #27272a;">
-          <h2 style="color: #06b6d4; margin-top: 0;">Xpander.ai Intelligens Email Triage Demó</h2>
+          <h2 style="color: #06b6d4; margin-top: 0;">Zentrion.ai Intelligens Email Triage Demó</h2>
           <p style="color: #a1a1aa; font-size: 13px;">Az alábbi bejövő emailt az AI elemző motor másodpercek alatt kielemezte:</p>
           <div style="background: #18181b; padding: 14px; border-radius: 8px; border: 1px solid #3f3f46; font-size: 13px; color: #e4e4e7;">
             ${emailBody || 'Teszt levélszöveg'}
@@ -195,12 +195,12 @@ Helyszín: Online vagy 1054 Budapest, Szabadság tér 7.
     // 3. SUPPORT TICKET DEMO DISPATCH
     if (type === 'support_ticket') {
       const { issue = '', priority = 'Magas' } = payload || {};
-      const subject = `[Xpander.ai Support Ticket #${trackingId}] Új ügyfélszolgálati hibajegy: ${priority} prioritás`;
+      const subject = `[Zentrion.ai Support Ticket #${trackingId}] Új ügyfélszolgálati hibajegy: ${priority} prioritás`;
 
       await dispatchEmail({
         type: 'contact_inquiry',
         subject,
-        htmlContent: `<p>Új hibajegy érkezett az Xpander.ai ügyfélszolgálati demóból: <strong>${issue}</strong> (Prioritás: ${priority})</p>`,
+        htmlContent: `<p>Új hibajegy érkezett az Zentrion.ai ügyfélszolgálati demóból: <strong>${issue}</strong> (Prioritás: ${priority})</p>`,
         textContent: `Új hibajegy: ${issue} (${priority})`,
         metadata: { demoType: 'support_ticket', trackingId, issue, priority }
       });

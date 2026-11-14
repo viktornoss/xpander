@@ -6,7 +6,7 @@ import {
   dispatchEmail 
 } from '@/lib/email/dispatcher';
 
-// GET: Retrieve all recent email notifications dispatched to xpander-automation.ai@outlook.hu
+// GET: Retrieve all recent email notifications dispatched to zentrion-automation.ai@outlook.hu
 export async function GET() {
   const logs = getNotificationLogs();
   return NextResponse.json({
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       const res = await dispatchEmail({
         type: 'test_alert',
         subject: `🧪 [TESZT ÉRTESÍTÉS] Rendszerellenőrzés sikeres`,
-        textContent: `Ez egy teszt üzenet az xpander.ai rendszertől. A kapcsolat a(z) ${MASTER_NOTIFICATION_EMAIL} címmel hibátlanul üzemel.\nIdőpont: ${new Date().toLocaleString('hu-HU')}`,
+        textContent: `Ez egy teszt üzenet az zentrion.ai rendszertől. A kapcsolat a(z) ${MASTER_NOTIFICATION_EMAIL} címmel hibátlanul üzemel.\nIdőpont: ${new Date().toLocaleString('hu-HU')}`,
         htmlContent: `
           <div style="font-family: Arial, sans-serif; background-color: #0b0f19; color: #fff; padding: 20px; border-radius: 10px; border: 1px solid #10b981;">
             <h3 style="color: #10b981;">🧪 Sikeres Teszt Értesítés!</h3>

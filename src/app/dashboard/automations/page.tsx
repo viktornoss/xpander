@@ -48,7 +48,7 @@ export default function AutomationsPage() {
             Saját Automatizációk & Munkafolyamatok
           </h1>
           <p className="text-xs sm:text-sm text-gray-400 mt-1">
-            TypeScript-alapú natív XpanderFlow motorunk által futtatott folyamatok és elágazások.
+            TypeScript-alapú natív ZentrionFlow motorunk által futtatott folyamatok és elágazások.
           </p>
         </div>
 

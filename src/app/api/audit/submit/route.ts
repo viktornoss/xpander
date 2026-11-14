@@ -77,10 +77,10 @@ export async function POST(req: Request) {
     let emailSent = false;
 
     if (clientEmail || clientName) {
-      const subject = `🚀 [XPANDER.AI AUDIT RIPORT] ${companyName || clientName} (${automationScore}% AI Potenciál - ${auditId})`;
+      const subject = `🚀 [ZENTRION.AI AUDIT RIPORT] ${companyName || clientName} (${automationScore}% AI Potenciál - ${auditId})`;
 
       const textContent = `
-XPANDER.AI - HIVATALOS VÁLLALATI AI FOLYAMAT-AUDIT RIPORT
+ZENTRION.AI - HIVATALOS VÁLLALATI AI FOLYAMAT-AUDIT RIPORT
 Azonosító: ${auditId}
 Időpont: ${new Date().toLocaleString('hu-HU')}
 
@@ -103,7 +103,7 @@ Időpont: ${new Date().toLocaleString('hu-HU')}
 ${painPoints.map((p: string) => `  * ${p}`).join('\n')}
 
 3. JAVASOLT TECHNOLÓGIA:
-- XpanderFlow Natív TypeScript Motor (0 Make/n8n felhőfüggőség)
+- ZentrionFlow Natív TypeScript Motor (0 Make/n8n felhőfüggőség)
 - 99.98% SLA Üzemidő Garancia
 - Várható élesbe állási idő: 1-2 hét
 
@@ -114,7 +114,7 @@ Központi másolat továbbítva a(z) ${MASTER_NOTIFICATION_EMAIL} címre.
       const htmlContent = `
         <div style="font-family: Arial, sans-serif; background-color: #000000; color: #ffffff; padding: 32px; border-radius: 16px; max-width: 650px; border: 1px solid rgba(255,255,255,0.15);">
           <div style="border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 16px; margin-bottom: 24px;">
-            <span style="font-family: monospace; font-size: 11px; letter-spacing: 2px; color: #a1a1aa; text-transform: uppercase;">Xpander.ai Enterprise Automation Platform</span>
+            <span style="font-family: monospace; font-size: 11px; letter-spacing: 2px; color: #a1a1aa; text-transform: uppercase;">Zentrion.ai Enterprise Automation Platform</span>
             <h1 style="color: #ffffff; margin: 6px 0 0 0; font-size: 24px; font-weight: 900;">Vállalati AI Folyamat-Audit Riport</h1>
             <p style="color: #71717a; font-size: 12px; margin: 4px 0 0 0;">Audit Azonosító: <strong>${auditId}</strong> • Kelt: ${new Date().toLocaleString('hu-HU')}</p>
           </div>
@@ -159,7 +159,7 @@ Központi másolat továbbítva a(z) ${MASTER_NOTIFICATION_EMAIL} címre.
           <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; margin-bottom: 24px;">
             <h4 style="color: #ffffff; margin: 0 0 8px 0; font-size: 13px;">Technológiai Jellemzők:</h4>
             <p style="margin: 0; font-size: 12px; color: #a1a1aa; line-height: 1.5;">
-              • 100% saját XpanderFlow natív TypeScript motor (ZÉRÓ külső Make.com vagy n8n függőség).<br/>
+              • 100% saját ZentrionFlow natív TypeScript motor (ZÉRÓ külső Make.com vagy n8n függőség).<br/>
               • 99.98% rendelkezésre állás (SLA) és 30 napos pénzvisszafizetési garancia.<br/>
               • GDPR és EU adatközpont kompatibilitás.
             </p>
@@ -210,7 +210,7 @@ Központi másolat továbbítva a(z) ${MASTER_NOTIFICATION_EMAIL} címre.
         });
 
         const info = await transporter.sendMail({
-          from: '"Xpander.ai Folyamat-Audit" <audit@xpander.ai>',
+          from: '"Zentrion.ai Folyamat-Audit" <audit@zentrion.ai>',
           to: clientEmail || MASTER_NOTIFICATION_EMAIL,
           subject,
           text: textContent,

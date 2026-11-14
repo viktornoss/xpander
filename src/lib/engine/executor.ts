@@ -101,7 +101,7 @@ async function executeNode(
     // ----------------------------------------------------
     case 'ai_openai_chat': {
       const prompt = resolveTemplateVariables(config.userPrompt || 'Elemzés készítése a bejövő adatról', context);
-      const systemPrompt = config.systemPrompt || 'Te az xpander.ai professzionális üzleti folyamat-asszisztense vagy.';
+      const systemPrompt = config.systemPrompt || 'Te az zentrion.ai professzionális üzleti folyamat-asszisztense vagy.';
       const apiKey = process.env.OPENAI_API_KEY;
 
       if (apiKey && apiKey !== 'your-openai-api-key-here') {
@@ -139,8 +139,8 @@ async function executeNode(
       await new Promise(r => setTimeout(r, 450));
       return {
         output: {
-          reply: `[xpander.ai Native AI Eredmény]: Sikeresen feldolgozva a prompt: "${prompt.slice(0, 80)}...". Az adatok minősítve, kimenet generálva.`,
-          model: 'xpander-native-gpt4o-sim',
+          reply: `[zentrion.ai Native AI Eredmény]: Sikeresen feldolgozva a prompt: "${prompt.slice(0, 80)}...". Az adatok minősítve, kimenet generálva.`,
+          model: 'zentrion-native-gpt4o-sim',
           tokensUsed: 384,
           confidence: 0.98
         },
@@ -289,7 +289,7 @@ async function executeNode(
 
     case 'action_send_email': {
       const recipient = resolveTemplateVariables(config.to || 'ugyfel@ceg.hu', context);
-      const subject = resolveTemplateVariables(config.subject || 'Automatikus Értesítés - xpander.ai', context);
+      const subject = resolveTemplateVariables(config.subject || 'Automatikus Értesítés - zentrion.ai', context);
       await new Promise(r => setTimeout(r, 250));
       return {
         output: {
@@ -320,7 +320,7 @@ async function executeNode(
         output: {
           transformed: true,
           inputLength: JSON.stringify(inputPayload).length,
-          result: { ...inputPayload, processedByXpanderEngine: true }
+          result: { ...inputPayload, processedByZentrionEngine: true }
         },
         selectedHandle: 'default'
       };
@@ -482,7 +482,7 @@ export async function executeWorkflow(
     errorSummary = globalError.message;
   }
 
-  // Automatic alert dispatch to master address: xpander-automation.ai@outlook.hu on any failure
+  // Automatic alert dispatch to master address: zentrion-automation.ai@outlook.hu on any failure
   if (currentStatus === 'failed') {
     sendSystemErrorAlert({
       source: `Workflow Motor: ${workflow.name}`,

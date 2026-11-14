@@ -53,7 +53,7 @@ export default function PromoVideoModal({ isOpen, onClose }: PromoVideoModalProp
           <div className="flex items-center gap-3">
             <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
             <span className="text-xs font-mono font-bold tracking-widest text-white uppercase">
-              Xpander.ai • Hivatalos Promóciós Videó
+              Zentrion.ai • Hivatalos Promóciós Videó
             </span>
           </div>
 
@@ -70,8 +70,8 @@ export default function PromoVideoModal({ isOpen, onClose }: PromoVideoModalProp
           
           {/* Animated Video Display (GIF/WebP) */}
           <img
-            src="/xpander-promo-video.gif"
-            alt="Xpander.ai Promotional Video"
+            src="/zentrion-promo-video.gif"
+            alt="Zentrion.ai Promotional Video"
             className="w-full h-full object-contain"
           />
 
@@ -83,7 +83,7 @@ export default function PromoVideoModal({ isOpen, onClose }: PromoVideoModalProp
             <div className="bg-black/80 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-3 max-w-lg shadow-2xl">
               <div className="text-[10px] font-mono text-neutral-400 uppercase tracking-wider flex items-center gap-2">
                 <Sparkles className="w-3 h-3 text-white" />
-                <span>{scenes[sceneIndex].time} • Xpander Engine Telemetria</span>
+                <span>{scenes[sceneIndex].time} • Zentrion Engine Telemetria</span>
               </div>
               <h3 className="text-base sm:text-lg font-black text-white tracking-tight mt-0.5">
                 {scenes[sceneIndex].title}
@@ -95,8 +95,8 @@ export default function PromoVideoModal({ isOpen, onClose }: PromoVideoModalProp
 
             <div className="hidden sm:flex items-center gap-2 pointer-events-auto">
               <a
-                href="/xpander-promo-video.gif"
-                download="xpander-promo-video.gif"
+                href="/zentrion-promo-video.gif"
+                download="zentrion-promo-video.gif"
                 className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-bold flex items-center gap-2 backdrop-blur-md transition-all"
               >
                 <Download className="w-3.5 h-3.5" />

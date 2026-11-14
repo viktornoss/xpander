@@ -63,7 +63,7 @@ export default function ContactSection() {
         notes: `Érdeklődő: ${submissionPayload.name} (${submissionPayload.company || 'Nincs cég'}, Tel: ${submissionPayload.phone || 'Nincs megadva'}). Üzenet: ${submissionPayload.message || 'Nincs megjegyzés'}`
       });
 
-      // 4. Kiküldés a központi email dispatcher API-nak (xpander-automation.ai@outlook.hu)
+      // 4. Kiküldés a központi email dispatcher API-nak (zentrion-automation.ai@outlook.hu)
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -141,8 +141,8 @@ export default function ContactSection() {
               <div className="border-t border-white/10 pt-6 space-y-3 text-xs text-neutral-400">
                 <div className="flex items-center gap-3">
                   <Mail className="w-4 h-4 text-white" />
-                  <a href="mailto:xpander-automation.ai@outlook.hu" className="text-white hover:underline transition-colors font-medium">
-                    xpander-automation.ai@outlook.hu
+                  <a href="mailto:zentrion-automation.ai@outlook.hu" className="text-white hover:underline transition-colors font-medium">
+                    zentrion-automation.ai@outlook.hu
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
@@ -178,7 +178,7 @@ export default function ContactSection() {
                   </div>
                   <h3 className="text-2xl font-bold text-white">Megkeresés Sikeresen Elküldve!</h3>
                   <p className="text-gray-300 text-sm max-w-md mx-auto">
-                    Köszönjük{submittedName ? `, ${submittedName}` : ''}! Az adataidat rögzítettük, az űrlap kiürült, és az értesítést továbbítottuk az illetékesnek: <strong className="text-neon-blue">xpander-automation.ai@outlook.hu</strong>.
+                    Köszönjük{submittedName ? `, ${submittedName}` : ''}! Az adataidat rögzítettük, az űrlap kiürült, és az értesítést továbbítottuk az illetékesnek: <strong className="text-neon-blue">zentrion-automation.ai@outlook.hu</strong>.
                   </p>
 
                   {/* 1-Click Direct Delivery & Preview Section */}

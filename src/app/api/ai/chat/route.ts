@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     const effectiveApiKey = (clientApiKey || headerKey || envKey || '').trim();
 
     let finalReply = '';
-    let finalModel = 'xpander-cognitive-engine-v2';
+    let finalModel = 'zentrion-cognitive-engine-v2';
     let isLiveOpenAI = false;
 
     // If an effective OpenAI API key is supplied, attempt live OpenAI call
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
             messages: [
               {
                 role: 'system',
-                content: systemPrompt || 'Te az xpander.ai Agency hivatalos és intelligens asszisztense vagy. Segíts az ügyfeleknek felmérni az automatizációs lehetőségeket, adj részletes, strukturált, szakértő válaszokat magyar nyelven!'
+                content: systemPrompt || 'Te az zentrion.ai Agency hivatalos és intelligens asszisztense vagy. Segíts az ügyfeleknek felmérni az automatizációs lehetőségeket, adj részletes, strukturált, szakértő válaszokat magyar nyelven!'
               },
               ...(messages || [])
             ],
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
           isLiveOpenAI = true;
         } else {
           const errText = await response.text();
-          console.warn('OpenAI API returned non-200, falling back to xpander dialogue engine:', errText);
+          console.warn('OpenAI API returned non-200, falling back to zentrion dialogue engine:', errText);
         }
       } catch (openAiError) {
         console.warn('OpenAI fetch error, falling back:', openAiError);
@@ -57,7 +57,7 @@ export async function POST(req: Request) {
       finalReply = generateIntelligentResponse(messages as ChatMessage[], systemPrompt, Boolean(isVoiceMode));
     }
 
-    // Extract last user message and notify xpander-automation.ai@outlook.hu
+    // Extract last user message and notify zentrion-automation.ai@outlook.hu
     const lastUserMsg = messages && messages.length > 0 ? messages[messages.length - 1].content : '';
     if (lastUserMsg) {
       // Async dispatch without blocking HTTP response
