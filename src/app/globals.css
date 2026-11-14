@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-feature-settings: "rlig" 1, "calt" 1;
+  overflow-x: hidden;
+  background-color: #000000;
+}
+
+/* Custom sleek monochrome scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
+
+/* Glassmorphism & Monochrome Panels */
+.glass-panel {
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+}
+
+.glass-panel-hover {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(18, 18, 18, 0.9);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 14px 40px -10px rgba(0, 0, 0, 0.9), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Clean Monochrome Borders */
+.neon-border-purple,
+.neon-border-blue,
+.neon-border-cyan {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px -5px rgba(255, 255, 255, 0.08);
+}
+
+/* Text Gradients: Pure Stark White to Sleek Silver */
+.gradient-text,
+.gradient-text-neon,
+.gradient-text-xpander {
+  background: linear-gradient(180deg, #ffffff 0%, #d4d4d8 60%, #71717a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtle modern grid */
+.bg-grid-pattern {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-radial-vignette {
+  background: radial-gradient(circle at 50% 50%, transparent 0%, #000000 95%);
+}
+
+/* Smooth ambient spotlight */
+.ambient-spotlight {
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.01) 45%, transparent 75%);
+}
+
+/* --- High-End Scroll Reveal & Glassmorphism System --- */
+
+/* Frosted Specular Glass Card */
+.glass-card-3d {
+  background: rgba(14, 14, 16, 0.72);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 16px 40px -15px rgba(0, 0, 0, 0.85), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  position: relative;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.glass-card-3d:hover {
+  background: rgba(22, 22, 26, 0.85);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.95), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+/* Glass Specular Rim Line */
+.glass-rim-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  pointer-events: none;
+}
+
+/* Interactive Mouse Spotlight Glass Panel */
+.glass-spotlight {
+  position: relative;
+  background: rgba(12, 12, 14, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+}
+
+.glass-spotlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(255, 255, 255, 0.08),
+    transparent 40%
+  );
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+/* Scroll-Driven Animations: Initial States & Active States */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(4px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+.scroll-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.scroll-reveal-scale {
+  opacity: 0;
+  transform: scale(0.93) translateY(24px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal-scale.is-revealed {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Stagger Delays for Sequential Elements */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* Subtle Levitation Floating Keyframes */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-gentle {
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+
+/* Electric Cable / Wire Flow Keyframes for Visual Workflow Builder */
+@keyframes wireFlow {
+  from {
+    stroke-dashoffset: 48;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes wirePulseFlash {
+  0%, 100% {
+    opacity: 0.3;
+    stroke-width: 2px;
+  }
+  50% {
+    opacity: 1;
+    stroke-width: 6px;
+  }
+}
+
+.animate-wire-flow {
+  animation: wireFlow 0.8s linear infinite;
+}
+
+.animate-wire-flow-fast {
+  animation: wireFlow 0.45s linear infinite;
+}
+
+.animate-cable-flash {
+  animation: wirePulseFlash 0.35s ease-in-out infinite;
+}
+
+@keyframes sweepBeam {
+  0% { transform: translateX(-100%); opacity: 0; }
+  25% { opacity: 0.9; }
+  75% { opacity: 0.9; }
+  100% { transform: translateX(350%); opacity: 0; }
+}
+
+.animate-sweep-beam {
+  animation: sweepBeam 1.8s ease-in-out infinite;
+}

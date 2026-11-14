@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="16" fill="#09090b" />
+  <g transform="translate(32, 32) scale(1.6)">
+    <!-- 4 organic curved petals forming the signature X of Xpander.ai -->
+    <path
+      d="M -1.6 -2.4 C -2.3 -4.5, -2.4 -7.5, 0 -10 C 2.4 -7.5, 2.3 -4.5, 1.6 -2.4 C 1 -1.4, -1 -1.4, -1.6 -2.4 Z"
+      fill="#ffffff"
+      transform="rotate(45)"
+    />
+    <path
+      d="M -1.6 -2.4 C -2.3 -4.5, -2.4 -7.5, 0 -10 C 2.4 -7.5, 2.3 -4.5, 1.6 -2.4 C 1 -1.4, -1 -1.4, -1.6 -2.4 Z"
+      fill="#ffffff"
+      transform="rotate(135)"
+    />
+    <path
+      d="M -1.6 -2.4 C -2.3 -4.5, -2.4 -7.5, 0 -10 C 2.4 -7.5, 2.3 -4.5, 1.6 -2.4 C 1 -1.4, -1 -1.4, -1.6 -2.4 Z"
+      fill="#ffffff"
+      transform="rotate(225)"
+    />
+    <path
+      d="M -1.6 -2.4 C -2.3 -4.5, -2.4 -7.5, 0 -10 C 2.4 -7.5, 2.3 -4.5, 1.6 -2.4 C 1 -1.4, -1 -1.4, -1.6 -2.4 Z"
+      fill="#ffffff"
+      transform="rotate(315)"
+    />
+  </g>
+</svg>
