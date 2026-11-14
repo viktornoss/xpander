@@ -3,6 +3,9 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { AuthProvider } from '@/lib/auth-context';
 import { VoiceAiProvider } from '@/components/voice/VoiceAiContext';
+import { CartProvider } from '@/lib/cart-context';
+import CartDrawer from '@/components/cart/CartDrawer';
+import FloatingCartButton from '@/components/cart/FloatingCartButton';
 import ScrollToTopOnNavigation from '@/components/layout/ScrollToTopOnNavigation';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -36,10 +39,14 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} font-sans bg-nexus-950 text-foreground antialiased min-h-screen`}>
         <AuthProvider>
-          <VoiceAiProvider>
-            <ScrollToTopOnNavigation />
-            {children}
-          </VoiceAiProvider>
+          <CartProvider>
+            <VoiceAiProvider>
+              <ScrollToTopOnNavigation />
+              {children}
+              <CartDrawer />
+              <FloatingCartButton />
+            </VoiceAiProvider>
+          </CartProvider>
         </AuthProvider>
       </body>
     </html>

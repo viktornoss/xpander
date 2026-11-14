@@ -49,11 +49,26 @@ export interface ChatbotConfig {
   accentColor: string;
 }
 
+export interface CartItem {
+  id: string;
+  title: string;
+  price: string;
+  priceNumeric: number;
+  packageType?: string;
+  subtitle?: string;
+  quantity: number;
+}
+
 export interface ServiceOrder {
   id: string;
   userId: string;
   clientName: string;
   clientCompany: string;
+  clientEmail?: string;
+  clientPhone?: string;
+  billingAddress?: string;
+  taxNumber?: string;
+  paymentMethod?: 'bank_transfer' | 'paypal';
   serviceId: string;
   serviceTitle: string;
   packageType: 'Starter' | 'Growth' | 'Enterprise' | 'Custom';

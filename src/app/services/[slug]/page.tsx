@@ -27,15 +27,18 @@ import {
   MessageSquare,
   TrendingUp,
   FileText,
-  ExternalLink
+  ExternalLink,
+  ShoppingBag
 } from 'lucide-react';
 import { INITIAL_SERVICES } from '@/lib/mock-data';
 import { useAuth } from '@/lib/auth-context';
+import { useCart } from '@/lib/cart-context';
 
 export default function ServiceDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
   const { addOrder, currentUser } = useAuth();
+  const { addToCart } = useCart();
 
   const service = INITIAL_SERVICES.find(s => s.slug === slug);
 
@@ -317,17 +320,22 @@ export default function ServiceDetailPage() {
     }, 2400);
   };
 
-  // Order
+  // Order -> Add to Cart & Open Cart Drawer
   const handleOrderService = () => {
-    addOrder({
-      serviceId: service.id,
-      serviceTitle: service.title,
+    if (!service) return;
+    const rawPrice = service.pricingNote || '290.000 Ft';
+    const numeric = parseInt(rawPrice.replace(/[^0-9]/g, ''), 10) || 290000;
+    addToCart({
+      id: `${service.id}-${orderPackage.toLowerCase()}`,
+      title: `${service.title} (${orderPackage})`,
       packageType: orderPackage,
-      price: service.pricingNote.split(' ')[1] || '380.000 Ft',
-      notes: `Megrendelve a(z) ${service.title} oldalról. Felhasználó: ${currentUser?.name || 'Ügyfél'}`
+      price: rawPrice,
+      priceNumeric: numeric,
+      subtitle: service.shortDesc,
+      quantity: 1
     });
     setOrderedSuccess(true);
-    setTimeout(() => setOrderedSuccess(false), 5000);
+    setTimeout(() => setOrderedSuccess(false), 3000);
   };
 
   return (

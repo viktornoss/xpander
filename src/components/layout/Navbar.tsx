@@ -11,14 +11,17 @@ import {
   User, 
   LogOut, 
   LayoutDashboard,
-  Shield
+  Shield,
+  ShoppingBag
 } from 'lucide-react';
 import { useAuth } from '@/lib/auth-context';
+import { useCart } from '@/lib/cart-context';
 import ZentrionLogo from '@/components/brand/ZentrionLogo';
 
 export default function Navbar() {
   const pathname = usePathname();
   const { currentUser, logout } = useAuth();
+  const { totalItems, openCart } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
@@ -72,6 +75,21 @@ export default function Navbar() {
 
           {/* Right Action Buttons (Clean & High-Contrast) */}
           <div className="hidden md:flex items-center gap-3">
+            {/* Cart Button */}
+            <button
+              onClick={openCart}
+              className="relative p-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/15 text-neutral-200 hover:text-white transition-all cursor-pointer"
+              title="Kosár megnyitása"
+              aria-label="Kosár"
+            >
+              <ShoppingBag className="w-4 h-4" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 text-black text-[10px] font-black flex items-center justify-center animate-pulse">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+
             {/* Primary CTA: Ingyenes AI Audit */}
             <Link 
               href="/audit" 
@@ -154,8 +172,21 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile Action Buttons */}
           <div className="flex md:hidden items-center gap-2">
+            <button
+              onClick={openCart}
+              className="relative p-2 rounded-xl border border-white/10 bg-white/5 text-neutral-300 hover:text-white"
+              aria-label="Kosár"
+            >
+              <ShoppingBag className="w-4 h-4" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 text-black text-[10px] font-black flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-xl border border-white/10 bg-white/5 text-neutral-300 hover:text-white"

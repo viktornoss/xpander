@@ -13,9 +13,11 @@ import {
   ArrowRight, 
   Check, 
   Sparkles,
-  Play
+  Play,
+  ShoppingBag
 } from 'lucide-react';
 import { INITIAL_SERVICES } from '@/lib/mock-data';
+import { useCart } from '@/lib/cart-context';
 
 const iconMap: Record<string, React.ReactNode> = {
   Bot: <Bot className="w-5 h-5 text-white" />,
@@ -28,6 +30,7 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function ServicesGrid() {
+  const { addToCart } = useCart();
   return (
     <section id="services" className="py-24 relative bg-black text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -93,14 +96,35 @@ export default function ServicesGrid() {
               </div>
 
               {/* Bottom Actions */}
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-3">
-                <Link
-                  href={`/services/${service.slug}#demo`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white text-white hover:text-black font-bold text-xs transition-all shadow-sm"
-                >
-                  <Play className="w-3 h-3" />
-                  <span>Élő Demó</span>
-                </Link>
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-2 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <Link
+                    href={`/services/${service.slug}#demo`}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white text-white hover:text-black font-bold text-xs transition-all shadow-sm"
+                  >
+                    <Play className="w-3 h-3" />
+                    <span>Demó</span>
+                  </Link>
+
+                  <button
+                    onClick={() => {
+                      const numeric = parseInt((service.pricingNote || '').replace(/[^0-9]/g, ''), 10) || 190000;
+                      addToCart({
+                        id: service.id,
+                        title: service.title,
+                        price: service.pricingNote || '190.000 Ft',
+                        priceNumeric: numeric,
+                        subtitle: service.shortDesc,
+                        packageType: service.badge || 'Egyedi',
+                        quantity: 1
+                      });
+                    }}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white text-black hover:bg-neutral-200 font-bold text-xs transition-all shadow-sm cursor-pointer"
+                  >
+                    <ShoppingBag className="w-3 h-3 text-black" />
+                    <span>Kosárba</span>
+                  </button>
+                </div>
 
                 <Link
                   href={`/services/${service.slug}`}

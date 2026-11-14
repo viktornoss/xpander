@@ -1,24 +1,27 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Check, Sparkles, ArrowRight } from 'lucide-react';
-import { useAuth } from '@/lib/auth-context';
+import { Check, Sparkles, ArrowRight, ShoppingBag } from 'lucide-react';
+import { useCart } from '@/lib/cart-context';
 
 export default function PricingSection() {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('yearly');
-  const { addOrder } = useAuth();
-  const [orderedPlan, setOrderedPlan] = useState<string | null>(null);
+  const { addToCart } = useCart();
+  const [addedNotice, setAddedNotice] = useState<string | null>(null);
 
   const handleSelectPlan = (planName: 'Starter' | 'Growth' | 'Enterprise', price: string) => {
-    addOrder({
-      serviceId: `pkg-${planName.toLowerCase()}`,
-      serviceTitle: `${planName} Csomag Implementáció`,
+    const numeric = parseInt(price.replace(/[^0-9]/g, ''), 10) || 0;
+    addToCart({
+      id: `pkg-${planName.toLowerCase()}-${billingCycle}`,
+      title: `${planName} Csomag Implementáció`,
       packageType: planName,
       price: price,
-      notes: `Főoldalról kiválasztva (${billingCycle === 'yearly' ? 'Éves kedvezményes' : 'Havi'} ciklus).`
+      priceNumeric: numeric,
+      subtitle: `${billingCycle === 'yearly' ? 'Éves kedvezményes' : 'Havi'} ciklus`,
+      quantity: 1
     });
-    setOrderedPlan(planName);
-    setTimeout(() => setOrderedPlan(null), 3500);
+    setAddedNotice(planName);
+    setTimeout(() => setAddedNotice(null), 3000);
   };
 
   return (
@@ -62,11 +65,11 @@ export default function PricingSection() {
           </div>
         </div>
 
-        {/* Feedback alert if order created */}
-        {orderedPlan && (
+        {/* Feedback alert if added to cart */}
+        {addedNotice && (
           <div className="mb-8 max-w-lg mx-auto p-4 rounded-2xl bg-white/10 border border-white/20 text-white text-xs text-center flex items-center justify-center gap-2 animate-in fade-in">
             <Check className="w-4 h-4 text-emerald-400" />
-            <span>Sikeresen rögzítve a Dashboardon: <strong>{orderedPlan} Csomag</strong>!</span>
+            <span>Sikeresen a kosárba helyezve: <strong>{addedNotice} Csomag</strong>!</span>
           </div>
         )}
 
@@ -124,10 +127,11 @@ export default function PricingSection() {
             </div>
 
             <button
-              onClick={() => handleSelectPlan('Starter', '240.000 Ft')}
-              className="w-full py-3 rounded-xl text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 transition-all flex items-center justify-center gap-2 cursor-pointer"
+              onClick={() => handleSelectPlan('Starter', billingCycle === 'yearly' ? '240.000 Ft' : '290.000 Ft')}
+              className="w-full py-3 rounded-xl text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
             >
-              <span>Starter Csomag Kiválasztása</span>
+              <ShoppingBag className="w-4 h-4 text-white" />
+              <span>Starter Kosárba & Rendelés</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -187,10 +191,11 @@ export default function PricingSection() {
             </div>
 
             <button
-              onClick={() => handleSelectPlan('Growth', '460.000 Ft')}
+              onClick={() => handleSelectPlan('Growth', billingCycle === 'yearly' ? '460.000 Ft' : '540.000 Ft')}
               className="w-full py-3.5 rounded-xl text-xs font-black uppercase tracking-wider text-black bg-white hover:bg-neutral-200 transition-all flex items-center justify-center gap-2 shadow-xl cursor-pointer"
             >
-              <span>Growth Csomag Megrendelése</span>
+              <ShoppingBag className="w-4 h-4 text-black" />
+              <span>Growth Kosárba & Rendelés</span>
               <ArrowRight className="w-4 h-4 text-black" />
             </button>
           </div>
@@ -211,7 +216,7 @@ export default function PricingSection() {
               
               <div className="mb-6">
                 <div className="flex items-baseline gap-1">
-                  <span className="text-3xl font-extrabold text-white font-mono">Egyedi</span>
+                  <span className="text-3xl font-extrabold text-white font-mono">890.000 Ft</span>
                   <span className="text-xs text-neutral-400">/ specifikáció szerint</span>
                 </div>
                 <div className="text-xs text-neutral-400 mt-1">
@@ -243,13 +248,14 @@ export default function PricingSection() {
               </div>
             </div>
 
-            <a
-              href="#contact"
-              className="w-full py-3 rounded-xl text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 transition-all flex items-center justify-center gap-2"
+            <button
+              onClick={() => handleSelectPlan('Enterprise', '890.000 Ft')}
+              className="w-full py-3 rounded-xl text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
             >
-              <span>Egyedi Ajánlat Kérése</span>
+              <ShoppingBag className="w-4 h-4 text-white" />
+              <span>Enterprise Kosárba & Rendelés</span>
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </button>
           </div>
 
         </div>
