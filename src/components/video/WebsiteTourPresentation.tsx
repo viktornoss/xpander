@@ -55,8 +55,8 @@ export const TOUR_CHAPTERS: TourChapter[] = [
       en: 'ENTERPRISE PLATFORM & VIDEO'
     },
     title: {
-      hu: 'Xpander.ai — AUTOMATE. INNOVATE. SCALE.',
-      en: 'Xpander.ai — AUTOMATE. INNOVATE. SCALE.'
+      hu: 'Zentrion.ai — AUTOMATE. INNOVATE. SCALE.',
+      en: 'Zentrion.ai — AUTOMATE. INNOVATE. SCALE.'
     },
     subtitle: {
       hu: 'Autonóm Vállalati AI Infrastruktúra és Folyamatautomatizáció',
@@ -67,8 +67,8 @@ export const TOUR_CHAPTERS: TourChapter[] = [
       en: 'Zero Make.com, zero n8n — 100% proprietary native TypeScript engine.'
     },
     narrationText: {
-      hu: 'Üdvözöllek az Xpander.ai interaktív bemutatóján! Cégünk olyan autonóm mesterséges intelligencia infrastruktúrát épít vállalkozásoknak, amely leveszi a monoton adminisztráció, az adatrögzítés és a lassú ügyfélszolgálat terheit a csapatod válláról. Nálunk nincsenek külső felhős havidíjak: száz százalékban saját fejlesztésű, nagyvállalati motorral dolgozunk.',
-      en: 'Welcome to Xpander.ai’s interactive tour. We build autonomous enterprise AI infrastructure that completely eliminates manual data entry, repetitive administration, and slow customer response times. With zero third-party platform fees, everything is powered by our native, high-performance engine.'
+      hu: 'Üdvözöllek a Zentrion.ai interaktív bemutatóján! Cégünk olyan autonóm mesterséges intelligencia infrastruktúrát épít vállalkozásoknak, amely leveszi a monoton adminisztráció, az adatrögzítés és a lassú ügyfélszolgálat terheit a csapatod válláról. Nálunk nincsenek külső felhős havidíjak: száz százalékban saját fejlesztésű, nagyvállalati motorral dolgozunk.',
+      en: 'Welcome to Zentrion.ai’s interactive tour. We build autonomous enterprise AI infrastructure that completely eliminates manual data entry, repetitive administration, and slow customer response times. With zero third-party platform fees, everything is powered by our native, high-performance engine.'
     },
     accentIcon: Sparkles,
     features: {
@@ -165,12 +165,12 @@ export const TOUR_CHAPTERS: TourChapter[] = [
     stepNumber: 4,
     contentType: 'workflow',
     badge: {
-      hu: 'XPANDERFLOW ENGINE',
-      en: 'XPANDERFLOW ENGINE'
+      hu: 'ZENTRIONFLOW ENGINE',
+      en: 'ZENTRIONFLOW ENGINE'
     },
     title: {
-      hu: 'XpanderFlow Vizuális Munkafolyamat Szerkesztő',
-      en: 'XpanderFlow Visual Workflow Orchestrator'
+      hu: 'ZentrionFlow Vizuális Munkafolyamat Szerkesztő',
+      en: 'ZentrionFlow Visual Workflow Orchestrator'
     },
     subtitle: {
       hu: 'Valós Idejű Villogó Kábelek és Élő Adatáramlás Tesztelés',
@@ -181,8 +181,8 @@ export const TOUR_CHAPTERS: TourChapter[] = [
       en: 'No-code visual orchestration, live telemetry, and instant failover.'
     },
     narrationText: {
-      hu: 'Itt láthatod az XpanderFlow vizuális munkafolyamat-szerkesztőnket. Kódolás nélkül köthetsz össze webhookokat, GPT-4o döntési elágazásokat és adatbázis műveleteket. Teszteléskor a képernyőn a kábelek valós időben felvillannak, pontosan mutatva az adatok áramlását a rendszereid között.',
-      en: 'This is our XpanderFlow visual workflow editor. You can design sophisticated pipelines without coding, connecting webhooks, GPT-4o decision nodes, and database actions. During testing, cables illuminate in real time to show live data packets pulsing through your business systems.'
+      hu: 'Itt láthatod a ZentrionFlow vizuális munkafolyamat-szerkesztőnket. Kódolás nélkül köthetsz össze webhookokat, GPT-4o döntési elágazásokat és adatbázis műveleteket. Teszteléskor a képernyőn a kábelek valós időben felvillannak, pontosan mutatva az adatok áramlását a rendszereid között.',
+      en: 'This is our ZentrionFlow visual workflow editor. You can design sophisticated pipelines without coding, connecting webhooks, GPT-4o decision nodes, and database actions. During testing, cables illuminate in real time to show live data packets pulsing through your business systems.'
     },
     accentIcon: Zap,
     features: {

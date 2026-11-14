@@ -8,8 +8,8 @@ import ScrollToTopOnNavigation from '@/components/layout/ScrollToTopOnNavigation
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: 'Xpander.ai',
-  description: 'Xpander.ai – Autonóm AI infrastruktúra és munkafolyamat automatizálás. Zéró Make.com, zéró n8n, 100% saját natív motor.',
+  title: 'Zentrion.ai',
+  description: 'Zentrion.ai – Autonóm Vállalati AI Infrastruktúra és Munkafolyamat Automatizáció. Zéró Make.com, zéró n8n, 100% saját natív motor.',
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },

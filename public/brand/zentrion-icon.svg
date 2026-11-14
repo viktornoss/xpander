@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="zPlateGrad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#141418"/>
+      <stop offset="100%" stop-color="#08080a"/>
+    </linearGradient>
+    <linearGradient id="zStrokeGrad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.08"/>
+    </linearGradient>
+    <filter id="coreGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer Rounded Shield -->
+  <rect width="100" height="100" rx="22" fill="url(#zPlateGrad)" stroke="url(#zStrokeGrad)" stroke-width="1.8"/>
+  <rect x="2" y="2" width="96" height="96" rx="20" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-opacity="0.06"/>
+
+  <!-- Mask for aperture cutout -->
+  <mask id="zApertureMask">
+    <rect width="100" height="100" fill="#ffffff"/>
+    <circle cx="50" cy="50" r="10" fill="#000000"/>
+  </mask>
+
+  <!-- Architectural 'Z' Monogram -->
+  <path d="M 18 20 L 82 20 L 82 34 L 41 66 L 82 66 L 82 80 L 18 80 L 18 66 L 59 34 L 18 34 Z" fill="#ffffff" mask="url(#zApertureMask)"/>
+
+  <!-- Centered Neural Quantum Node -->
+  <circle cx="50" cy="50" r="5.5" fill="#ffffff" filter="url(#coreGlow)"/>
+  <circle cx="50" cy="50" r="8.2" fill="none" stroke="#ffffff" stroke-width="0.9" opacity="0.65"/>
+</svg>

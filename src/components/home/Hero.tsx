@@ -156,7 +156,7 @@ export default function Hero() {
           {/* Top Logo Badge */}
           <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-neutral-900/90 border border-white/10 text-xs font-semibold text-neutral-300 shadow-sm">
             <XpanderLogo iconOnly size="sm" />
-            <span className="font-extrabold text-white tracking-wide">Xpander.ai</span>
+            <span className="font-extrabold text-white tracking-wide">Zentrion.ai</span>
             <span className="text-neutral-600">|</span>
             <span className="text-neutral-400 font-medium">Enterprise AI Automation Platform</span>
           </div>
@@ -220,7 +220,7 @@ export default function Hero() {
               <img className="inline-block h-7 w-7 rounded-full ring-2 ring-black" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80" alt="Client" />
               <img className="inline-block h-7 w-7 rounded-full ring-2 ring-black" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=80&q=80" alt="Client" />
             </div>
-            <span>Több mint <strong>40+ hazai és nemzetközi cég</strong> választotta az Xpander.ai motorját</span>
+            <span>Több mint <strong>40+ hazai és nemzetközi cég</strong> választotta a Zentrion.ai motorját</span>
           </div>
 
         </div>
@@ -315,7 +315,7 @@ export default function Hero() {
                       <div className="flex items-center gap-2">
                         <span className={`w-1.5 h-1.5 rounded-full transition-colors ${isSimulating ? 'bg-emerald-400 animate-ping' : 'bg-white'}`} />
                         <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 font-bold">
-                          XpanderFlow Telemetria
+                          ZentrionFlow Telemetria
                         </span>
                       </div>
                       <div className="text-3xl sm:text-4xl font-black text-white mt-1 tracking-tight font-mono">

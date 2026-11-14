@@ -33,7 +33,7 @@ export default function Footer() {
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /> OpenAI GPT-4o
                 </span>
                 <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-neutral-300">
-                  XpanderFlow TS Engine
+                  ZentrionFlow TS Engine
                 </span>
                 <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-neutral-300">
                   Supabase DB
@@ -142,7 +142,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-400">
-          <p>© {new Date().getFullYear()} Xpander.ai Automation Systems. Minden jog fenntartva.</p>
+          <p>© {new Date().getFullYear()} Zentrion.ai Enterprise Systems. Minden jog fenntartva.</p>
           <div className="flex flex-wrap items-center justify-center sm:justify-end gap-6">
             <Link href="/adatvedelem" className="hover:text-white transition-colors">Adatvédelmi tájékoztató</Link>
             <Link href="/aszf" className="hover:text-white transition-colors">ÁSZF</Link>
