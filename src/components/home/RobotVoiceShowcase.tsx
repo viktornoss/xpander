@@ -13,7 +13,8 @@ import {
   ArrowRight,
   ShieldCheck,
   Zap,
-  Ear
+  Ear,
+  Activity
 } from 'lucide-react';
 import Robot3DAvatar from '@/components/voice/Robot3DAvatar';
 import { useVoiceAi } from '@/components/voice/VoiceAiContext';
@@ -60,7 +61,7 @@ function cleanSpeechText(text: string): string {
 }
 
 const PRESET_QUESTIONS = [
-  'Mit tud az Zentrion.ai?',
+  'Mit tud a Zentrion.ai AI ügynöke?',
   'Miért jobb a saját motor, mint a Make vagy n8n?',
   'Milyen árakkal dolgoztok?',
   'Hogyan működik az időpontfoglaló AI?'
@@ -71,16 +72,10 @@ export default function RobotVoiceShowcase() {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [isThinking, setIsThinking] = useState(false);
-  const [lastMessage, setLastMessage] = useState('Szia! Én vagyok az Zentrion.ai 3D Voice Ügynöke. Kérdezz tőlem bármit!');
-  const [bargeInDetected, setBargeInDetected] = useState(false);
+  const [lastMessage, setLastMessage] = useState('Szia! Én vagyok a Zentrion.ai 3D Voice Ügynöke. Kérdezz tőlem bármit!');
 
   const synthRef = useRef<SpeechSynthesis | null>(null);
   const recognitionRef = useRef<any>(null);
-  const isSpeakingRef = useRef(false);
-
-  useEffect(() => {
-    isSpeakingRef.current = isSpeaking;
-  }, [isSpeaking]);
 
   useEffect(() => {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
@@ -143,12 +138,12 @@ export default function RobotVoiceShowcase() {
 
       if (!res.ok) throw new Error('API error');
       const data = await res.json();
-      const reply = data.reply || data.text || 'Az Zentrion.ai vállalati folyamatautomatizálási platform zökkenőmentesen köti össze rendszereidet saját natív motorral.';
+      const reply = data.reply || data.text || 'A Zentrion.ai vállalati folyamatautomatizálási platform zökkenőmentesen köti össze rendszereidet saját natív motorral.';
       
       setLastMessage(reply);
       speakText(reply);
     } catch {
-      const fallback = 'Az Zentrion.ai egyedi vállalati AI ügynököket és automatizált munkafolyamatokat épít natív TypeScript alapon, zéró külső függőséggel.';
+      const fallback = 'A Zentrion.ai egyedi vállalati AI ügynököket és automatizált munkafolyamatokat épít natív TypeScript alapon, zéró külső függőséggel.';
       setLastMessage(fallback);
       speakText(fallback);
     }
@@ -171,12 +166,12 @@ export default function RobotVoiceShowcase() {
       return;
     }
 
-    if (isSpeaking) {
-      window.speechSynthesis.cancel();
-      setIsSpeaking(false);
-    }
-
     try {
+      if (isSpeaking) {
+        window.speechSynthesis.cancel();
+        setIsSpeaking(false);
+      }
+
       const rec = new SpeechRecognition();
       rec.lang = 'hu-HU';
       rec.continuous = false;
@@ -209,18 +204,18 @@ export default function RobotVoiceShowcase() {
   };
 
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden bg-black text-white">
+    <section className="py-28 md:py-36 relative overflow-hidden bg-black text-white">
       {/* Top section divider */}
       <div className="section-divider mb-20" />
 
       {/* Dynamic Ambient Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-white/[0.03] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] bg-white/[0.03] rounded-full blur-[150px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-14">
         
         {/* Section Header with Scroll Reveal */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 scroll-reveal">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono font-bold tracking-wider text-neutral-300 backdrop-blur-md">
+        <div className="text-center max-w-3xl mx-auto space-y-5 scroll-reveal">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono font-bold tracking-wider text-neutral-300 backdrop-blur-md">
             <Radio className="w-3.5 h-3.5 text-white animate-pulse" />
             <span>ZENTRION-VOICE-3D ENGINE</span>
           </div>
@@ -230,21 +225,27 @@ export default function RobotVoiceShowcase() {
           </h2>
 
           <p className="text-neutral-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            Nem pusztán hanghullámok: az Zentrion.ai 3D robotja valós időben artikulál és beszél, miközben azonnal válaszol minden kérdésedre.
+            Nem pusztán hanghullámok: a Zentrion.ai 3D robotja valós időben artikulál és beszél, miközben azonnal válaszol minden kérdésedre.
           </p>
         </div>
 
         {/* The 3D Robot Interactive Station (Glass Spotlight Card) */}
-        <div className="max-w-4xl mx-auto rounded-3xl glass-spotlight border border-white/15 p-6 sm:p-10 relative overflow-hidden scroll-reveal-scale">
-          
-          {/* Top Glass Rim Line */}
+        <div className="max-w-5xl mx-auto rounded-3xl glass-spotlight border border-white/15 p-6 sm:p-12 relative overflow-hidden shadow-2xl scroll-reveal-scale">
           <div className="glass-rim-top" />
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
             
-            {/* Left 3D Robot Display */}
+            {/* Left 3D Robot Display Station */}
             <div className="md:col-span-5 flex flex-col items-center justify-center relative">
-              <div className="relative">
+              
+              {/* Sci-Fi Hologram Pod Container with Corner Brackets */}
+              <div className="relative p-3 rounded-3xl bg-white/[0.02] border border-white/10 shadow-2xl">
+                {/* Tech corner tick accents */}
+                <span className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-white/40" />
+                <span className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-white/40" />
+                <span className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-white/40" />
+                <span className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-white/40" />
+
                 <Robot3DAvatar
                   isSpeaking={isSpeaking}
                   isListening={isListening}
@@ -257,30 +258,30 @@ export default function RobotVoiceShowcase() {
               </div>
 
               {/* Status Pill below robot */}
-              <div className="pt-4 text-center">
+              <div className="pt-5 text-center w-full max-w-xs">
                 <button
                   onClick={toggleInlineMic}
-                  className={`px-4 py-2 rounded-full font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer shadow-lg ${
+                  className={`w-full py-3.5 rounded-2xl font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer shadow-xl ${
                     isListening
                       ? 'bg-rose-600 text-white animate-pulse'
                       : isSpeaking
-                        ? 'bg-white text-black shadow-white/20'
+                        ? 'bg-white text-black shadow-white/30'
                         : 'bg-white/10 hover:bg-white/20 text-white border border-white/20'
                   }`}
                 >
                   {isListening ? (
                     <>
-                      <MicOff className="w-3.5 h-3.5" />
-                      <span>Hallgatlak... (Kattints a megállításhoz)</span>
+                      <MicOff className="w-4 h-4" />
+                      <span>Hallgatlak... (Kattints a stophoz)</span>
                     </>
                   ) : isSpeaking ? (
                     <>
-                      <Volume2 className="w-3.5 h-3.5 animate-bounce" />
+                      <Volume2 className="w-4 h-4 animate-bounce" />
                       <span>Beszéd Megállítása</span>
                     </>
                   ) : (
                     <>
-                      <Mic className="w-3.5 h-3.5" />
+                      <Mic className="w-4 h-4" />
                       <span>Kattints & Beszélj a Robottal</span>
                     </>
                   )}
@@ -292,16 +293,19 @@ export default function RobotVoiceShowcase() {
             <div className="md:col-span-7 space-y-6 text-left">
               
               {/* Telemetry Status Bar */}
-              <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                <div className="flex items-center gap-2 text-xs font-mono text-neutral-400">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                  <span className="text-white font-bold">ZENTRION-CORE-v2</span>
+              <div className="flex items-center justify-between border-b border-white/10 pb-3.5">
+                <div className="flex items-center gap-2.5 text-xs font-mono text-neutral-400">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  </span>
+                  <span className="text-white font-bold">ZENTRION-VOICE-v2</span>
                   <span>|</span>
-                  <span>LATENCY: &lt; 22ms</span>
+                  <span className="text-emerald-400 font-mono">LATENCY: &lt; 18ms</span>
                 </div>
                 <button
                   onClick={openVoiceAi}
-                  className="text-xs font-bold text-white hover:text-neutral-300 transition-colors flex items-center gap-1 group cursor-pointer"
+                  className="text-xs font-bold text-white hover:text-neutral-300 transition-colors flex items-center gap-1.5 group cursor-pointer"
                 >
                   <span>Teljes Stúdió Megnyitása</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -309,15 +313,20 @@ export default function RobotVoiceShowcase() {
               </div>
 
               {/* Active Spoken Speech Balloon */}
-              <div className="rounded-2xl p-5 bg-white/[0.04] border border-white/10 relative">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-white/10 text-white border border-white/15 flex items-center justify-center shrink-0 mt-0.5">
-                    <Bot className="w-4 h-4" />
+              <div className="rounded-2xl p-6 bg-white/[0.04] border border-white/15 relative shadow-inner">
+                <div className="flex items-start gap-3.5">
+                  <div className="w-9 h-9 rounded-xl bg-white text-black flex items-center justify-center shrink-0 mt-0.5 shadow-md">
+                    <Bot className="w-5 h-5 text-black" />
                   </div>
-                  <div className="flex-1 space-y-1">
+                  <div className="flex-1 space-y-1.5">
                     <div className="text-[11px] font-mono uppercase tracking-wider text-neutral-400 flex items-center justify-between">
-                      <span>3D Robot Válasza</span>
-                      {isSpeaking && <span className="text-white font-bold animate-pulse">Hangadás aktív</span>}
+                      <span className="font-bold text-neutral-300">3D Robot Válasza</span>
+                      {isSpeaking && (
+                        <span className="text-white font-bold flex items-center gap-1.5">
+                          <Activity className="w-3 h-3 text-white animate-pulse" />
+                          <span>Hangadás aktív</span>
+                        </span>
+                      )}
                     </div>
                     <p className="text-sm text-white font-medium leading-relaxed">
                       {lastMessage}
@@ -327,49 +336,31 @@ export default function RobotVoiceShowcase() {
               </div>
 
               {/* Quick Sample Questions to Test Robot Talking */}
-              <div className="space-y-2.5">
+              <div className="space-y-3">
                 <span className="text-xs text-neutral-400 font-semibold block">
-                  Próbáld ki azonnal – kattints egy kérdésre, és nézd meg, ahogy a robot beszél:
+                  Próbáld ki azonnal – kattints egy kérdésre, és nézd meg, ahogy a robot artikulálva válaszol:
                 </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {PRESET_QUESTIONS.map((q, idx) => (
                     <button
                       key={idx}
                       onClick={() => handleAsk(q)}
                       disabled={isThinking}
-                      className="text-left px-3.5 py-2.5 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/25 text-xs text-neutral-200 hover:text-white transition-all duration-200 group flex items-center justify-between cursor-pointer disabled:opacity-50"
+                      className="text-left px-4 py-3 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-xs text-neutral-200 hover:text-white transition-all duration-200 group flex items-center justify-between cursor-pointer disabled:opacity-50 shadow-sm"
                     >
-                      <span className="line-clamp-1">{q}</span>
-                      <ArrowRight className="w-3 h-3 text-neutral-500 group-hover:text-white transition-transform group-hover:translate-x-0.5 shrink-0 ml-2" />
+                      <span className="font-medium pr-2">{q}</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-neutral-500 group-hover:text-white group-hover:translate-x-1 transition-all shrink-0" />
                     </button>
                   ))}
-                </div>
-              </div>
-
-              {/* Bottom SLA & Feature Highlights */}
-              <div className="grid grid-cols-3 gap-2 pt-2 border-t border-white/10 text-center">
-                <div className="p-2 rounded-xl bg-white/[0.02]">
-                  <div className="text-[10px] text-neutral-400 uppercase font-mono">Beszédkésleltetés</div>
-                  <div className="text-xs font-bold text-white font-mono">&lt; 200ms</div>
-                </div>
-                <div className="p-2 rounded-xl bg-white/[0.02]">
-                  <div className="text-[10px] text-neutral-400 uppercase font-mono">Barge-in Megszakítás</div>
-                  <div className="text-xs font-bold text-white font-mono">Azonnali</div>
-                </div>
-                <div className="p-2 rounded-xl bg-white/[0.02]">
-                  <div className="text-[10px] text-neutral-400 uppercase font-mono">Nyelvi támogatás</div>
-                  <div className="text-xs font-bold text-white font-mono">Többnyelvű</div>
                 </div>
               </div>
 
             </div>
 
           </div>
-
         </div>
 
       </div>
     </section>
   );
 }
-
