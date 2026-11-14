@@ -58,7 +58,7 @@ export default function TourPage() {
                     <Icon className="w-5 h-5" />
                   </div>
                   <span className="font-mono text-xs text-neutral-400">
-                    {idx + 1}. Fejezet • {ch.durationSec}s
+                    {idx + 1}. Fejezet • {ch.durationSec || 18}s
                   </span>
                 </div>
 

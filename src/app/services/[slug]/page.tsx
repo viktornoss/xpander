@@ -407,11 +407,11 @@ export default function ServiceDetailPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1">
                   <span className="text-[10px] uppercase font-bold text-gray-400">Megtakarítás</span>
-                  <div className="text-xl font-black text-neon-blue font-mono">{service.timeSaved}</div>
+                  <div className="text-xl font-black text-neon-blue font-mono">{service?.timeSaved || 'Havi 120+ óra'}</div>
                 </div>
                 <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1">
                   <span className="text-[10px] uppercase font-bold text-gray-400">Átfutási Idő</span>
-                  <div className="text-xl font-black text-neon-purple font-mono">{service.setupTime}</div>
+                  <div className="text-xl font-black text-neon-purple font-mono">{service?.setupTime || '3-5 munkanap'}</div>
                 </div>
               </div>
 

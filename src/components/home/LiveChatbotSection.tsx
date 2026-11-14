@@ -73,7 +73,7 @@ export default function LiveChatbotSection() {
 
     window.speechSynthesis.cancel();
     const cleanText = textToSpeak
-      .replace(/[\p{Extended_Pictographic}\u{1F300}-\u{1F5FF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\u{1F1E0}-\u{1F1FF}]/gu, '')
+      .replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[\u2600-\u27BF]/g, '')
       .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
       .replace(/https?:\/\/\S+/g, '')
       .replace(/```[\s\S]*?```/g, '')

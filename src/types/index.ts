@@ -100,5 +100,7 @@ export interface ServiceDetail {
   techStack: string[];
   pricingNote: string;
   demoType: 'chat' | 'flow' | 'crm' | 'lead' | 'email' | 'booking' | 'agent';
+  timeSaved?: string;
+  setupTime?: string;
 }
 

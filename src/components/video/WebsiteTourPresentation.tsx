@@ -43,6 +43,7 @@ export interface TourChapter {
   features: { hu: string[]; en: string[] };
   accentIcon: any;
   contentType: 'video' | 'voice' | 'services' | 'workflow' | 'audit' | 'appointment' | 'contact';
+  durationSec?: number;
 }
 
 export const TOUR_CHAPTERS: TourChapter[] = [
