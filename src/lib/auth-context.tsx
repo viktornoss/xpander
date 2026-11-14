@@ -30,8 +30,8 @@ interface AuthContextType {
   notifications: AppNotification[];
   logs: AutomationLog[];
   isLoading: boolean;
-  login: (email: string, password?: string) => Promise<{ success: boolean; message?: string }>;
-  register: (name: string, email: string, company: string, password?: string, phone?: string) => Promise<{ success: boolean; message?: string }>;
+  login: (email: string, password?: string) => Promise<{ success: boolean; role?: UserRole; message?: string }>;
+  register: (name: string, email: string, company: string, password?: string, phone?: string) => Promise<{ success: boolean; role?: UserRole; message?: string }>;
   logout: () => void;
   switchRole: (role: UserRole) => void;
   toggleAutomationStatus: (id: string) => void;
@@ -51,7 +51,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [currentUser, setCurrentUser] = useState<UserProfile | null>(DEMO_CLIENT);
+  const [currentUser, setCurrentUser] = useState<UserProfile | null>(DEMO_ADMIN);
   const [users, setUsers] = useState<UserProfile[]>(ALL_USERS);
   const [automations, setAutomations] = useState<AutomationItem[]>(INITIAL_AUTOMATIONS);
   const [chatbots, setChatbots] = useState<ChatbotConfig[]>(INITIAL_CHATBOTS);
@@ -65,7 +65,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const storedUser = localStorage.getItem('nexus_current_user');
       if (storedUser) {
-        setCurrentUser(JSON.parse(storedUser));
+        try {
+          const parsed = JSON.parse(storedUser);
+          if (
+            parsed.id === 'usr-admin-001' ||
+            parsed.name?.toLowerCase().includes('tolnai') ||
+            parsed.email?.toLowerCase().includes('tolnai') ||
+            parsed.name?.toLowerCase().includes('viktor') ||
+            parsed.email?.toLowerCase().includes('viktornoss')
+          ) {
+            parsed.role = 'admin';
+            parsed.name = 'Tolnai Viktor';
+          }
+          setCurrentUser(parsed);
+        } catch {
+          setCurrentUser(DEMO_ADMIN);
+        }
+      } else {
+        setCurrentUser(DEMO_ADMIN);
       }
       const storedAutomations = localStorage.getItem('nexus_automations');
       if (storedAutomations) {
@@ -81,7 +98,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
       const storedUsers = localStorage.getItem('nexus_all_users');
       if (storedUsers) {
-        setUsers(JSON.parse(storedUsers));
+        try {
+          const parsedUsers = JSON.parse(storedUsers).map((u: UserProfile) => {
+            if (
+              u.id === 'usr-admin-001' ||
+              u.name?.toLowerCase().includes('tolnai') ||
+              u.email?.toLowerCase().includes('tolnai') ||
+              u.name?.toLowerCase().includes('viktor')
+            ) {
+              return { ...u, name: 'Tolnai Viktor', role: 'admin' as const };
+            }
+            return u;
+          });
+          if (!parsedUsers.some((u: UserProfile) => u.name === 'Tolnai Viktor' || u.id === 'usr-admin-001')) {
+            parsedUsers.unshift(DEMO_ADMIN);
+          }
+          setUsers(parsedUsers);
+        } catch {
+          setUsers(ALL_USERS);
+        }
       }
     } catch (e) {
       console.warn('LocalStorage error:', e);
@@ -121,40 +156,56 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, [users, isLoading]);
 
-  const login = async (email: string) => {
+  const login = async (email: string, password?: string) => {
     const trimmed = email.trim().toLowerCase();
     
-    // Check if admin email or keyword
-    if (trimmed.includes('admin') || trimmed === DEMO_ADMIN.email.toLowerCase()) {
+    // Check if admin email or Tolnai Viktor / admin keyword
+    if (
+      trimmed.includes('admin') || 
+      trimmed === DEMO_ADMIN.email.toLowerCase() ||
+      trimmed.includes('tolnai') ||
+      trimmed.includes('viktornoss') ||
+      trimmed.includes('viktor')
+    ) {
       setCurrentUser(DEMO_ADMIN);
-      return { success: true };
+      return { success: true, role: 'admin' as const };
     }
 
     // Check existing users
-    const found = users.find(u => u.email.toLowerCase() === trimmed);
+    const found = users.find(u => u.email.toLowerCase() === trimmed || u.name.toLowerCase().includes('tolnai'));
     if (found) {
+      if (found.name.toLowerCase().includes('tolnai') || found.email.toLowerCase().includes('tolnai')) {
+        const adminFound = { ...found, role: 'admin' as const };
+        setCurrentUser(adminFound);
+        return { success: true, role: 'admin' as const };
+      }
       setCurrentUser(found);
-      return { success: true };
+      return { success: true, role: found.role };
     }
 
     // Default to demo client or create quick session
+    const isTolnai = trimmed.includes('tolnai') || trimmed.includes('viktor');
     const genericClient: UserProfile = {
       ...DEMO_CLIENT,
       email: trimmed,
-      name: trimmed.split('@')[0].toUpperCase()
+      name: isTolnai ? 'Tolnai Viktor' : trimmed.split('@')[0].toUpperCase(),
+      role: isTolnai ? 'admin' : 'client'
     };
     setCurrentUser(genericClient);
-    return { success: true };
+    return { success: true, role: genericClient.role };
   };
 
   const register = async (name: string, email: string, company: string, password?: string, phone?: string) => {
+    const isTolnai = name.toLowerCase().includes('tolnai') || email.toLowerCase().includes('tolnai') || name.toLowerCase().includes('viktor');
+    const isAdmin = isTolnai || email.toLowerCase().includes('admin');
+
     const newUser: UserProfile = {
       id: `usr-${Date.now()}`,
-      name,
+      name: isTolnai ? 'Tolnai Viktor' : name,
       email: email.trim().toLowerCase(),
-      role: email.toLowerCase().includes('admin') ? 'admin' : 'client',
-      company: company || 'Saját Vállalkozás Kft.',
-      plan: 'Growth',
+      role: isAdmin ? 'admin' : 'client',
+      company: company || (isTolnai ? 'Zentrion.ai Automation HQ' : 'Saját Vállalkozás Kft.'),
+      plan: isAdmin ? 'Enterprise' : 'Growth',
       createdAt: new Date().toISOString().split('T')[0],
       apiKey: `nx_live_${Math.random().toString(36).substring(2, 15)}`,
       plainPassword: password || 'DefaultPass2026!',
@@ -170,16 +221,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const welcomeNotif: AppNotification = {
       id: `notif-${Date.now()}`,
       userId: newUser.id,
-      title: 'Sikeres regisztráció!',
-      message: `Üdvözlünk az zentrion.ai platformon, ${name}! Tekintsd meg az aktív automatizációkat vagy kérj egyedi AI rendszert.`,
+      title: isAdmin ? 'Üdvözlünk Főadminisztrátorként!' : 'Sikeres regisztráció!',
+      message: isAdmin
+        ? `Üdvözlünk a Zentrion.ai vezérlőpultján, ${newUser.name}! Teljes adminisztrátori jogosultsággal rendelkezel.`
+        : `Üdvözlünk a Zentrion.ai platformon, ${name}! Tekintsd meg az aktív automatizációkat vagy kérj egyedi AI rendszert.`,
       type: 'success',
       timestamp: 'Most',
       read: false,
-      link: '/dashboard'
+      link: isAdmin ? '/admin' : '/dashboard'
     };
     setNotifications(prev => [welcomeNotif, ...prev]);
 
-    return { success: true };
+    return { success: true, role: newUser.role };
   };
 
   const updateUserPassword = (userId: string, newPassword: string) => {

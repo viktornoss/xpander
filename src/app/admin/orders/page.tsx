@@ -129,7 +129,7 @@ export default function AdminOrdersPage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
               <div className="space-y-1">
                 <span className="text-[10px] uppercase font-bold text-gray-400">Hozzárendelt AI Mérnök</span>
-                <div className="text-white font-medium">{ord.assignedEngineer || 'Nagy Viktor (Admin / Lead)'}</div>
+                <div className="text-white font-medium">{ord.assignedEngineer || 'Tolnai Viktor (Admin / Lead)'}</div>
               </div>
 
               <div className="space-y-1">

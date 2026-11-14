@@ -10,7 +10,8 @@ import {
   ArrowRight, 
   User, 
   LogOut, 
-  LayoutDashboard
+  LayoutDashboard,
+  Shield
 } from 'lucide-react';
 import { useAuth } from '@/lib/auth-context';
 import ZentrionLogo from '@/components/brand/ZentrionLogo';
@@ -95,17 +96,33 @@ export default function Navbar() {
                 {userDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-48 rounded-2xl bg-neutral-950 border border-white/15 shadow-2xl p-2 z-50 animate-in fade-in zoom-in-95 duration-150">
                     <div className="px-3 py-2 border-b border-white/10 mb-1">
-                      <p className="text-[11px] font-semibold text-white truncate">{currentUser.name}</p>
+                      <div className="flex items-center justify-between gap-1">
+                        <p className="text-[11px] font-semibold text-white truncate">{currentUser.name}</p>
+                        {currentUser.role === 'admin' && (
+                          <span className="text-[9px] uppercase tracking-wider font-bold bg-white text-black px-1.5 py-0.5 rounded">ADMIN</span>
+                        )}
+                      </div>
                       <p className="text-[10px] text-neutral-400 truncate">{currentUser.email}</p>
                     </div>
 
+                    {currentUser.role === 'admin' && (
+                      <Link
+                        href="/admin"
+                        onClick={() => setUserDropdownOpen(false)}
+                        className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs text-white bg-white/10 hover:bg-white/20 transition-colors font-medium mb-1"
+                      >
+                        <Shield className="w-3.5 h-3.5 text-white" />
+                        <span>Admin Portál</span>
+                      </Link>
+                    )}
+
                     <Link
-                      href={currentUser.role === 'admin' ? '/admin' : '/dashboard'}
+                      href="/dashboard"
                       onClick={() => setUserDropdownOpen(false)}
                       className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs text-neutral-200 hover:text-white hover:bg-white/10 transition-colors"
                     >
                       <LayoutDashboard className="w-3.5 h-3.5" />
-                      <span>Dashboard</span>
+                      <span>Ügyfél Portál</span>
                     </Link>
 
                     <button

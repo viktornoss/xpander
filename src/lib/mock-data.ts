@@ -211,10 +211,10 @@ export const DEMO_CLIENT: UserProfile = {
 
 export const DEMO_ADMIN: UserProfile = {
   id: 'usr-admin-001',
-  name: 'Nagy Viktor',
+  name: 'Tolnai Viktor',
   email: 'zentrion-automation.ai@outlook.hu',
   role: 'admin',
-  company: 'zentrion.ai Automation HQ',
+  company: 'Zentrion.ai Automation HQ',
   avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=250&q=80',
   plan: 'Enterprise',
   createdAt: '2025-10-01',
@@ -365,7 +365,7 @@ export const INITIAL_ORDERS: ServiceOrder[] = [
     createdAt: '2026-03-01',
     deliveryDate: '2026-03-20',
     notes: 'Egyedi LangGraph ágens kutatás és versenytárselemzés modul fejlesztése.',
-    assignedEngineer: 'Nagy Viktor (Admin / Lead Arch)'
+    assignedEngineer: 'Tolnai Viktor (Admin / Lead Arch)'
   },
   {
     id: 'ord-904',

@@ -53,7 +53,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               onClick={() => switchRole('admin')}
               className="w-full py-3 rounded-xl font-bold text-xs uppercase tracking-wider text-white bg-gradient-to-r from-neon-purple to-neon-blue hover:opacity-90 shadow-neon-purple/30 shadow-md"
             >
-              Belépés Adminként (Nagy Viktor)
+              Belépés Adminként (Tolnai Viktor)
             </button>
             <Link
               href="/dashboard"

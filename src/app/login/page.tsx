@@ -29,7 +29,7 @@ export default function LoginPage() {
     try {
       const res = await login(email, password);
       if (res.success) {
-        if (email.toLowerCase().includes('admin')) {
+        if (res.role === 'admin' || email.toLowerCase().includes('admin') || email.toLowerCase().includes('tolnai') || email.toLowerCase().includes('viktor')) {
           router.push('/admin');
         } else {
           router.push('/dashboard');
