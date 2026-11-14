@@ -808,7 +808,7 @@ export default function AuditPage() {
                               Hivatalos AI Audit Riport Sikeresen Rögzítve & Kiküldve!
                             </h4>
                             <p className="text-xs text-neutral-400">
-                              A dokumentációt továbbítottuk a megadott címre ({clientEmail}) és az ügyeletes mérnökünknek (zentrion-automation.ai@outlook.hu).
+                              A dokumentációt továbbítottuk a megadott címre ({clientEmail}) és az ügyeletes mérnökünknek (xpander-automation.ai@outlook.hu).
                             </p>
                           </div>
                         </div>

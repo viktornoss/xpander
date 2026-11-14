@@ -138,7 +138,7 @@ export default function SlaPage() {
             <div className="text-xs text-gray-400 text-center sm:text-left">
               Technikai támogatásra vagy SLA kérdésre van szükséged?
               <br />
-              <strong className="text-white">zentrion-automation.ai@outlook.hu</strong>
+              <strong className="text-white">xpander-automation.ai@outlook.hu</strong>
             </div>
             <Link
               href="/#contact"

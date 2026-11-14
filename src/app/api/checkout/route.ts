@@ -46,7 +46,7 @@ export async function POST(req: Request) {
       customerCompany: customerCompany || 'Egyéni megrendelő',
       billingAddress: formattedAddress,
       taxNumber,
-      paymentMethod,
+      paymentMethod: 'paypal',
       items,
       totalPrice: totalPrice || 'Összeg egyeztetés szerint',
       notes
@@ -59,19 +59,11 @@ export async function POST(req: Request) {
       customerEmail,
       customerPhone,
       totalPrice,
-      paymentMethod,
-      bankDetails: {
-        beneficiary: 'Zentrion.ai Automation Kft. (Tolnai Viktor)',
-        bank: 'OTP Bank Nyrt.',
-        accountNumber: '11773016-00000000-12345678',
-        iban: 'HU42 1177 3016 0000 0000 1234 5678',
-        swift: 'OTPVHUHB',
-        reference: `${orderId} - ${customerName}`,
-        deadlineDays: 8
-      },
+      paymentMethod: 'paypal',
       paypalDetails: {
-        link: 'https://paypal.me/zentrionai',
-        account: 'zentrion-automation.ai@outlook.hu'
+        link: 'https://paypal.me/2viktornosss',
+        account: '2viktornosss@gmail.com',
+        reference: `${orderId} - ${customerName}`
       }
     });
   } catch (error: any) {

@@ -130,8 +130,8 @@ export default function Footer() {
             <div className="pt-2 text-xs text-neutral-400 space-y-1">
               <div>
                 Email:{' '}
-                <a href="mailto:zentrion-automation.ai@outlook.hu" className="text-neutral-300 hover:text-white transition-colors">
-                  zentrion-automation.ai@outlook.hu
+                <a href="mailto:xpander-automation.ai@outlook.hu" className="text-neutral-300 hover:text-white transition-colors">
+                  xpander-automation.ai@outlook.hu
                 </a>
               </div>
               <div>Tel: +36 1 800 9999</div>

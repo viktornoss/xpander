@@ -57,7 +57,7 @@ export async function POST(req: Request) {
       finalReply = generateIntelligentResponse(messages as ChatMessage[], systemPrompt, Boolean(isVoiceMode));
     }
 
-    // Extract last user message and notify zentrion-automation.ai@outlook.hu
+    // Extract last user message and notify xpander-automation.ai@outlook.hu
     const lastUserMsg = messages && messages.length > 0 ? messages[messages.length - 1].content : '';
     if (lastUserMsg) {
       // Async dispatch without blocking HTTP response

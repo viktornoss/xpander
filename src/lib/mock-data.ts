@@ -212,7 +212,7 @@ export const DEMO_CLIENT: UserProfile = {
 export const DEMO_ADMIN: UserProfile = {
   id: 'usr-admin-001',
   name: 'Tolnai Viktor',
-  email: 'zentrion-automation.ai@outlook.hu',
+  email: 'xpander-automation.ai@outlook.hu',
   role: 'admin',
   company: 'Zentrion.ai Automation HQ',
   avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=250&q=80',

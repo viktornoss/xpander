@@ -52,7 +52,7 @@ export default function AszfPage() {
               </p>
               <div className="bg-white/5 p-4 rounded-xl border border-white/10 space-y-1.5 text-xs text-gray-300">
                 <p><strong>Szolgáltató elnevezése:</strong> Zentrion Automation & AI Systems</p>
-                <p><strong>Központi kapcsolattartó email:</strong> zentrion-automation.ai@outlook.hu</p>
+                <p><strong>Központi kapcsolattartó email:</strong> xpander-automation.ai@outlook.hu</p>
                 <p><strong>Székhely:</strong> 1054 Budapest, Szabadság tér 7. (Bank Center)</p>
                 <p><strong>Hivatalos weboldal:</strong> https://zentrion.ai</p>
               </div>
@@ -121,7 +121,7 @@ export default function AszfPage() {
             <div className="text-xs text-gray-400 text-center sm:text-left">
               Kérdésed merült fel a szerződési feltételekkel kapcsolatban? Írj nekünk:
               <br />
-              <strong className="text-white">zentrion-automation.ai@outlook.hu</strong>
+              <strong className="text-white">xpander-automation.ai@outlook.hu</strong>
             </div>
             <Link
               href="/#contact"

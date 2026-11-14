@@ -400,7 +400,7 @@ export default function ServiceDetailPage() {
               {orderedSuccess && (
                 <div className="p-3.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs flex items-center gap-2 animate-in fade-in">
                   <Check className="w-4 h-4" />
-                  <span>A megrendelésed bekerült a Dashboardodra és értesítést küldtünk (zentrion-automation.ai@outlook.hu)!</span>
+                  <span>A megrendelésed bekerült a Dashboardodra és értesítést küldtünk (xpander-automation.ai@outlook.hu)!</span>
                 </div>
               )}
             </div>
@@ -434,7 +434,7 @@ export default function ServiceDetailPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-neon-cyan shrink-0" />
-                  <span>Közvetlen értesítés: zentrion-automation.ai@outlook.hu</span>
+                  <span>Közvetlen értesítés: xpander-automation.ai@outlook.hu</span>
                 </div>
               </div>
 
@@ -858,7 +858,7 @@ export default function ServiceDetailPage() {
 
                           <div className="space-y-1 text-[11px] text-gray-300">
                             <p>
-                              📧 <strong>Kiküldött Email:</strong> Továbbítva az <em>zentrion-automation.ai@outlook.hu</em> {bookedDetails?.email ? `és a(z) ${bookedDetails.email}` : ''} címekre.
+                              📧 <strong>Kiküldött Email:</strong> Továbbítva az <em>xpander-automation.ai@outlook.hu</em> {bookedDetails?.email ? `és a(z) ${bookedDetails.email}` : ''} címekre.
                             </p>
                             <p>
                               📱 <strong>SMS Gateway:</strong> {bookingDispatchResult.sms?.carrier} • Kézbesítve ({bookingDispatchResult.sms?.latencyMs}ms)
@@ -1107,7 +1107,7 @@ export default function ServiceDetailPage() {
             </div>
 
             <p className="text-[11px] text-gray-500">
-              Központi kapcsolattartás és számlázás: zentrion-automation.ai@outlook.hu
+              Központi kapcsolattartás és számlázás: xpander-automation.ai@outlook.hu
             </p>
           </div>
 

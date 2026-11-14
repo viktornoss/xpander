@@ -482,7 +482,7 @@ export async function executeWorkflow(
     errorSummary = globalError.message;
   }
 
-  // Automatic alert dispatch to master address: zentrion-automation.ai@outlook.hu on any failure
+  // Automatic alert dispatch to master address: xpander-automation.ai@outlook.hu on any failure
   if (currentStatus === 'failed') {
     sendSystemErrorAlert({
       source: `Workflow Motor: ${workflow.name}`,

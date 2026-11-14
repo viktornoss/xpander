@@ -51,7 +51,7 @@ export default function AdatvedelemPage() {
               </p>
               <div className="bg-white/5 p-4 rounded-xl border border-white/10 space-y-1 text-xs">
                 <p><strong>Adatkezelő:</strong> Zentrion Automation & AI Systems</p>
-                <p><strong>Adatvédelmi kapcsolattartó email:</strong> zentrion-automation.ai@outlook.hu</p>
+                <p><strong>Adatvédelmi kapcsolattartó email:</strong> xpander-automation.ai@outlook.hu</p>
                 <p><strong>Alkalmazandó jog:</strong> GDPR (EU 2016/679) és az információs önrendelkezési jogról szóló 2011. évi CXII. törvény (Infotv.).</p>
               </div>
             </section>
@@ -105,7 +105,7 @@ export default function AdatvedelemPage() {
                 Az Ügyfél bármikor kérelmezheti a Szolgáltatótól a rá vonatkozó személyes adatokhoz való hozzáférést, azok helyesbítését, törlését (az elfeledtetéshez való jog) vagy kezelésének korlátozását, valamint tiltakozhat a személyes adatok kezelése ellen.
               </p>
               <p className="text-xs text-gray-400">
-                Kérelmedet az <strong>zentrion-automation.ai@outlook.hu</strong> e-mail címre küldve legkésőbb 72 órán belül feldolgozzuk és teljesítjük.
+                Kérelmedet az <strong>xpander-automation.ai@outlook.hu</strong> e-mail címre küldve legkésőbb 72 órán belül feldolgozzuk és teljesítjük.
               </p>
             </section>
 
@@ -125,7 +125,7 @@ export default function AdatvedelemPage() {
             <div className="text-xs text-gray-400 text-center sm:text-left">
               Adatvédelmi kérdésed vagy törlési kérésed van? Fordulj hozzánk:
               <br />
-              <strong className="text-white">zentrion-automation.ai@outlook.hu</strong>
+              <strong className="text-white">xpander-automation.ai@outlook.hu</strong>
             </div>
             <Link
               href="/#contact"

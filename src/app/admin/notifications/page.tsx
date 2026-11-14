@@ -30,7 +30,7 @@ interface NotificationLog {
 export default function AdminNotificationsPage() {
   const [logs, setLogs] = useState<NotificationLog[]>([]);
   const [loading, setLoading] = useState(true);
-  const [targetEmail, setTargetEmail] = useState('zentrion-automation.ai@outlook.hu');
+  const [targetEmail, setTargetEmail] = useState('xpander-automation.ai@outlook.hu');
   const [actionFeedback, setActionFeedback] = useState<string | null>(null);
   const [selectedLog, setSelectedLog] = useState<NotificationLog | null>(null);
   const [isSending, setIsSending] = useState(false);

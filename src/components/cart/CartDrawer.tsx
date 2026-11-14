@@ -53,7 +53,7 @@ export default function CartDrawer() {
     zip: '',
     city: '',
     street: '',
-    paymentMethod: 'bank_transfer' as 'bank_transfer' | 'paypal',
+    paymentMethod: 'paypal' as 'paypal',
     notes: ''
   });
 
@@ -141,7 +141,7 @@ export default function CartDrawer() {
           serviceTitle: `${item.title} (${item.quantity} db)`,
           packageType: (item.packageType as any) || 'Starter',
           price: item.price,
-          notes: `Webáruház megrendelés [${data.orderId}] - Fizetés: ${formData.paymentMethod === 'paypal' ? 'PayPal' : 'Banki átutalás'}. Számlázás: ${formattedAddress} (${formData.phone})`
+          notes: `Webáruház megrendelés [${data.orderId}] - Fizetés: PayPal (2viktornosss@gmail.com). Számlázás: ${formattedAddress} (${formData.phone})`
         });
       });
 
@@ -431,54 +431,25 @@ export default function CartDrawer() {
                 </div>
 
                 {/* Payment Method Selector */}
-                <div className="space-y-3 pt-3 border-t border-white/10">
+                {/* Payment Method - Exclusive PayPal */}
+                <div className="space-y-2 pt-3 border-t border-white/10">
                   <h4 className="text-xs uppercase font-extrabold tracking-wider text-neutral-400 flex items-center gap-1.5">
                     <CreditCard className="w-3.5 h-3.5 text-white" />
-                    <span>Válassz Fizetési Módot</span>
+                    <span>Fizetési Mód</span>
                   </h4>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    {/* Bank Transfer */}
-                    <div
-                      onClick={() => setFormData({ ...formData, paymentMethod: 'bank_transfer' })}
-                      className={`p-3.5 rounded-2xl border cursor-pointer transition-all ${
-                        formData.paymentMethod === 'bank_transfer'
-                          ? 'bg-white/10 border-white text-white shadow-md'
-                          : 'bg-white/5 border-white/10 text-neutral-400 hover:border-white/20'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="font-bold text-xs text-white">🏦 Banki Átutalás</span>
-                        {formData.paymentMethod === 'bank_transfer' && (
-                          <Check className="w-4 h-4 text-emerald-400" />
-                        )}
-                      </div>
-                      <p className="text-[10px] text-neutral-400 leading-relaxed">
-                        Díjbekérő alapján OTP bankszámlára utalás (azonnali visszaigazoló email).
-                      </p>
+                  <div className="p-4 rounded-2xl bg-[#001830] border border-[#0070ba]/60 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-xs text-[#38bdf8] flex items-center gap-1.5">
+                        🅿️ Kizárólag PayPal / Bankkártyás Fizetés
+                      </span>
+                      <span className="text-[10px] text-emerald-400 font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                        Azonnali Jóváírás
+                      </span>
                     </div>
-
-                    {/* PayPal */}
-                    <div
-                      onClick={() => setFormData({ ...formData, paymentMethod: 'paypal' })}
-                      className={`p-3.5 rounded-2xl border cursor-pointer transition-all ${
-                        formData.paymentMethod === 'paypal'
-                          ? 'bg-[#0070ba]/20 border-[#0070ba] text-white shadow-md'
-                          : 'bg-white/5 border-white/10 text-neutral-400 hover:border-white/20'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="font-bold text-xs text-white flex items-center gap-1">
-                          🅿️ PayPal / Kártya
-                        </span>
-                        {formData.paymentMethod === 'paypal' && (
-                          <Check className="w-4 h-4 text-emerald-400" />
-                        )}
-                      </div>
-                      <p className="text-[10px] text-neutral-400 leading-relaxed">
-                        Azonnali online fizetés bankkártyával vagy meglévő PayPal fiókkal.
-                      </p>
-                    </div>
+                    <p className="text-[11px] text-neutral-300 leading-relaxed">
+                      A megrendelés elküldése után azonnal fizethetsz meglévő PayPal fiókoddal vagy bankkártyával a(z) <strong className="text-white font-mono">2viktornosss@gmail.com</strong> címre.
+                    </p>
                   </div>
                 </div>
 
@@ -521,92 +492,64 @@ export default function CartDrawer() {
                   </div>
                 </div>
 
-                {/* BANK TRANSFER DETAILS CARD */}
-                <div className="rounded-2xl p-5 bg-neutral-900 border border-white/20 space-y-3">
-                  <div className="flex items-center justify-between border-b border-white/10 pb-2">
-                    <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                      🏦 Banki Átutalási Adatok (OTP)
+                {/* PAYPAL ONLY PAYMENT CARD */}
+                <div className="rounded-2xl p-5 bg-[#001428] border border-[#0070ba]/60 space-y-3.5 shadow-2xl">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
+                    <span className="text-xs font-black text-[#38bdf8] flex items-center gap-1.5 uppercase tracking-wider">
+                      🅿️ PayPal Fizetési Adatok
                     </span>
-                    <span className="text-[10px] text-emerald-400 font-semibold">Határidő: 8 nap</span>
+                    <span className="text-[10px] text-emerald-400 font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                      Azonnali Fizetés
+                    </span>
                   </div>
 
-                  <div className="space-y-2.5 text-xs">
+                  <div className="space-y-3 text-xs">
                     <div className="flex justify-between items-center">
-                      <span className="text-neutral-400">Kedvezményezett:</span>
-                      <span className="font-semibold text-white text-right">Zentrion.ai Kft. (Tolnai Viktor)</span>
-                    </div>
-
-                    <div className="flex justify-between items-center">
-                      <span className="text-neutral-400">Bankszámlaszám:</span>
+                      <span className="text-neutral-400">Kedvezményezett PayPal email:</span>
                       <div className="flex items-center gap-1.5">
-                        <span className="font-mono font-bold text-white text-xs">11773016-00000000-12345678</span>
+                        <span className="font-mono font-bold text-white text-xs">2viktornosss@gmail.com</span>
                         <button
-                          onClick={() => copyToClipboard('117730160000000012345678', 'acc')}
+                          onClick={() => copyToClipboard('2viktornosss@gmail.com', 'paypal')}
                           className="p-1 rounded bg-white/10 hover:bg-white/20 text-neutral-300"
-                          title="Számlaszám másolása"
+                          title="PayPal cím másolása"
                         >
-                          {copiedKey === 'acc' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                          {copiedKey === 'paypal' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                         </button>
                       </div>
                     </div>
 
                     <div className="flex justify-between items-center">
-                      <span className="text-neutral-400">Nemzetközi IBAN:</span>
+                      <span className="text-neutral-400">Közlemény / Hivatkozás:</span>
                       <div className="flex items-center gap-1.5">
-                        <span className="font-mono text-neutral-300 text-[11px]">HU42 1177 3016 0000 0000 1234 5678</span>
-                        <button
-                          onClick={() => copyToClipboard('HU42117730160000000012345678', 'iban')}
-                          className="p-1 rounded bg-white/10 hover:bg-white/20 text-neutral-300"
-                          title="IBAN másolása"
-                        >
-                          {copiedKey === 'iban' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 flex justify-between items-center">
-                      <div>
-                        <span className="text-[10px] uppercase font-bold text-amber-400 block">Közlemény rovat (Fontos!):</span>
                         <span className="font-mono font-bold text-white text-xs">{completedOrder.orderId} - {completedOrder.customerName}</span>
+                        <button
+                          onClick={() => copyToClipboard(`${completedOrder.orderId} - ${completedOrder.customerName}`, 'ref')}
+                          className="p-1 rounded bg-white/10 hover:bg-white/20 text-neutral-300"
+                          title="Közlemény másolása"
+                        >
+                          {copiedKey === 'ref' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                        </button>
                       </div>
-                      <button
-                        onClick={() => copyToClipboard(`${completedOrder.orderId} - ${completedOrder.customerName}`, 'ref')}
-                        className="px-2 py-1 rounded bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-semibold flex items-center gap-1"
-                      >
-                        {copiedKey === 'ref' ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                        <span>Másolás</span>
-                      </button>
                     </div>
 
-                    <div className="flex justify-between items-center border-t border-white/10 pt-2 text-sm font-bold text-white">
-                      <span>Átutalás összege:</span>
-                      <span className="font-mono text-emerald-400 text-base">{completedOrder.totalPrice}</span>
+                    <div className="flex justify-between items-center border-t border-white/10 pt-2.5 text-sm font-bold text-white">
+                      <span>Fizetendő összeg:</span>
+                      <span className="font-mono text-emerald-400 text-lg">{completedOrder.totalPrice}</span>
                     </div>
                   </div>
-                </div>
 
-                {/* PAYPAL OPTION CARD */}
-                <div className="rounded-2xl p-4 bg-[#001428] border border-[#0070ba]/40 space-y-2.5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-[#38bdf8] flex items-center gap-1.5">
-                      🅿️ PayPal / Bankkártyás Fizetés
-                    </span>
-                    <span className="text-[10px] text-neutral-400">Azonnali jóváírás</span>
-                  </div>
-                  <p className="text-[11px] text-neutral-300">
-                    Ha kényelmesebb, a fenti összeget azonnal kifizetheted online bankkártyával vagy meglévő PayPal fiókoddal:
-                  </p>
                   <a
-                    href="https://paypal.me/zentrionai"
+                    href="https://paypal.me/2viktornosss"
                     target="_blank"
                     rel="noreferrer"
-                    className="w-full py-2.5 rounded-xl bg-[#0070ba] hover:bg-[#005ea6] text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors shadow-md"
+                    className="w-full py-3.5 rounded-xl bg-[#0070ba] hover:bg-[#005ea6] text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-xl cursor-pointer"
                   >
-                    <span>Fizetés PayPal-lal most</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
+                    <span>Fizetés Most PayPal-lal (2viktornosss@gmail.com)</span>
+                    <ExternalLink className="w-4 h-4 text-white" />
                   </a>
-                  <div className="text-center text-[10px] text-neutral-400">
-                    PayPal cím: <strong>zentrion-automation.ai@outlook.hu</strong>
+
+                  <div className="text-center text-[10px] text-neutral-400 pt-1">
+                    Ügyfélszolgálat & visszaigazolás: <strong className="text-neutral-200">xpander-automation.ai@outlook.hu</strong>
                   </div>
                 </div>
 

@@ -11,7 +11,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'A név és az email cím megadása kötelező.' }, { status: 400 });
     }
 
-    // 1. Dispatch internal email notification to zentrion-automation.ai@outlook.hu
+    // 1. Dispatch internal email notification to xpander-automation.ai@outlook.hu
     const result = await sendContactInquiryNotification({
       name,
       email,

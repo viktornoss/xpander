@@ -60,7 +60,7 @@ export default function AdminOverviewPage() {
           <div>
             <div className="flex items-center gap-2">
               <span className="text-xs font-bold text-white">Központi Rendszer Értesítési Cím:</span>
-              <span className="font-mono text-neon-blue text-xs font-bold">zentrion-automation.ai@outlook.hu</span>
+              <span className="font-mono text-neon-blue text-xs font-bold">xpander-automation.ai@outlook.hu</span>
             </div>
             <p className="text-[11px] text-gray-400">
               Minden ajánlatkérés, hibariasztás és chatbot lead ide érkezik.

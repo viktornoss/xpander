@@ -180,7 +180,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     }
 
     if (normMsg.includes('iroda') || normMsg.includes('hol vagytok') || normMsg.includes('telefonszam') || normMsg.includes('kapcsolat') || normMsg.includes('cim')) {
-      return `Központi irodánk Budapesten, a Szabadság tér 7. szám alatt, a Bank Centerben található. Hívhatsz minket a plusz 36 1 800 9999-es számon, vagy írhatsz az zentrion-automation.ai@outlook.hu címre.`;
+      return `Központi irodánk Budapesten, a Szabadság tér 7. szám alatt, a Bank Centerben található. Hívhatsz minket a plusz 36 1 800 9999-es számon, vagy írhatsz az xpander-automation.ai@outlook.hu címre.`;
     }
 
     if (normMsg.includes('garancia') || normMsg.includes('sla') || normMsg.includes('biztonsag')) {
@@ -452,7 +452,7 @@ export function generateIntelligentResponse(messages: ChatMessage[], systemPromp
     normMsg.includes('elerhetoseg') ||
     normMsg.includes('kapcsolat')
   ) {
-    return `${salutation}Személyesen a budapesti irodánkban találsz meg minket a Szabadság tér 7. szám alatt, a Bank Centerben.\n\n- **Központi email cím:** zentrion-automation.ai@outlook.hu\n- **Telefonszám:** +36 1 800 9999 (hétköznap 9:00 és 18:00 között)\n\nSzívesen látunk egy személyes kávéra vagy online videóhívásra egy ingyenes folyamataudit keretében!`;
+    return `${salutation}Személyesen a budapesti irodánkban találsz meg minket a Szabadság tér 7. szám alatt, a Bank Centerben.\n\n- **Központi email cím:** xpander-automation.ai@outlook.hu\n- **Telefonszám:** +36 1 800 9999 (hétköznap 9:00 és 18:00 között)\n\nSzívesen látunk egy személyes kávéra vagy online videóhívásra egy ingyenes folyamataudit keretében!`;
   }
 
   // 17. Ki vagy te? / Mi az Zentrion.ai?

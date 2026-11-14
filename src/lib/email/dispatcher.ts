@@ -1,12 +1,12 @@
 /**
  * Central Email & Notification Dispatcher for ZENTRION / NEXUS AI Agency
- * Target master address: zentrion-automation.ai@outlook.hu
+ * Target master address: xpander-automation.ai@outlook.hu
  * Handles all inquiries, contact form questions, workflow engine errors, and system alerts.
  */
 
 import nodemailer from 'nodemailer';
 
-export const MASTER_NOTIFICATION_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || 'zentrion-automation.ai@outlook.hu';
+export const MASTER_NOTIFICATION_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || 'xpander-automation.ai@outlook.hu';
 
 export interface EmailNotification {
   id: string;
@@ -80,10 +80,12 @@ export async function dispatchEmail(payload: {
         html: payload.htmlContent
       });
 
-      console.log('[EMAIL DISPATCHER] Direct SMTP dispatch successful to Outlook!');
+      console.log('[EMAIL DISPATCHER] Direct Outlook SMTP dispatch successful to:', targetEmail);
     } catch (smtpErr) {
-      console.warn('[EMAIL DISPATCHER] Direct SMTP error:', smtpErr);
+      console.warn('[EMAIL DISPATCHER] Direct Outlook SMTP error (set SMTP_PASS in .env.local):', smtpErr);
     }
+  } else {
+    console.log('[EMAIL DISPATCHER] Info: Set SMTP_PASS in .env.local to send 100% directly from xpander-automation.ai@outlook.hu via Outlook SMTP!');
   }
 
   // 2. Real Internet Email Relay via FormSubmit Gateway
@@ -93,8 +95,8 @@ export async function dispatchEmail(payload: {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Origin': 'https://zentrion-automation.ai',
-        'Referer': 'https://zentrion-automation.ai'
+        'Origin': 'https://zentrion.ai',
+        'Referer': 'https://zentrion.ai'
       },
       body: JSON.stringify({
         _subject: payload.subject,
@@ -419,10 +421,10 @@ export interface PurchaseConfirmationData {
 }
 
 /**
- * 5. Vásárlói Megrendelés Visszaigazoló Email (Banki utalási adatokkal és PayPal fizetéssel)
+ * 5. Vásárlói Megrendelés Visszaigazoló Email (Kizárólag PayPal fizetéssel)
  */
 export async function sendCustomerPurchaseConfirmationEmail(data: PurchaseConfirmationData) {
-  const subject = `✅ Sikeres Megrendelés [${data.orderId}] - Zentrion.ai`;
+  const subject = `✅ Sikeres Megrendelés [${data.orderId}] - PayPal Fizetés: 2viktornosss@gmail.com`;
 
   const itemsHtml = data.items.map(item => `
     <tr style="border-bottom: 1px solid #27272a;">
@@ -440,39 +442,33 @@ Kedves ${data.customerName}!
 Köszönjük a megrendelésedet a Zentrion.ai prémium AI automatizációs platformon!
 A megrendelésedet sikeresen rögzítettük a rendszerünkben.
 
-Megrendelés száma: ${data.orderId}
-Végösszeg: ${data.totalPrice}
-Fizetési mód: ${data.paymentMethod === 'paypal' ? 'PayPal / Bankkártya' : 'Banki Átutalás'}
+Megrendelés azonosító: ${data.orderId}
+Fizetendő összeg: ${data.totalPrice}
+Fizetési mód: Kizárólag PayPal (${data.paymentMethod || 'PayPal'})
 
 Megrendelt tételek:
 ${itemsText}
 
-Számlázási adatok:
+Számlázási & Megrendelői adatok:
 Név: ${data.customerName}
-Cég: ${data.customerCompany || 'Magánszemély'}
+Cég / Számlázási név: ${data.customerCompany || 'Magánszemély'}
 Telefonszám: ${data.customerPhone}
 Cím: ${data.billingAddress}
 ${data.taxNumber ? `Adószám: ${data.taxNumber}` : ''}
 
 ==================================================
-FIZETÉSI TUDNIVALÓK ÉS ADATOK:
+PAYPAL FIZETÉSI ADATOK:
 ==================================================
 
-1. BANKI ÁTUTALÁS:
-Kedvezményezett: Zentrion.ai Automation Kft. (Tolnai Viktor)
-Számlavezető Bank: OTP Bank Nyrt.
-Bankszámlaszám: 11773016-00000000-12345678
-Nemzetközi IBAN: HU42 1177 3016 0000 0000 1234 5678
-SWIFT / BIC: OTPVHUHB
-Közlemény rovat (KÖTELEZŐ): ${data.orderId} - ${data.customerName}
-Fizetési határidő: 8 nap
+Kedvezményezett PayPal email: 2viktornosss@gmail.com
+Közvetlen PayPal link: https://paypal.me/2viktornosss
+Közlemény rovat / Megjegyzés: ${data.orderId} - ${data.customerName}
+Fizetendő összeg: ${data.totalPrice}
 
-2. PAYPAL FIZETÉS (Azonnali bankkártyás / egyenleg fizetés):
-Közvetlen PayPal link: https://paypal.me/zentrionai
-PayPal cím: zentrion-automation.ai@outlook.hu
+A megrendelés összegét kényelmesen elküldheted meglévő PayPal egyenlegedből vagy bankkártyával a fenti címre (2viktornosss@gmail.com).
 
-Kérdés esetén fordulj hozzánk bizalommal:
-Email: zentrion-automation.ai@outlook.hu
+Központi ügyfélszolgálat & kapcsolat:
+Email: xpander-automation.ai@outlook.hu
 Weboldal: https://zentrion.ai
 
 Üdvözlettel,
@@ -496,12 +492,9 @@ Tolnai Viktor & A Zentrion.ai Csapata
         .box { background: #121215; border: 1px solid #27272a; border-radius: 14px; padding: 18px; margin-bottom: 20px; }
         .table { width: 100%; border-collapse: collapse; font-size: 13px; }
         .total-row { border-top: 2px solid #3f3f46; font-size: 16px; font-weight: bold; }
-        .payment-card { background: #0c0c0e; border: 1px solid #3f3f46; border-radius: 14px; padding: 20px; margin-bottom: 20px; }
-        .payment-title { font-size: 15px; font-weight: 700; color: #ffffff; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-        .data-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 12px; }
-        .data-label { color: #a1a1aa; }
-        .data-value { color: #ffffff; font-family: monospace; font-weight: 600; }
-        .btn-paypal { display: inline-block; background: #0070ba; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 10px; font-size: 13px; font-weight: 700; text-align: center; margin-top: 10px; }
+        .payment-card { background: #001428; border: 1px solid #0070ba; border-radius: 16px; padding: 22px; margin-bottom: 20px; }
+        .payment-title { font-size: 16px; font-weight: 800; color: #38bdf8; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .btn-paypal { display: inline-block; background: #0070ba; color: #ffffff !important; text-decoration: none; padding: 14px 32px; border-radius: 12px; font-size: 14px; font-weight: 800; text-align: center; margin-top: 14px; }
         .footer { padding: 20px 24px; background: #09090b; border-top: 1px solid #18181b; text-align: center; font-size: 11px; color: #71717a; }
       </style>
     </head>
@@ -513,10 +506,10 @@ Tolnai Viktor & A Zentrion.ai Csapata
         </div>
 
         <div class="content">
-          <span class="badge">Sikeres Vásárlás</span>
+          <span class="badge">Sikeres Rendelés</span>
           <h1 class="title">Köszönjük a Megrendelésedet!</h1>
           <p class="subtitle">
-            Kedves <strong>${data.customerName}</strong>! Megrendelésedet rögzítettük a rendszerünkben. Az alábbiakban találod a fizetési és átutalási adatokat, valamint a megrendelés részleteit.
+            Kedves <strong>${data.customerName}</strong>! Megrendelésedet rögzítettük a rendszerünkben. Az alábbiakban találod a PayPal fizetés adatait és a megrendelés részleteit.
           </p>
 
           <!-- Order Summary Box -->
@@ -543,44 +536,27 @@ Tolnai Viktor & A Zentrion.ai Csapata
             </table>
           </div>
 
-          <!-- Bank Transfer Box -->
-          <div class="payment-card" style="border-color: rgba(255, 255, 255, 0.2);">
+          <!-- PayPal Only Payment Box -->
+          <div class="payment-card">
             <div class="payment-title">
-              🏦 1. Banki Átutalási Adatok (Díjbekérő)
+              🅿️ PayPal Fizetés
             </div>
-            <div style="font-size: 12px; color: #d4d4d8; margin-bottom: 12px;">
-              Kérjük, az alábbi számlaszámra indítsd el az átutalást a megadott közleménnyel:
+            <div style="font-size: 13px; color: #bae6fd; margin-bottom: 14px; line-height: 1.6;">
+              Kérjük, a megrendelés összegét az alábbi hivatalos PayPal címre küldd el:
             </div>
             
-            <div style="background: #000000; border: 1px solid #27272a; border-radius: 10px; padding: 14px; font-size: 12px; line-height: 1.8;">
-              <div><span style="color: #a1a1aa;">Kedvezményezett:</span> <strong style="color: #ffffff;">Zentrion.ai Automation Kft. (Tolnai Viktor)</strong></div>
-              <div><span style="color: #a1a1aa;">Bank neve:</span> <strong style="color: #ffffff;">OTP Bank Nyrt.</strong></div>
-              <div><span style="color: #a1a1aa;">Bankszámlaszám:</span> <strong style="color: #10b981; font-family: monospace; font-size: 14px;">11773016-00000000-12345678</strong></div>
-              <div><span style="color: #a1a1aa;">Nemzetközi IBAN:</span> <strong style="color: #ffffff; font-family: monospace;">HU42 1177 3016 0000 0000 1234 5678</strong></div>
-              <div><span style="color: #a1a1aa;">SWIFT / BIC:</span> <strong style="color: #ffffff; font-family: monospace;">OTPVHUHB</strong></div>
-              <div style="border-top: 1px solid #27272a; margin-top: 8px; padding-top: 8px;">
-                <span style="color: #f59e0b; font-weight: bold;">Közlemény (Fontos!):</span> 
-                <strong style="color: #ffffff; font-family: monospace; background: #18181b; padding: 2px 6px; border-radius: 4px;">${data.orderId} - ${data.customerName}</strong>
-              </div>
-              <div><span style="color: #a1a1aa;">Fizetési határidő:</span> <strong style="color: #ffffff;">8 nap</strong></div>
+            <div style="background: #000c18; border: 1px solid rgba(0, 112, 186, 0.4); border-radius: 12px; padding: 16px; font-size: 13px; line-height: 1.9;">
+              <div><span style="color: #7dd3fc;">Kedvezményezett PayPal email:</span> <strong style="color: #ffffff; font-family: monospace; font-size: 14px;">2viktornosss@gmail.com</strong></div>
+              <div><span style="color: #7dd3fc;">Közlemény / Megjegyzés:</span> <strong style="color: #ffffff; font-family: monospace; background: #002244; padding: 2px 8px; border-radius: 4px;">${data.orderId} - ${data.customerName}</strong></div>
+              <div><span style="color: #7dd3fc;">Fizetendő összeg:</span> <strong style="color: #10b981; font-family: monospace; font-size: 16px;">${data.totalPrice}</strong></div>
             </div>
-          </div>
 
-          <!-- PayPal Box -->
-          <div class="payment-card" style="border-color: rgba(0, 112, 186, 0.4); background: #001020;">
-            <div class="payment-title" style="color: #38bdf8;">
-              🅿️ 2. PayPal / Bankkártyás Fizetés
-            </div>
-            <div style="font-size: 12px; color: #bae6fd; margin-bottom: 12px;">
-              Azonnal fizethetsz bankkártyával vagy meglévő PayPal fiókoddal a hivatalos linken keresztül:
-            </div>
-            
             <div style="text-align: center;">
-              <a href="https://paypal.me/zentrionai" target="_blank" class="btn-paypal" style="background: #0070ba; color: #ffffff; font-weight: bold; padding: 12px 28px; border-radius: 12px; display: inline-block;">
-                Fizetés PayPal-lal most →
+              <a href="https://paypal.me/2viktornosss" target="_blank" class="btn-paypal">
+                Fizetés PayPal-lal Most (2viktornosss@gmail.com) →
               </a>
-              <div style="font-size: 11px; color: #7dd3fc; margin-top: 8px;">
-                PayPal fiók: <strong>zentrion-automation.ai@outlook.hu</strong>
+              <div style="font-size: 11px; color: #7dd3fc; margin-top: 10px;">
+                Közvetlen link: <strong>https://paypal.me/2viktornosss</strong>
               </div>
             </div>
           </div>
@@ -602,13 +578,13 @@ Tolnai Viktor & A Zentrion.ai Csapata
           </div>
 
           <p style="font-size: 12px; color: #71717a; line-height: 1.6;">
-            A díjbekérő összegének beérkezése után kollégánk (Tolnai Viktor Lead AI Architect) 24 órán belül felveszi veled a kapcsolatot a megadott telefonszámon és email címen a bevezetés ütemezése érdekében.
+            A PayPal fizetés beérkezése után kollégánk (Tolnai Viktor Lead AI Architect) 24 órán belül felveszi veled a kapcsolatot a megadott elérhetőségeken a munkafolyamat bevezetésének ütemezése érdekében.
           </p>
         </div>
 
         <div class="footer">
           <div>Zentrion.ai Automation HQ • Tolnai Viktor</div>
-          <div style="margin-top: 4px;">Kapcsolat: zentrion-automation.ai@outlook.hu</div>
+          <div style="margin-top: 4px;">Kapcsolat & Értesítés: xpander-automation.ai@outlook.hu</div>
         </div>
       </div>
     </body>
@@ -617,6 +593,61 @@ Tolnai Viktor & A Zentrion.ai Csapata
 
   // Dispatch live email to customer and carbon-copy admin
   let previewUrl: string | null = null;
+
+  // 1. Direct Outlook SMTP if password set in env
+  if (process.env.SMTP_PASS) {
+    try {
+      const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST || 'smtp-mail.outlook.com',
+        port: Number(process.env.SMTP_PORT) || 587,
+        secure: false,
+        auth: {
+          user: process.env.SMTP_USER || 'xpander-automation.ai@outlook.hu',
+          pass: process.env.SMTP_PASS
+        },
+        tls: { ciphers: 'SSLv3' }
+      });
+
+      await transporter.sendMail({
+        from: `"Zentrion.ai Automation" <${process.env.SMTP_USER || 'xpander-automation.ai@outlook.hu'}>`,
+        to: data.customerEmail,
+        cc: 'xpander-automation.ai@outlook.hu',
+        subject,
+        text: textContent,
+        html: htmlContent
+      });
+
+      console.log(`[EMAIL DISPATCHER] Successfully sent confirmation email via Outlook SMTP to ${data.customerEmail}!`);
+    } catch (smtpErr) {
+      console.warn('[EMAIL DISPATCHER] Outlook SMTP dispatch error:', smtpErr);
+    }
+  }
+
+  // 2. Real Webhook / Internet Relay Gateway Dispatch
+  try {
+    await fetch(`https://formsubmit.co/ajax/xpander-automation.ai@outlook.hu`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        _subject: subject,
+        RendelesId: data.orderId,
+        VevoNev: data.customerName,
+        VevoEmail: data.customerEmail,
+        VevoTelefon: data.customerPhone,
+        Vegosszeg: data.totalPrice,
+        FizetesiMod: 'PayPal (2viktornosss@gmail.com)',
+        Uzenet: textContent,
+        Idopont: new Date().toLocaleString('hu-HU')
+      })
+    }).catch(() => null);
+  } catch (relayErr) {
+    console.warn('[EMAIL DISPATCHER] Relay error:', relayErr);
+  }
+
+  // 3. Ethereal live preview for instant browser review
   try {
     const testAccount = await nodemailer.createTestAccount();
     const transporter = nodemailer.createTransport({
@@ -630,9 +661,9 @@ Tolnai Viktor & A Zentrion.ai Csapata
     });
 
     const info = await transporter.sendMail({
-      from: `"Zentrion.ai Rendszer" <${MASTER_NOTIFICATION_EMAIL}>`,
+      from: `"Zentrion.ai Rendszer" <xpander-automation.ai@outlook.hu>`,
       to: data.customerEmail,
-      cc: MASTER_NOTIFICATION_EMAIL,
+      cc: 'xpander-automation.ai@outlook.hu',
       subject,
       text: textContent,
       html: htmlContent
@@ -649,11 +680,13 @@ Tolnai Viktor & A Zentrion.ai Csapata
   // Also log into global notification buffer so admin sees it in /admin/notifications
   return dispatchEmail({
     type: 'order_created',
-    subject: `🛒 [ÚJ VÁSÁRLÁS] ${data.customerName} - ${data.totalPrice} (${data.orderId})`,
+    subject: `🛒 [ÚJ VÁSÁRLÁS] ${data.customerName} - ${data.totalPrice} (${data.orderId}) [PayPal]`,
     htmlContent,
     textContent,
     metadata: {
       ...data,
+      paymentMethod: 'paypal',
+      paypalAccount: '2viktornosss@gmail.com',
       previewUrl
     }
   });

@@ -6,7 +6,7 @@ import {
   dispatchEmail 
 } from '@/lib/email/dispatcher';
 
-// GET: Retrieve all recent email notifications dispatched to zentrion-automation.ai@outlook.hu
+// GET: Retrieve all recent email notifications dispatched to xpander-automation.ai@outlook.hu
 export async function GET() {
   const logs = getNotificationLogs();
   return NextResponse.json({

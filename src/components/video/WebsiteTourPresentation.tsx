@@ -970,7 +970,7 @@ export default function WebsiteTourPresentation({ isOpen, onClose }: WebsiteTour
                   <div className="flex flex-wrap items-center justify-between text-xs text-neutral-400 pt-2 border-t border-white/10">
                     <span className="flex items-center gap-1.5 text-neutral-300">
                       <Mail className="w-3.5 h-3.5 text-white" />
-                      <span>zentrion-automation.ai@outlook.hu</span>
+                      <span>xpander-automation.ai@outlook.hu</span>
                     </span>
                     <Link
                       href="/services/appointment-booking"
