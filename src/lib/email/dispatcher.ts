@@ -5,8 +5,314 @@
  */
 
 import nodemailer from 'nodemailer';
+import fs from 'fs';
+import path from 'path';
+import os from 'os';
+import { exec } from 'child_process';
 
 export const MASTER_NOTIFICATION_EMAIL = process.env.ADMIN_NOTIFICATION_EMAIL || 'xpander-automation.ai@outlook.hu';
+
+/**
+ * Desktop Real-Time Notification & Live Order Logger
+ * Places orders & inquiries directly onto Viktor's Windows Desktop (BEERKEZO_MEGRENDELESEK.html and .txt)
+ * and plays a native Windows notification chime.
+ */
+export function playWindowsChime() {
+  try {
+    exec('powershell.exe -NoProfile -Command "[System.Media.SystemSounds]::Asterisk.Play()"');
+  } catch {
+    // Ignore audio errors on non-interactive environments
+  }
+}
+
+function getDesktopPath(): string | null {
+  try {
+    const desktop = path.join(os.homedir(), 'Desktop');
+    if (fs.existsSync(desktop)) return desktop;
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+export function notifyDesktopOrder(orderData: PurchaseConfirmationData) {
+  playWindowsChime();
+
+  const desktop = getDesktopPath();
+  if (!desktop) return;
+
+  const nowFormatted = new Date().toLocaleString('hu-HU');
+  const itemsText = orderData.items.map(i => `${i.title} (${i.quantity} db) - ${i.price}`).join(', ');
+
+  // 1. Append to BEERKEZO_MEGRENDELESEK.txt
+  try {
+    const txtPath = path.join(desktop, 'BEERKEZO_MEGRENDELESEK.txt');
+    const txtEntry = `
+======================================================================
+🛒 ÚJ MEGRENDELÉS ÉRKEZETT - ${nowFormatted}
+======================================================================
+Megrendelés azonosító: ${orderData.orderId}
+Megrendelő neve:        ${orderData.customerName}
+Email cím:              ${orderData.customerEmail}
+Telefonszám:            ${orderData.customerPhone}
+Cégnév / Számlázási név:${orderData.customerCompany || 'Magánszemély'}
+Számlázási cím:         ${orderData.billingAddress}
+${orderData.taxNumber ? `Adószám:                ${orderData.taxNumber}\n` : ''}Tételek:                ${itemsText}
+Fizetendő összeg:       ${orderData.totalPrice}
+Fizetési mód:           Kizárólag PayPal (2viktornosss@gmail.com)
+PayPal link:            https://paypal.me/2viktornosss
+Közlemény rovat:        ${orderData.orderId} - ${orderData.customerName}
+${orderData.notes ? `Megjegyzés:             ${orderData.notes}\n` : ''}======================================================================
+`;
+    fs.appendFileSync(txtPath, txtEntry, 'utf-8');
+  } catch (err) {
+    console.warn('[DESKTOP NOTIFY] Error writing txt order:', err);
+  }
+
+  // 2. Insert into BEERKEZO_MEGRENDELESEK.html
+  try {
+    const htmlPath = path.join(desktop, 'BEERKEZO_MEGRENDELESEK.html');
+    const orderReplyBody = encodeURIComponent(
+      `Kedves ${orderData.customerName}!\n\nKöszönjük a megrendelésedet a Zentrion.ai automatizációs platformon!\n\nMegrendelés azonosító: ${orderData.orderId}\nÖsszeg: ${orderData.totalPrice}\nFizetési mód: PayPal\nPayPal kedvezményezett fiók: 2viktornosss@gmail.com\nKözvetlen PayPal link: https://paypal.me/2viktornosss\nKözlemény: ${orderData.orderId} - ${orderData.customerName}\n\nA kifizetés után szakértőnk azonnal elkezdi a munkafolyamat bevezetését.\n\nÜdvözlettel,\nTolnai Viktor - Zentrion.ai\nxpander-automation.ai@outlook.hu`
+    );
+    const outlookReplyUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=${encodeURIComponent(orderData.customerEmail)}&subject=${encodeURIComponent(`✅ Zentrion.ai Rendelés Visszaigazolás [${orderData.orderId}] - PayPal: 2viktornosss@gmail.com`)}&body=${orderReplyBody}`;
+    const gmailReplyUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(orderData.customerEmail)}&su=${encodeURIComponent(`✅ Zentrion.ai Rendelés Visszaigazolás [${orderData.orderId}]`)}&body=${orderReplyBody}`;
+
+    const newCardHtml = `
+        <!-- ORDER ${orderData.orderId} -->
+        <div class="card" style="border-left: 4px solid #10b981; animation: fadeIn 0.4s ease;">
+          <div class="card-top">
+            <span class="order-id">🛒 ${orderData.orderId}</span>
+            <span class="date">${nowFormatted}</span>
+          </div>
+          <div class="grid">
+            <div>
+              <div class="label">Megrendelő Neve:</div>
+              <div class="value">${orderData.customerName}</div>
+            </div>
+            <div>
+              <div class="label">Email Cím:</div>
+              <div class="value"><a href="mailto:${orderData.customerEmail}" style="color: #60a5fa; text-decoration: underline;">${orderData.customerEmail}</a></div>
+            </div>
+            <div>
+              <div class="label">Telefonszám:</div>
+              <div class="value"><a href="tel:${orderData.customerPhone}" style="color: #ffffff;">${orderData.customerPhone}</a></div>
+            </div>
+            <div>
+              <div class="label">Cég / Számlázási név:</div>
+              <div class="value">${orderData.customerCompany || 'Magánszemély'}</div>
+            </div>
+            <div>
+              <div class="label">Számlázási Cím:</div>
+              <div class="value">${orderData.billingAddress}</div>
+            </div>
+            <div>
+              <div class="label">Megrendelt Csomag(ok):</div>
+              <div class="value">${itemsText}</div>
+            </div>
+            <div>
+              <div class="label">Fizetendő Végösszeg:</div>
+              <div class="price-value">${orderData.totalPrice}</div>
+            </div>
+            <div>
+              <div class="label">Fizetési Mód:</div>
+              <div class="value" style="color: #38bdf8; font-weight: bold;">PayPal (2viktornosss@gmail.com)</div>
+            </div>
+          </div>
+          ${orderData.notes ? `<div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px; font-size: 12px; margin-bottom: 12px; color: #d4d4d8;"><strong>Ügyfél Megjegyzése:</strong> ${orderData.notes}</div>` : ''}
+          <div class="paypal-box">
+            <div>
+              <span style="color: #7dd3fc; font-weight: bold;">🅿️ PayPal Várható Összeg:</span>
+              <span style="font-family: monospace; font-weight: bold; color: #10b981; margin-left: 6px;">${orderData.totalPrice}</span>
+              <span style="margin-left: 8px; color: #a1a1aa; font-size: 11px;">(Cél: 2viktornosss@gmail.com)</span>
+            </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <a href="https://paypal.me/2viktornosss" target="_blank" class="paypal-link">PayPal Megnyitása →</a>
+              <a href="${outlookReplyUrl}" target="_blank" class="paypal-link" style="background: #0284c7;">Válasz Outlookból (1 Kattintás)</a>
+              <a href="${gmailReplyUrl}" target="_blank" class="paypal-link" style="background: #dc2626;">Válasz Gmailből</a>
+            </div>
+          </div>
+        </div>
+`;
+
+    if (fs.existsSync(htmlPath)) {
+      let content = fs.readFileSync(htmlPath, 'utf-8');
+      if (content.includes('<div id="orders-list">')) {
+        content = content.replace('<div id="orders-list">', `<div id="orders-list">\n${newCardHtml}`);
+        fs.writeFileSync(htmlPath, content, 'utf-8');
+      }
+    } else {
+      // Create initial HTML file with this order
+      const initialHtml = `<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="5">
+  <title>Zentrion.ai - ÉLŐ MEGRENDELÉSEK & ÉRTESÍTÉSEK</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #000000; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 30px 20px; min-height: 100vh; }
+    .wrapper { max-width: 900px; margin: 0 auto; }
+    .header { background: #09090b; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px; padding: 24px; margin-bottom: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+    .logo { font-size: 20px; font-weight: 900; letter-spacing: 2px; color: #ffffff; }
+    .status-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 9999px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } }
+    .card { background: #0d0d11; border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 18px; padding: 22px; margin-bottom: 16px; transition: all 0.2s; }
+    .card:hover { border-color: rgba(255, 255, 255, 0.25); }
+    .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; }
+    .order-id { font-family: monospace; font-weight: 900; color: #ffffff; font-size: 15px; }
+    .date { color: #71717a; font-size: 12px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; font-size: 13px; margin-bottom: 14px; }
+    .label { color: #71717a; font-size: 11px; text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
+    .value { color: #ffffff; font-weight: 600; }
+    .price-value { color: #10b981; font-family: monospace; font-size: 16px; font-weight: 900; }
+    .paypal-box { background: #001428; border: 1px solid #0070ba; border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 12px; }
+    .paypal-link { background: #0070ba; color: #ffffff; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; }
+    .quick-links { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+    .quick-link { padding: 10px 18px; border-radius: 10px; font-size: 12px; font-weight: 800; text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.15); color: #ffffff; background: rgba(255, 255, 255, 0.05); }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <div>
+        <div class="logo">ZENTRION.AI AUTOMATION</div>
+        <p style="color: #a1a1aa; font-size: 12px; margin-top: 4px;">Valós idejű helyi beérkező rendelésfigyelő (5 mp automatikus frissülés)</p>
+      </div>
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span>Élő Figyelés Aktív</span>
+      </div>
+    </div>
+    <div class="quick-links">
+      <a href="http://localhost:3000/admin/orders" target="_blank" class="quick-link">👑 Admin Rendelések</a>
+      <a href="http://localhost:3000/admin/notifications" target="_blank" class="quick-link">🔔 Értesítések</a>
+      <a href="https://mail.google.com" target="_blank" class="quick-link">📧 Gmail (2viktornosss@gmail.com)</a>
+      <a href="https://outlook.live.com" target="_blank" class="quick-link">📬 Outlook (xpander-automation.ai@outlook.hu)</a>
+    </div>
+    <div style="margin-top: 24px;">
+      <h3 style="font-size: 14px; text-transform: uppercase; color: #a1a1aa; font-weight: 800; margin-bottom: 12px;">Legutóbbi Beérkezett Megrendelések:</h3>
+      <div id="orders-list">
+        ${newCardHtml}
+      </div>
+    </div>
+  </div>
+</body>
+</html>`;
+      fs.writeFileSync(htmlPath, initialHtml, 'utf-8');
+    }
+    console.log(`[DESKTOP NOTIFY] Successfully wrote order ${orderData.orderId} to Desktop!`);
+  } catch (err) {
+    console.warn('[DESKTOP NOTIFY] Error writing html order:', err);
+  }
+}
+
+export function notifyDesktopInquiry(data: {
+  name: string;
+  email: string;
+  phone?: string;
+  company?: string;
+  service?: string;
+  budget?: string;
+  message?: string;
+}) {
+  playWindowsChime();
+
+  const desktop = getDesktopPath();
+  if (!desktop) return;
+
+  const nowFormatted = new Date().toLocaleString('hu-HU');
+
+  // Append to BEERKEZO_MEGRENDELESEK.txt
+  try {
+    const txtPath = path.join(desktop, 'BEERKEZO_MEGRENDELESEK.txt');
+    const txtEntry = `
+----------------------------------------------------------------------
+🔥 ÚJ AJÁNLATKÉRÉS / AUDIT IGÉNY - ${nowFormatted}
+----------------------------------------------------------------------
+Név:           ${data.name}
+Email:         ${data.email}
+Telefon:       ${data.phone || 'Nincs megadva'}
+Cég:           ${data.company || 'Egyéni'}
+Szolgáltatás:  ${data.service || 'Általános AI Rendszer'}
+Költségkeret:  ${data.budget || 'Nincs megadva'}
+Üzenet:
+${data.message || 'Nem adott meg külön üzenetet.'}
+----------------------------------------------------------------------
+`;
+    fs.appendFileSync(txtPath, txtEntry, 'utf-8');
+  } catch (err) {
+    console.warn('[DESKTOP NOTIFY] Error writing inquiry to txt:', err);
+  }
+
+  // Insert into BEERKEZO_MEGRENDELESEK.html
+  try {
+    const htmlPath = path.join(desktop, 'BEERKEZO_MEGRENDELESEK.html');
+    const replyBody = encodeURIComponent(
+      `Kedves ${data.name}!\n\nKöszönjük megkeresésedet a Zentrion.ai platformon kapcsolatban a következővel: ${data.service || 'AI automatizáció'}.\n\nÖrömmel segítünk a folyamatok felmérésében és kivitelezésében.\n\nÜdvözlettel,\nTolnai Viktor - Zentrion.ai\nxpander-automation.ai@outlook.hu`
+    );
+    const outlookReplyUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=${encodeURIComponent(data.email)}&subject=${encodeURIComponent(`Válasz Zentrion.ai ajánlatkérésre - ${data.name}`)}&body=${replyBody}`;
+    const gmailReplyUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(data.email)}&su=${encodeURIComponent(`Válasz Zentrion.ai ajánlatkérésre - ${data.name}`)}&body=${replyBody}`;
+
+    const cardHtml = `
+        <!-- INQUIRY ${data.email} -->
+        <div class="card" style="border-left: 4px solid #3b82f6; animation: fadeIn 0.4s ease;">
+          <div class="card-top">
+            <span class="order-id" style="color: #60a5fa;">🔥 [AJÁNLATKÉRÉS / AUDIT] ${data.name}</span>
+            <span class="date">${nowFormatted}</span>
+          </div>
+          <div class="grid">
+            <div>
+              <div class="label">Érdeklődő Neve:</div>
+              <div class="value">${data.name}</div>
+            </div>
+            <div>
+              <div class="label">Email Cím:</div>
+              <div class="value"><a href="mailto:${data.email}" style="color: #60a5fa; text-decoration: underline;">${data.email}</a></div>
+            </div>
+            <div>
+              <div class="label">Telefonszám:</div>
+              <div class="value"><a href="tel:${data.phone || ''}" style="color: #ffffff;">${data.phone || 'Nincs megadva'}</a></div>
+            </div>
+            <div>
+              <div class="label">Cég / Szervezet:</div>
+              <div class="value">${data.company || 'Egyéni'}</div>
+            </div>
+            <div>
+              <div class="label">Igényelt Szolgáltatás:</div>
+              <div class="value" style="color: #a855f7;">${data.service || 'Általános'}</div>
+            </div>
+            <div>
+              <div class="label">Tervezett Költségkeret:</div>
+              <div class="value" style="color: #10b981;">${data.budget || '-'}</div>
+            </div>
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; font-size: 13px; margin-bottom: 12px; color: #d4d4d8;">
+            <strong>Üzenet / Igény:</strong><br/>
+            ${data.message || 'Nem fűzött hozzá szöveges megjegyzést.'}
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <a href="${outlookReplyUrl}" target="_blank" class="paypal-link" style="background: #0284c7;">Válasz Küldése Outlookból</a>
+            <a href="${gmailReplyUrl}" target="_blank" class="paypal-link" style="background: #dc2626;">Válasz Küldése Gmailből</a>
+            ${data.phone ? `<a href="tel:${data.phone}" class="paypal-link" style="background: #059669;">📞 Hívás Indítása</a>` : ''}
+          </div>
+        </div>
+`;
+
+    if (fs.existsSync(htmlPath)) {
+      let content = fs.readFileSync(htmlPath, 'utf-8');
+      if (content.includes('<div id="orders-list">')) {
+        content = content.replace('<div id="orders-list">', `<div id="orders-list">\n${cardHtml}`);
+        fs.writeFileSync(htmlPath, content, 'utf-8');
+      }
+    }
+    console.log(`[DESKTOP NOTIFY] Successfully wrote inquiry from ${data.name} to Desktop!`);
+  } catch (err) {
+    console.warn('[DESKTOP NOTIFY] Error writing html inquiry:', err);
+  }
+}
 
 export interface EmailNotification {
   id: string;
@@ -229,6 +535,9 @@ Időbélyeg: ${new Date().toLocaleString('hu-HU')}
       </p>
     </div>
   `;
+
+  // Log to Desktop monitor & sound Windows chime
+  notifyDesktopInquiry(data);
 
   return dispatchEmail({
     type: 'contact_inquiry',
@@ -590,6 +899,9 @@ Tolnai Viktor & A Zentrion.ai Csapata
     </body>
     </html>
   `;
+
+  // Log instantly to Desktop order monitor & sound Windows chime
+  notifyDesktopOrder(data);
 
   // Dispatch live email to customer and carbon-copy admin
   let previewUrl: string | null = null;

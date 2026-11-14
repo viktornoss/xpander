@@ -74,6 +74,8 @@ export interface ServiceOrder {
   packageType: 'Starter' | 'Growth' | 'Enterprise' | 'Custom';
   price: string;
   status: 'pending' | 'in_progress' | 'review' | 'completed';
+  paymentStatus: 'unpaid' | 'paid' | 'refunded';
+  paidAt?: string;
   createdAt: string;
   deliveryDate?: string;
   notes?: string;

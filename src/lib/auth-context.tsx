@@ -38,6 +38,7 @@ interface AuthContextType {
   runAutomationTest: (id: string) => Promise<{ success: boolean; message: string }>;
   addOrder: (order: { serviceId: string; serviceTitle: string; packageType: ServiceOrder['packageType']; price: string; notes?: string }) => void;
   updateOrderStatus: (orderId: string, status: ServiceOrder['status'], notes?: string) => void;
+  updateOrderPaymentStatus: (orderId: string, paymentStatus: ServiceOrder['paymentStatus']) => void;
   updateChatbot: (bot: ChatbotConfig) => void;
   markNotificationRead: (id: string) => void;
   markAllNotificationsRead: () => void;
@@ -376,6 +377,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       packageType: orderData.packageType,
       price: orderData.price,
       status: 'pending',
+      paymentStatus: 'unpaid' as const,
       createdAt: new Date().toISOString().split('T')[0],
       deliveryDate: 'Egyeztetés alatt',
       notes: orderData.notes || 'Webes felületről leadott megrendelés',
@@ -404,6 +406,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           ...o, 
           status, 
           notes: notes !== undefined ? notes : o.notes 
+        };
+      }
+      return o;
+    }));
+  };
+
+  const updateOrderPaymentStatus = (orderId: string, paymentStatus: ServiceOrder['paymentStatus']) => {
+    setOrders(prev => prev.map(o => {
+      if (o.id === orderId) {
+        return { 
+          ...o, 
+          paymentStatus,
+          paidAt: paymentStatus === 'paid' ? new Date().toLocaleString('hu-HU') : (paymentStatus === 'unpaid' ? undefined : o.paidAt)
         };
       }
       return o;
@@ -452,6 +467,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         runAutomationTest,
         addOrder,
         updateOrderStatus,
+        updateOrderPaymentStatus,
         updateChatbot,
         markNotificationRead,
         markAllNotificationsRead,

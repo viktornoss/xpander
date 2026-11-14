@@ -548,17 +548,45 @@ export default function CartDrawer() {
                     <ExternalLink className="w-4 h-4 text-white" />
                   </a>
 
-                  {/* Direct mailto link backup */}
-                  <a
-                    href={`mailto:2viktornosss@gmail.com,xpander-automation.ai@outlook.hu?subject=${encodeURIComponent(`✅ Sikeres Rendelés [${completedOrder.orderId}] - PayPal: 2viktornosss@gmail.com`)}&body=${encodeURIComponent(`Kedves Tolnai Viktor!\n\nA megrendelés rögzítésre került a Zentrion.ai weboldalon.\n\nRendelés száma: ${completedOrder.orderId}\nMegrendelő: ${completedOrder.customerName}\nEmail: ${completedOrder.customerEmail}\nTelefon: ${completedOrder.customerPhone}\nÖsszeg: ${completedOrder.totalPrice}\nFizetés: PayPal (2viktornosss@gmail.com)\n\nÜdvözlettel,\nZentrion.ai`)}`}
-                    className="w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs flex items-center justify-center gap-2 border border-white/15 transition-all cursor-pointer"
-                  >
-                    <Mail className="w-4 h-4 text-white" />
-                    <span>Visszaigazoló Email Megnyitása (Levelező)</span>
-                  </a>
+                  {/* Webmail & Email client dispatch buttons */}
+                  <div className="space-y-2 pt-1">
+                    <div className="text-[10px] text-neutral-400 font-semibold uppercase tracking-wider text-center">
+                      Visszaigazoló Email Megnyitása / Küldése 1 Kattintással:
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <a
+                        href={`https://outlook.live.com/mail/0/deeplink/compose?to=${encodeURIComponent('xpander-automation.ai@outlook.hu')}&subject=${encodeURIComponent(`✅ Sikeres Rendelés [${completedOrder.orderId}] - ${completedOrder.customerName}`)}&body=${encodeURIComponent(`Kedves Tolnai Viktor!\n\nA megrendelés rögzítésre került a Zentrion.ai weboldalon.\n\nRendelés száma: ${completedOrder.orderId}\nMegrendelő: ${completedOrder.customerName}\nEmail: ${completedOrder.customerEmail}\nTelefon: ${completedOrder.customerPhone}\nÖsszeg: ${completedOrder.totalPrice}\nFizetés módja: PayPal (2viktornosss@gmail.com)\n\nÜdvözlettel,\n${completedOrder.customerName}`)}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="py-2.5 px-3 rounded-xl bg-[#0284c7]/20 hover:bg-[#0284c7]/30 border border-[#0284c7]/40 text-[#38bdf8] font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all text-center cursor-pointer"
+                      >
+                        <Mail className="w-3.5 h-3.5 text-[#38bdf8]" />
+                        <span>Outlook Web</span>
+                      </a>
+
+                      <a
+                        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('xpander-automation.ai@outlook.hu')}&su=${encodeURIComponent(`✅ Sikeres Rendelés [${completedOrder.orderId}] - ${completedOrder.customerName}`)}&body=${encodeURIComponent(`Kedves Tolnai Viktor!\n\nA megrendelés rögzítésre került a Zentrion.ai weboldalon.\n\nRendelés száma: ${completedOrder.orderId}\nMegrendelő: ${completedOrder.customerName}\nEmail: ${completedOrder.customerEmail}\nTelefon: ${completedOrder.customerPhone}\nÖsszeg: ${completedOrder.totalPrice}\nFizetés módja: PayPal (2viktornosss@gmail.com)\n\nÜdvözlettel,\n${completedOrder.customerName}`)}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="py-2.5 px-3 rounded-xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/30 text-red-400 font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all text-center cursor-pointer"
+                      >
+                        <Mail className="w-3.5 h-3.5 text-red-400" />
+                        <span>Gmail Web</span>
+                      </a>
+                    </div>
+
+                    <a
+                      href={`mailto:2viktornosss@gmail.com,xpander-automation.ai@outlook.hu?subject=${encodeURIComponent(`✅ Sikeres Rendelés [${completedOrder.orderId}] - PayPal: 2viktornosss@gmail.com`)}&body=${encodeURIComponent(`Kedves Tolnai Viktor!\n\nA megrendelés rögzítésre került a Zentrion.ai weboldalon.\n\nRendelés száma: ${completedOrder.orderId}\nMegrendelő: ${completedOrder.customerName}\nEmail: ${completedOrder.customerEmail}\nTelefon: ${completedOrder.customerPhone}\nÖsszeg: ${completedOrder.totalPrice}\nFizetés módja: PayPal (2viktornosss@gmail.com)\n\nÜdvözlettel,\n${completedOrder.customerName}`)}`}
+                      className="w-full py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-[11px] flex items-center justify-center gap-1.5 border border-white/10 transition-all cursor-pointer"
+                    >
+                      <Mail className="w-3.5 h-3.5 text-neutral-300" />
+                      <span>Alapértelmezett Levelező Program (Mailto)</span>
+                    </a>
+                  </div>
 
                   <div className="text-center text-[10px] text-neutral-400 pt-1">
-                    Ügyfélszolgálat & visszaigazolás: <strong className="text-neutral-200">xpander-automation.ai@outlook.hu</strong>
+                    Központi értesítési fiók: <strong className="text-neutral-200">xpander-automation.ai@outlook.hu</strong>
                   </div>
                 </div>
 

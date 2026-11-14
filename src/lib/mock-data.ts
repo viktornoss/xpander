@@ -334,6 +334,8 @@ export const INITIAL_ORDERS: ServiceOrder[] = [
     packageType: 'Growth',
     price: '380.000 Ft',
     status: 'completed',
+    paymentStatus: 'paid',
+    paidAt: '2026-01-22 14:30',
     createdAt: '2026-01-20',
     deliveryDate: '2026-01-28',
     assignedEngineer: 'Molnár Balázs (Lead AI Dev)'
@@ -348,6 +350,8 @@ export const INITIAL_ORDERS: ServiceOrder[] = [
     packageType: 'Growth',
     price: '290.000 Ft',
     status: 'completed',
+    paymentStatus: 'paid',
+    paidAt: '2026-02-06 09:15',
     createdAt: '2026-02-05',
     deliveryDate: '2026-02-14',
     assignedEngineer: 'Farkas Dávid (Automation Eng)'
@@ -362,6 +366,8 @@ export const INITIAL_ORDERS: ServiceOrder[] = [
     packageType: 'Enterprise',
     price: '790.000 Ft',
     status: 'in_progress',
+    paymentStatus: 'paid',
+    paidAt: '2026-03-02 11:00',
     createdAt: '2026-03-01',
     deliveryDate: '2026-03-20',
     notes: 'Egyedi LangGraph ágens kutatás és versenytárselemzés modul fejlesztése.',
@@ -377,6 +383,7 @@ export const INITIAL_ORDERS: ServiceOrder[] = [
     packageType: 'Growth',
     price: '420.000 Ft',
     status: 'in_progress',
+    paymentStatus: 'unpaid',
     createdAt: '2026-03-04',
     deliveryDate: '2026-03-22',
     assignedEngineer: 'Molnár Balázs'
@@ -391,6 +398,7 @@ export const INITIAL_ORDERS: ServiceOrder[] = [
     packageType: 'Starter',
     price: '240.000 Ft',
     status: 'pending',
+    paymentStatus: 'unpaid',
     createdAt: '2026-03-10',
     deliveryDate: '2026-03-25',
     assignedEngineer: 'Kijelölésre vár'
